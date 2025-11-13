@@ -1,0 +1,287 @@
+const { app, BrowserWindow, Menu, shell, ipcMain } = require("electron");
+const path = require("path");
+
+let mainWindow;
+
+function createWindow() {
+  // Crear la ventana principal
+  mainWindow = new BrowserWindow({
+    width: 1400,
+    height: 900,
+    minWidth: 1000,
+    minHeight: 700,
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: path.join(__dirname, "preload.js"),
+      webSecurity: true,
+    },
+    icon: path.join(__dirname, "build/icon.png"),
+    titleBarStyle: "hidden", // Ocultar barra de título nativa
+    frame: false, // Eliminar el marco completamente
+    show: false,
+    trafficLightPosition: { x: 16, y: 16 }, // Para macOS
+  });
+
+  // Cargar la página principal
+  mainWindow.loadFile("index.html");
+
+  // Mostrar ventana cuando esté lista
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+  });
+
+  // Crear el menú - FORZAR VISIBILIDAD
+  createMenu();
+
+  // Forzar que el menú siempre sea visible
+  Menu.setApplicationMenu(Menu.getApplicationMenu());
+
+  // Abrir DevTools en desarrollo
+  if (process.env.NODE_ENV === "development") {
+    mainWindow.webContents.openDevTools();
+  }
+
+  // Manejar el cierre de la ventana
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
+}
+
+function createMenu() {
+  const template = [
+    {
+      label: "Asistentes IA",
+      submenu: [
+        {
+          label: "CardinalAI",
+          accelerator: 'CmdOrCtrl+1',
+          click: () => {
+            mainWindow.loadURL("https://cardinal-ai-h4rt.vercel.app/");
+          },
+        },
+        {
+          label: "ChatGPT",
+          accelerator: 'CmdOrCtrl+2',
+          click: () => {
+            mainWindow.loadURL("https://chatgpt.com/");
+          },
+        },
+        {
+          label: "Copilot",
+          accelerator: 'CmdOrCtrl+3',
+          click: () => {
+            mainWindow.loadURL("https://copilot.microsoft.com/");
+          },
+        },
+        {
+          label: "Deepseek",
+          accelerator: 'CmdOrCtrl+4',
+          click: () => {
+            mainWindow.loadURL("https://chat.deepseek.com");
+          },
+        },
+        {
+          label: "Perplexity AI",
+          accelerator: 'CmdOrCtrl+5',
+          click: () => {
+            mainWindow.loadURL("https://www.perplexity.ai/");
+          },
+        },
+        {
+          label: "Claude",
+          accelerator: 'CmdOrCtrl+6',
+          click: () => {
+            mainWindow.loadURL("https://claude.ai/");
+          },
+        },
+        {
+          label: "Gemini",
+          accelerator: 'CmdOrCtrl+7',
+          click: () => {
+            mainWindow.loadURL("https://gemini.google.com/");
+          },
+        },
+        {
+          label: "Mistral AI",
+          accelerator: 'CmdOrCtrl+8',
+          click: () => {
+            mainWindow.loadURL("https://mistral.ai/");
+          },
+        },
+      ],
+    },
+    {
+      label: "Navegación",
+      submenu: [
+        {
+          label: "Página Principal",
+          accelerator: 'CmdOrCtrl+H',
+          click: () => {
+            mainWindow.loadFile("index.html");
+          },
+        },
+        { type: "separator" },
+        {
+          label: "Atrás",
+          accelerator: 'Alt+Left',
+          click: () => {
+            if (mainWindow.webContents.canGoBack()) {
+              mainWindow.webContents.goBack();
+            }
+          },
+        },
+        {
+          label: "Adelante",
+          accelerator: 'Alt+Right',
+          click: () => {
+            if (mainWindow.webContents.canGoForward()) {
+              mainWindow.webContents.goForward();
+            }
+          },
+        },
+        { type: "separator" },
+        { role: "reload", label: "Recargar", accelerator: 'CmdOrCtrl+R' },
+        { role: "forceReload", label: "Forzar Recarga", accelerator: 'CmdOrCtrl+Shift+R' },
+        { role: "toggleDevTools", label: "Herramientas Desarrollo", accelerator: 'F12' },
+      ],
+    },
+    {
+      label: "Ventana",
+      submenu: [
+        { role: "minimize", label: "Minimizar", accelerator: 'CmdOrCtrl+M' },
+        { role: "close", label: "Cerrar", accelerator: 'CmdOrCtrl+W' },
+        { type: "separator" },
+        { role: "front", label: "Traer al Frente" },
+        { 
+          label: "Toggle Full Screen", 
+          accelerator: 'F11',
+          click: () => {
+            mainWindow.setFullScreen(!mainWindow.isFullScreen());
+          }
+        },
+      ],
+    },
+    {
+      label: "Ayuda",
+      submenu: [
+        {
+          label: "Abrir en Navegador Externo",
+          accelerator: 'CmdOrCtrl+O',
+          click: () => {
+            const currentURL = mainWindow.webContents.getURL();
+            if (currentURL && !currentURL.startsWith("file://")) {
+              shell.openExternal(currentURL);
+            }
+          },
+        },
+        { type: "separator" },
+        {
+          label: "Acerca de AI Hub",
+          click: () => {
+            const { dialog } = require('electron');
+            dialog.showMessageBox(mainWindow, {
+              type: 'info',
+              title: 'Acerca de AI Hub',
+              message: 'AI Hub v1.0',
+              detail: 'Centro de asistentes de inteligencia artificial\nDesarrollado con Electron'
+            });
+          }
+        }
+      ],
+    },
+  ];
+
+  // Agregar menú específico para macOS
+  if (process.platform === 'darwin') {
+    template.unshift({
+      label: app.getName(),
+      submenu: [
+        { role: 'about', label: 'Acerca de AI Hub' },
+        { type: 'separator' },
+        { role: 'services', label: 'Servicios' },
+        { type: 'separator' },
+        { role: 'hide', label: 'Ocultar AI Hub' },
+        { role: 'hideothers', label: 'Ocultar Otros' },
+        { role: 'unhide', label: 'Mostrar Todo' },
+        { type: 'separator' },
+        { role: 'quit', label: 'Salir de AI Hub' }
+      ]
+    });
+  }
+
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+  
+  return menu;
+}
+
+// Manejar la comunicación desde el renderer process
+ipcMain.handle("navigate-to-url", (event, url) => {
+  if (mainWindow) {
+    mainWindow.loadURL(url);
+    return true;
+  }
+  return false;
+});
+
+ipcMain.handle("go-home", () => {
+  if (mainWindow) {
+    mainWindow.loadFile("index.html");
+    return true;
+  }
+  return false;
+});
+
+ipcMain.handle("window-control", (event, action) => {
+  if (!mainWindow) return false;
+  
+  switch (action) {
+    case 'minimize':
+      mainWindow.minimize();
+      break;
+    case 'maximize':
+      if (mainWindow.isMaximized()) {
+        mainWindow.unmaximize();
+      } else {
+        mainWindow.maximize();
+      }
+      break;
+    case 'close':
+      mainWindow.close();
+      break;
+    default:
+      return false;
+  }
+  return true;
+});
+
+// Forzar que el menú siempre esté disponible
+app.on('browser-window-focus', () => {
+  if (mainWindow && Menu.getApplicationMenu() === null) {
+    createMenu();
+  }
+});
+
+// Eventos de la aplicación
+app.whenReady().then(createWindow);
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
+  }
+});
+
+app.on("activate", () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
+});
+
+// Prevenir que el menú se oculte
+app.on('ready', () => {
+  if (process.platform === 'darwin') {
+    // En macOS, mantener el menú visible incluso cuando no hay ventanas
+    app.dock.setMenu(createMenu());
+  }
+});
