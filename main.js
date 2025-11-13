@@ -26,6 +26,7 @@ function createWindow() {
   // Mostrar ventana cuando esté lista
   mainWindow.once("ready-to-show", () => {
     mainWindow.show();
+    mainWindow.maximize();
   });
 
   // Crear el menú - FORZAR VISIBILIDAD
@@ -103,7 +104,7 @@ function createMenu() {
           label: "Mistral AI",
           accelerator: 'CmdOrCtrl+8',
           click: () => {
-            mainWindow.loadURL("https://mistral.ai/");
+            mainWindow.loadURL("https://chat.mistral.ai/");
           },
         },
       ],
