@@ -17,10 +17,7 @@ function createWindow() {
       webSecurity: true,
     },
     icon: path.join(__dirname, "build/icon.png"),
-    titleBarStyle: "hidden", // Ocultar barra de título nativa
-    frame: false, // Eliminar el marco completamente
     show: false,
-    trafficLightPosition: { x: 16, y: 16 }, // Para macOS
   });
 
   // Cargar la página principal
@@ -231,29 +228,6 @@ ipcMain.handle("go-home", () => {
     return true;
   }
   return false;
-});
-
-ipcMain.handle("window-control", (event, action) => {
-  if (!mainWindow) return false;
-  
-  switch (action) {
-    case 'minimize':
-      mainWindow.minimize();
-      break;
-    case 'maximize':
-      if (mainWindow.isMaximized()) {
-        mainWindow.unmaximize();
-      } else {
-        mainWindow.maximize();
-      }
-      break;
-    case 'close':
-      mainWindow.close();
-      break;
-    default:
-      return false;
-  }
-  return true;
 });
 
 // Forzar que el menú siempre esté disponible

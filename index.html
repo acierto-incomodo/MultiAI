@@ -88,54 +88,6 @@
             flex-direction: column;
         }
 
-        /* Barra de título personalizada */
-        .custom-titlebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 32px;
-            background: var(--gradient-dark);
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding: 0 8px;
-            z-index: 10000;
-            -webkit-app-region: drag;
-            border-bottom: 1px solid rgba(255, 213, 79, 0.1);
-        }
-
-        .titlebar-controls {
-            display: flex;
-            gap: 4px;
-            -webkit-app-region: no-drag;
-        }
-
-        .titlebar-button {
-            width: 28px;
-            height: 28px;
-            border: none;
-            background: transparent;
-            color: var(--md-ref-palette-on-surface-variant);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 16px;
-        }
-
-        .titlebar-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--md-ref-palette-primary);
-        }
-
-        .titlebar-button.close:hover {
-            background: #e74c3c;
-            color: white;
-        }
-
         /* Header Styles */
         .header {
             background: var(--gradient-dark);
@@ -145,7 +97,6 @@
             border-bottom: 1px solid rgba(255, 213, 79, 0.1);
             position: relative;
             overflow: hidden;
-            margin-top: 32px; /* Espacio para la barra de título */
         }
 
         .header::before {
@@ -441,15 +392,6 @@
                 font-size: 2.2rem;
             }
 
-            .custom-titlebar {
-                height: 28px;
-            }
-            
-            .titlebar-button {
-                width: 24px;
-                height: 24px;
-                font-size: 14px;
-            }
         }
 
         /* Loading Animation */
@@ -514,34 +456,10 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--md-yellow-600);
         }
-
-        /* En macOS, ocultar barra de título personalizada */
-        .macos .custom-titlebar {
-            display: none;
-        }
-
-        .macos .header {
-            margin-top: 0;
-        }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Barra de título personalizada -->
-        <div class="custom-titlebar">
-            <div class="titlebar-controls">
-                <button class="titlebar-button" id="minimize-btn">
-                    <span class="material-icons">remove</span>
-                </button>
-                <button class="titlebar-button" id="maximize-btn">
-                    <span class="material-icons">crop_square</span>
-                </button>
-                <button class="titlebar-button close" id="close-btn">
-                    <span class="material-icons">close</span>
-                </button>
-            </div>
-        </div>
-
         <!-- Header -->
         <header class="header">
             <div class="header-content">
@@ -698,7 +616,7 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <p>MultiAI v1.0.1 - Todos tus asistentes de IA en un solo lugar</p>
+                <p>MultiAI v1.0.2 - Todos tus asistentes de IA en un solo lugar</p>
             </div>
         </footer>
     </div>
@@ -829,43 +747,6 @@
             }
         }
 
-        // Controles de la barra de título personalizada
-        function setupTitlebarControls() {
-            const minimizeBtn = document.getElementById('minimize-btn');
-            const maximizeBtn = document.getElementById('maximize-btn');
-            const closeBtn = document.getElementById('close-btn');
-
-            if (minimizeBtn && window.electronAPI) {
-                minimizeBtn.addEventListener('click', () => {
-                    window.electronAPI.windowControl('minimize');
-                });
-            }
-
-            if (maximizeBtn && window.electronAPI) {
-                maximizeBtn.addEventListener('click', () => {
-                    window.electronAPI.windowControl('maximize');
-                });
-            }
-
-            if (closeBtn && window.electronAPI) {
-                closeBtn.addEventListener('click', () => {
-                    window.electronAPI.windowControl('close');
-                });
-            }
-
-            // Ocultar barra de título en macOS (usa la nativa)
-            if (window.electronAPI) {
-                window.electronAPI.platform.then(platform => {
-                    if (platform === 'darwin') {
-                        document.body.classList.add('macos');
-                    }
-                }).catch(() => {
-                    // Fallback si no se puede obtener la plataforma
-                    console.log('Plataforma no disponible');
-                });
-            }
-        }
-
         // Efectos de interacción adicionales
         function setupCardInteractions() {
             const cards = document.querySelectorAll('.ai-card');
@@ -889,7 +770,6 @@
             preloadImages();
             setupImageErrorHandling();
             createParticles();
-            setupTitlebarControls();
             setupCardInteractions();
 
             // Mostrar información de versión si está disponible
