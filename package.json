@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "electron-builder": "^26.0.12"
   },
   "build": {
-    "appId": "com.stormgamesstudios.multi-ai",
+    "appId": "com.stormgamesstudios.multiai",
     "productName": "MultiAI",
     "directories": {
       "output": "dist"
@@ -26,7 +26,8 @@
       "preload.js",
       "src/**/*",
       "assets/**/*",
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "index.html"
     ],
     "linux": {
       "target": [
