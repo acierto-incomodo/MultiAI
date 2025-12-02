@@ -6,7 +6,9 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "build:linux": "electron-builder --linux deb"
+    "build:linux:deb": "electron-builder --linux deb",
+    "build:linux:snap": "electron-builder --linux snap",
+    "build:linux:AppImage": "electron-builder --linux appimage"
   },
   "author": "StormGamesStudios",
   "homepage": "https://github.com/StormGamesStudios/multiai",
@@ -29,17 +31,30 @@
       "node_modules/**/*",
       "index.html"
     ],
+
     "linux": {
       "target": [
-        "deb"
+        "deb",
+        "snap",
+        "AppImage"
       ],
       "icon": "assets/icons/",
       "category": "Utility",
       "maintainer": "StormGamesStudios <meliodas.aitor@gmail.com>",
       "vendor": "StormGamesStudios",
       "synopsis": "Aplicación de asistentes de IA",
-      "description": "Centro de asistentes de inteligencia artificial"
+      "description": "Centro de asistentes de inteligencia artificial",
+
+      "desktop": {
+        "entry": {
+          "Name": "MultiAI",
+          "Comment": "Centro de asistentes de inteligencia artificial",
+          "Keywords": "ai;assistant;chatgpt;claude;gemini;",
+          "Categories": "Network;Utility;"
+        }
+      }
     },
+
     "deb": {
       "depends": [
         "libgtk-3-0",
@@ -49,6 +64,24 @@
         "libxtst6",
         "xdg-utils"
       ]
+    },
+
+    "snap": {
+      "grade": "stable",
+      "confinement": "strict",
+      "plugs": [
+        "network",
+        "network-bind",
+        "desktop",
+        "desktop-legacy",
+        "wayland",
+        "x11",
+        "browser-support"
+      ]
+    },
+
+    "AppImage": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
     }
   }
 }
