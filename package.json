@@ -8,7 +8,8 @@
     "build": "electron-builder",
     "build:linux:deb": "electron-builder --linux deb",
     "build:linux:snap": "electron-builder --linux snap",
-    "build:linux:AppImage": "electron-builder --linux appimage"
+    "build:linux:appimage": "electron-builder --linux AppImage",
+    "build:linux:flatpak": "electron-builder --linux flatpak"
   },
   "author": "StormGamesStudios",
   "homepage": "https://github.com/StormGamesStudios/multiai",
@@ -20,9 +21,11 @@
   "build": {
     "appId": "com.stormgamesstudios.multiai",
     "productName": "MultiAI",
+
     "directories": {
       "output": "dist"
     },
+
     "files": [
       "main.js",
       "preload.js",
@@ -36,7 +39,8 @@
       "target": [
         "deb",
         "snap",
-        "AppImage"
+        "AppImage",
+        "flatpak"
       ],
       "icon": "assets/icons/",
       "category": "Utility",
@@ -80,8 +84,26 @@
       ]
     },
 
-    "AppImage": {
-      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    "appImage": {
+      "artifactName": "MultiAI-${version}-${arch}.${ext}"
+    },
+
+    "flatpak": {
+      "category": "Utility",
+      "runtime": "org.freedesktop.Platform",
+      "runtimeVersion": "23.08",
+      "sdk": "org.freedesktop.Sdk",
+
+      "base": "io.atom.electron.BaseApp",
+      "baseVersion": "23.08",
+
+      "finishArgs": [
+        "--share=network",
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--device=dri"
+      ]
     }
   }
 }
