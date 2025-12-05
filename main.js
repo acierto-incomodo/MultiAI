@@ -44,6 +44,22 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  // Crear menú contextual (clic derecho)
+  mainWindow.webContents.on('context-menu', (e, params) => {
+    const contextMenu = Menu.buildFromTemplate([
+      { role: 'undo', label: 'Deshacer' },
+      { role: 'redo', label: 'Rehacer' },
+      { type: 'separator' },
+      { role: 'cut', label: 'Cortar' },
+      { role: 'copy', label: 'Copiar' },
+      { role: 'paste', label: 'Pegar' },
+      { type: 'separator' },
+      { role: 'reload', label: 'Recargar' },
+      { role: 'toggleDevTools', label: 'Herramientas Desarrollo' },
+    ]);
+    contextMenu.popup(mainWindow, params.x, params.y);
+  });
 }
 
 function createMenu() {
