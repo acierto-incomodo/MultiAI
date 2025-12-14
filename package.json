@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "scripts": {
@@ -37,7 +37,8 @@
       "assets/**/*",
       "node_modules/**/*",
       "index.html",
-      "build/**/*"
+      "build/**/*",
+      "shortcuts.html"
     ],
 
     "linux": {
