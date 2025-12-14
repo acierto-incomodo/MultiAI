@@ -26,6 +26,7 @@ sudo apt install multiai
 ```
 
 Snap:
+
 [![Get it from the Snap Store](https://snapcraft.io/en/dark/install.svg)](https://snapcraft.io/multiai)
 
 ---
@@ -46,4 +47,5 @@ sudo apt install multiai
 ```
 
 Snap:
+
 [![Instalar desde Snap Store](https://snapcraft.io/es/dark/install.svg)](https://snapcraft.io/multiai)
