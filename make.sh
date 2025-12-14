@@ -10,7 +10,7 @@ echo "DEB Finalizado"
 sleep 1
 
 echo "Iniciando build SNAP..."
-./snapUpload.sh
+./makeSnap.sh
 echo "¡Proceso de build y subida completado con éxito!"
 echo "SNAP Finalizado"
 

@@ -571,13 +571,18 @@
                     </div>
                 </button>
                 <div class="header-subtitle-container">
-                    <div class="subtitle text-highlight">Tu centro de asistentes de inteligencia artificial</div>
+                    <div class="subtitle text-highlight" data-i18n-key="headerSubtitle">Tu centro de asistentes de inteligencia artificial</div>
                 </div>
                 <div class="header-actions">
-                    <button class="icon-button" onclick="goToShortcuts()" title="Ver Atajos de Teclado">
+                    <div id="lang-switcher" style="display: flex; gap: 4px; align-items: center; margin-right: 8px;">
+                        <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('es')">ES</button>
+                        <span style="color: var(--md-ref-palette-on-surface-variant);">/</span>
+                        <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('en')">EN</button>
+                    </div>
+                    <button class="icon-button" onclick="goToShortcuts()" title="Ver Atajos de Teclado" data-i18n-key="shortcutsTooltip">
                         <span class="material-icons">keyboard</span>
                     </button>
-                    <button class="icon-button" onclick="closeApp()" title="Cerrar Aplicación">
+                    <button class="icon-button" onclick="closeApp()" title="Cerrar Aplicación" data-i18n-key="closeTooltip">
                         <span class="material-icons">close</span>
                     </button>
                 </div>
@@ -587,11 +592,10 @@
         <!-- Main Content -->
         <main class="main-content">
             <section class="welcome-section">
-                <h1 class="welcome-title text-highlight">Bienvenido a MultiAI</h1>
+                <h1 class="welcome-title text-highlight" data-i18n-key="welcomeTitle">Bienvenido a MultiAI</h1>
                 <br />
-                <p class="welcome-subtitle text-highlight">
-                    Accede a los mejores asistentes de IA desde una sola aplicación.
-                    Haz clic en cualquier tarjeta o usa el menú superior para comenzar.
+                <p class="welcome-subtitle text-highlight" data-i18n-key="welcomeSubtitle">
+                    Accede a los mejores asistentes de IA desde una sola aplicación. Haz clic en cualquier tarjeta o usa el menú superior para comenzar.
                 </p>
             </section>
 
@@ -607,7 +611,7 @@
                         </div>
                         <h3 class="card-title">CardinalAI</h3>
                     </div>
-                    <p class="card-description text-highlight">
+                    <p class="card-description text-highlight" data-i18n-key="cardinalDesc">
                         Asistente de IA especializado en conversaciones naturales y resolución de problemas complejos.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -623,7 +627,7 @@
                         </div>
                         <h3 class="card-title">ChatGPT</h3>
                     </div>
-                    <p class="card-description text-highlight">
+                    <p class="card-description text-highlight" data-i18n-key="chatgptDesc">
                         El asistente de IA más popular de OpenAI, perfecto para conversaciones y tareas creativas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -639,7 +643,7 @@
                         </div>
                         <h3 class="card-title">Copilot</h3>
                     </div>
-                    <p class="card-description text-highlight">
+                    <p class="card-description text-highlight" data-i18n-key="copilotDesc">
                         Asistente de Microsoft integrado con Bing, ideal para búsquedas y productividad.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -655,7 +659,7 @@
                         </div>
                         <h3 class="card-title">Deepseek</h3>
                     </div>
-                    <p class="card-description text-highlight">
+                    <p class="card-description text-highlight" data-i18n-key="deepseekDesc">
                         Modelo de IA avanzado con capacidades de razonamiento y resolución de problemas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -671,7 +675,7 @@
                         </div>
                         <h3 class="card-title">Perplexity AI</h3>
                     </div>
-                    <p class="card-description text-highlight">
+                    <p class="card-description text-highlight" data-i18n-key="perplexityDesc">
                         Motor de búsqueda conversacional que proporciona respuestas con fuentes citadas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -687,7 +691,7 @@
                         </div>
                         <h3 class="card-title">Claude</h3>
                     </div>
-                    <p class="card-description text-highlight">
+                    <p class="card-description text-highlight" data-i18n-key="claudeDesc">
                         Asistente de Anthropic enfocado en conversaciones seguras y éticas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -703,7 +707,7 @@
                         </div>
                         <h3 class="card-title">Gemini</h3>
                     </div>
-                    <p class="card-description text-highlight">
+                    <p class="card-description text-highlight" data-i18n-key="geminiDesc">
                         Modelo multimodal de Google que entiende texto, imágenes y audio.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -719,7 +723,7 @@
                         </div>
                         <h3 class="card-title">Mistral AI</h3>
                     </div>
-                    <p class="card-description text-highlight">
+                    <p class="card-description text-highlight" data-i18n-key="mistralDesc">
                         Modelos de IA de código abierto eficientes y de alto rendimiento.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -739,6 +743,47 @@
     <div class="particles" id="particles"></div>
 
     <script>
+        const translations = {
+            'es': {
+                pageTitle: "MultiAI - Asistentes de Inteligencia Artificial",
+                headerSubtitle: "Tu centro de asistentes de inteligencia artificial",
+                shortcutsTooltip: "Ver Atajos de Teclado",
+                closeTooltip: "Cerrar Aplicación",
+                welcomeTitle: "Bienvenido a MultiAI",
+                welcomeSubtitle: "Accede a los mejores asistentes de IA desde una sola aplicación. Haz clic en cualquier tarjeta o usa el menú superior para comenzar.",
+                cardinalDesc: "Asistente de IA especializado en conversaciones naturales y resolución de problemas complejos.",
+                chatgptDesc: "El asistente de IA más popular de OpenAI, perfecto para conversaciones y tareas creativas.",
+                copilotDesc: "Asistente de Microsoft integrado con Bing, ideal para búsquedas y productividad.",
+                deepseekDesc: "Modelo de IA avanzado con capacidades de razonamiento y resolución de problemas.",
+                perplexityDesc: "Motor de búsqueda conversacional que proporciona respuestas con fuentes citadas.",
+                claudeDesc: "Asistente de Anthropic enfocado en conversaciones seguras y éticas.",
+                geminiDesc: "Modelo multimodal de Google que entiende texto, imágenes y audio.",
+                mistralDesc: "Modelos de IA de código abierto eficientes y de alto rendimiento.",
+                loading: "Cargando...",
+                redirecting: "Redirigiendo a",
+                clickToOpen: "Haz clic para abrir"
+            },
+            'en': {
+                pageTitle: "MultiAI - Artificial Intelligence Assistants",
+                headerSubtitle: "Your hub for artificial intelligence assistants",
+                shortcutsTooltip: "View Keyboard Shortcuts",
+                closeTooltip: "Close Application",
+                welcomeTitle: "Welcome to MultiAI",
+                welcomeSubtitle: "Access the best AI assistants from a single application. Click on any card or use the top menu to get started.",
+                cardinalDesc: "AI assistant specialized in natural conversations and complex problem-solving.",
+                chatgptDesc: "The most popular AI assistant from OpenAI, perfect for creative conversations and tasks.",
+                copilotDesc: "Microsoft's assistant integrated with Bing, ideal for search and productivity.",
+                deepseekDesc: "Advanced AI model with reasoning and problem-solving capabilities.",
+                perplexityDesc: "Conversational search engine that provides answers with cited sources.",
+                claudeDesc: "Anthropic's assistant focused on safe and ethical conversations.",
+                geminiDesc: "Google's multimodal model that understands text, images, and audio.",
+                mistralDesc: "Efficient and high-performance open-source AI models.",
+                loading: "Loading...",
+                redirecting: "Redirecting to",
+                clickToOpen: "Click to open"
+            }
+        };
+
         // Mapeo de asistentes a URLs
         const assistants = {
             'cardinal': 'https://cardinal-ai-h4rt.vercel.app/',
@@ -760,13 +805,13 @@
                     const originalContent = card.innerHTML;
                     card.innerHTML = `
                         <div class="card-header">
-                            <div class="card-icon">
+                            <div class="card-icon" style="animation: spin 1s linear infinite;">
                                 <div class="card-icon-fallback">...</div>
                             </div>
-                            <h3 class="card-title">Cargando...</h3>
+                            <h3 class="card-title">${translations[currentLanguage].loading}</h3>
                         </div>
                         <p class="card-description">
-                            Redirigiendo a ${assistantKey}...
+                            ${translations[currentLanguage].redirecting} ${assistantKey}...
                         </p>
                         <span class="material-icons card-arrow">hourglass_empty</span>
                     `;
@@ -884,13 +929,58 @@
                     // Efecto visual al hacer clic
                     this.style.transform = 'scale(0.98)';
                     setTimeout(() => {
-                        this.style.transform = '';
+                        this.style.transform = 'translateY(-6px)'; // Keep hover effect
                     }, 150);
                 });
-
-                // Agregar tooltip para mejor UX
-                card.title = `Haz clic para abrir ${card.querySelector('.card-title').textContent}`;
             });
+        }
+
+        let currentLanguage = 'es';
+
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+
+            currentLanguage = lang;
+            localStorage.setItem('multiAILang', lang);
+            document.documentElement.lang = lang;
+
+            document.title = translations[lang].pageTitle;
+
+            document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                const key = element.getAttribute('data-i18n-key');
+                if (translations[lang][key]) {
+                    if (element.hasAttribute('title')) {
+                        element.setAttribute('title', translations[lang][key]);
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update dynamic tooltips
+            const cards = document.querySelectorAll('.ai-card');
+            cards.forEach(card => {
+                const cardTitle = card.querySelector('.card-title').textContent;
+                card.title = `${translations[lang].clickToOpen} ${cardTitle}`;
+            });
+
+            // Highlight active language button
+            document.querySelector('#lang-switcher button[onclick="setLanguage(\'es\')"]').style.backgroundColor = lang === 'es' ? 'rgba(255, 213, 79, 0.1)' : 'transparent';
+            document.querySelector('#lang-switcher button[onclick="setLanguage(\'en\')"]').style.backgroundColor = lang === 'en' ? 'rgba(255, 213, 79, 0.1)' : 'transparent';
+        }
+
+        async function loadVersion() {
+            try {
+                const response = await fetch('version.txt');
+                if (!response.ok) throw new Error('version.txt not found');
+                const version = await response.text();
+                const footer = document.querySelector('.footer-content p');
+                if (footer) {
+                    footer.textContent = `MultiAI v${version.trim()} - By StormGamesStudios`;
+                }
+            } catch (error) {
+                console.error('Error al cargar la versión desde version.txt:', error);
+            }
         }
 
         // Inicializar cuando el DOM esté listo
@@ -899,19 +989,12 @@
             setupImageErrorHandling();
             createParticles();
             setupCardInteractions();
+            loadVersion();
 
-            // Mostrar información de versión si está disponible
-            if (window.electronAPI) {
-                window.electronAPI.appVersion.then(version => {
-                    const footer = document.querySelector('.footer-content p');
-                    if (footer) {
-                        footer.textContent = `MultiAI v${version} - By StormGamesStudios`;
-                    }
-                }).catch(() => {
-                    // Fallback si no se puede obtener la versión
-                    console.log('Versión no disponible');
-                });
-            }
+            // Set initial language
+            const savedLang = localStorage.getItem('multiAILang');
+            const browserLang = navigator.language.split('-')[0];
+            setLanguage(savedLang || (translations[browserLang] ? browserLang : 'es'));
         });
 
         // Manejar la tecla Escape para volver al inicio

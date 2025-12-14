@@ -14,4 +14,6 @@ npm run build:linux:snap
 echo "Iniciando la subida a la Snap Store..."
 ./snapUpload.sh
 
+
+
 echo "¡Proceso de build y subida completado con éxito!"

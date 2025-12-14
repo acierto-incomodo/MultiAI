@@ -429,10 +429,15 @@
                     </div>
                 </button>
                 <div class="header-subtitle-container">
-                    <div class="subtitle text-highlight">Atajos de Teclado</div>
+                    <div class="subtitle text-highlight" data-i18n-key="headerSubtitle">Atajos de Teclado</div>
                 </div>
                 <div class="header-actions">
-                    <button class="icon-button" onclick="closeApp()" title="Cerrar Aplicación">
+                    <div id="lang-switcher" style="display: flex; gap: 4px; align-items: center; margin-right: 8px;">
+                        <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('es')">ES</button>
+                        <span style="color: var(--md-ref-palette-on-surface-variant);">/</span>
+                        <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('en')">EN</button>
+                    </div>
+                    <button class="icon-button" onclick="closeApp()" title="Cerrar Aplicación" data-i18n-key="closeTooltip">
                         <span class="material-icons">close</span>
                     </button>
                 </div>
@@ -442,12 +447,12 @@
         <!-- Main Content -->
         <main class="main-content">
             <section class="welcome-section">
-                <h1 class="welcome-title text-highlight">Optimiza tu Flujo de Trabajo</h1>
+                <h1 class="welcome-title text-highlight" data-i18n-key="welcomeTitle">Optimiza tu Flujo de Trabajo</h1>
                 <br />
                 <p class="welcome-subtitle text-highlight">
                     Usa estos atajos para navegar y utilizar MultiAI de forma más rápida y eficiente.
                 <p class="welcome-subtitle">
-                    <span class="text-highlight">Usa estos atajos para navegar y utilizar MultiAI de forma más rápida y
+                    <span class="text-highlight" data-i18n-key="welcomeSubtitle">Usa estos atajos para navegar y utilizar MultiAI de forma más rápida y
                         eficiente.</span>
                 </p>
             </section>
@@ -455,68 +460,64 @@
             <div class="shortcuts-container">
                 <!-- Asistentes IA -->
                 <div class="shortcut-category">
-                    <h2 class="category-title"><span class="material-icons">smart_toy</span>Asistentes IA</h2>
+                    <h2 class="category-title" data-i18n-key="catAI"><span class="material-icons">smart_toy</span>Asistentes IA</h2>
                     <ul class="shortcut-list">
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir CardinalAI</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openCardinal">Abrir CardinalAI</span><span
                                 class="shortcut-key">Ctrl/Cmd + 1</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir ChatGPT</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openChatGPT">Abrir ChatGPT</span><span
                                 class="shortcut-key">Ctrl/Cmd + 2</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir Copilot</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openCopilot">Abrir Copilot</span><span
                                 class="shortcut-key">Ctrl/Cmd + 3</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir Deepseek</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openDeepseek">Abrir Deepseek</span><span
                                 class="shortcut-key">Ctrl/Cmd + 4</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir Perplexity AI</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openPerplexity">Abrir Perplexity AI</span><span
                                 class="shortcut-key">Ctrl/Cmd + 5</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir Claude</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openClaude">Abrir Claude</span><span
                                 class="shortcut-key">Ctrl/Cmd + 6</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir Gemini</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openGemini">Abrir Gemini</span><span
                                 class="shortcut-key">Ctrl/Cmd + 7</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir Mistral AI</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openMistral">Abrir Mistral AI</span><span
                                 class="shortcut-key">Ctrl/Cmd + 8</span></li>
                     </ul>
                 </div>
 
                 <!-- Navegación -->
                 <div class="shortcut-category">
-                    <h2 class="category-title"><span class="material-icons">navigation</span>Navegación</h2>
+                    <h2 class="category-title" data-i18n-key="catNav"><span class="material-icons">navigation</span>Navegación</h2>
                     <ul class="shortcut-list">
-                        <li class="shortcut-item"><span class="shortcut-action">Ir a la Página Principal</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navHome">Ir a la Página Principal</span><span
                                 class="shortcut-key">Ctrl/Cmd + H</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Volver a la Página Principal</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navBackHome">Volver a la Página Principal</span><span
                                 class="shortcut-key">Esc</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Página Anterior</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navPrev">Página Anterior</span><span
                                 class="shortcut-key">Alt + Izquierda</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Página Siguiente</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navNext">Página Siguiente</span><span
                                 class="shortcut-key">Alt + Derecha</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Recargar Página</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navReload">Recargar Página</span><span
                                 class="shortcut-key">Ctrl/Cmd + R</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Forzar Recarga de Página</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navForceReload">Forzar Recarga de Página</span><span
                                 class="shortcut-key">Ctrl/Cmd + Shift + R</span></li>
                     </ul>
                 </div>
 
                 <!-- Ventana y Herramientas -->
                 <div class="shortcut-category">
-                    <h2 class="category-title"><span class="material-icons">fullscreen</span>Ventana y Herramientas</h2>
+                    <h2 class="category-title" data-i18n-key="catWindow"><span class="material-icons">fullscreen</span>Ventana y Herramientas</h2>
                     <ul class="shortcut-list">
-                        <li class="shortcut-item"><span class="shortcut-action">Minimizar Ventana</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winMinimize">Minimizar Ventana</span><span
                                 class="shortcut-key">Ctrl/Cmd + M</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Cerrar Ventana</span><span
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winClose">Cerrar Ventana</span><span
                                 class="shortcut-key">Ctrl/Cmd + W</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Activar/Desactivar Pantalla
-                                Completa</span><span class="shortcut-key">F11</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir Herramientas de
-                                Desarrollo</span><span class="shortcut-key">F12</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Abrir URL en Navegador
-                                Externo</span><span class="shortcut-key">Ctrl/Cmd + O</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winFullscreen">Activar/Desactivar Pantalla Completa</span><span class="shortcut-key">F11</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winDevTools">Abrir Herramientas de Desarrollo</span><span class="shortcut-key">F12</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winExternal">Abrir URL en Navegador Externo</span><span class="shortcut-key">Ctrl/Cmd + O</span></li>
                     </ul>
                 </div>
             </div>
 
             <div style="text-align: center; margin-top: 40px;">
                 <button class="back-button" onclick="goBack()">
-                    <span class="material-icons">arrow_back</span>
-                    Atrás
+                    <span class="material-icons">arrow_back</span><span data-i18n-key="backButton">Atrás</span>
                 </button>
             </div>
 
@@ -534,6 +535,69 @@
     <div class="particles" id="particles"></div>
 
     <script>
+        const translations = {
+            'es': {
+                pageTitle: "MultiAI - Atajos de Teclado",
+                headerSubtitle: "Atajos de Teclado",
+                closeTooltip: "Cerrar Aplicación",
+                welcomeTitle: "Optimiza tu Flujo de Trabajo",
+                welcomeSubtitle: "Usa estos atajos para navegar y utilizar MultiAI de forma más rápida y eficiente.",
+                catAI: '<span class="material-icons">smart_toy</span>Asistentes IA',
+                openCardinal: "Abrir CardinalAI",
+                openChatGPT: "Abrir ChatGPT",
+                openCopilot: "Abrir Copilot",
+                openDeepseek: "Abrir Deepseek",
+                openPerplexity: "Abrir Perplexity AI",
+                openClaude: "Abrir Claude",
+                openGemini: "Abrir Gemini",
+                openMistral: "Abrir Mistral AI",
+                catNav: '<span class="material-icons">navigation</span>Navegación',
+                navHome: "Ir a la Página Principal",
+                navBackHome: "Volver a la Página Principal",
+                navPrev: "Página Anterior",
+                navNext: "Página Siguiente",
+                navReload: "Recargar Página",
+                navForceReload: "Forzar Recarga de Página",
+                catWindow: '<span class="material-icons">fullscreen</span>Ventana y Herramientas',
+                winMinimize: "Minimizar Ventana",
+                winClose: "Cerrar Ventana",
+                winFullscreen: "Activar/Desactivar Pantalla Completa",
+                winDevTools: "Abrir Herramientas de Desarrollo",
+                winExternal: "Abrir URL en Navegador Externo",
+                backButton: "Atrás"
+            },
+            'en': {
+                pageTitle: "MultiAI - Keyboard Shortcuts",
+                headerSubtitle: "Keyboard Shortcuts",
+                closeTooltip: "Close Application",
+                welcomeTitle: "Optimize Your Workflow",
+                welcomeSubtitle: "Use these shortcuts to navigate and use MultiAI faster and more efficiently.",
+                catAI: '<span class="material-icons">smart_toy</span>AI Assistants',
+                openCardinal: "Open CardinalAI",
+                openChatGPT: "Open ChatGPT",
+                openCopilot: "Open Copilot",
+                openDeepseek: "Open Deepseek",
+                openPerplexity: "Open Perplexity AI",
+                openClaude: "Open Claude",
+                openGemini: "Open Gemini",
+                openMistral: "Open Mistral AI",
+                catNav: '<span class="material-icons">navigation</span>Navigation',
+                navHome: "Go to Main Page",
+                navBackHome: "Return to Main Page",
+                navPrev: "Previous Page",
+                navNext: "Next Page",
+                navReload: "Reload Page",
+                navForceReload: "Force Reload Page",
+                catWindow: '<span class="material-icons">fullscreen</span>Window & Tools',
+                winMinimize: "Minimize Window",
+                winClose: "Close Window",
+                winFullscreen: "Toggle Fullscreen",
+                winDevTools: "Open Developer Tools",
+                winExternal: "Open URL in External Browser",
+                backButton: "Back"
+            }
+        };
+
         // Reutilizamos la API expuesta en preload.js
         async function goHome() {
             if (window.electronAPI) {
@@ -588,8 +652,48 @@
             }
         }
 
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+
+            localStorage.setItem('multiAILang', lang);
+            document.documentElement.lang = lang;
+
+            document.title = translations[lang].pageTitle;
+
+            document.querySelectorAll('[data-i18n-key]').forEach(element => {
+                const key = element.getAttribute('data-i18n-key');
+                if (translations[lang][key]) {
+                    if (element.hasAttribute('title')) {
+                        element.setAttribute('title', translations[lang][key]);
+                    } else {
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+            // Highlight active language button
+            document.querySelector('#lang-switcher button[onclick="setLanguage(\'es\')"]').style.backgroundColor = lang === 'es' ? 'rgba(255, 213, 79, 0.1)' : 'transparent';
+            document.querySelector('#lang-switcher button[onclick="setLanguage(\'en\')"]').style.backgroundColor = lang === 'en' ? 'rgba(255, 213, 79, 0.1)' : 'transparent';
+        }
+
+        async function loadVersion() {
+            try {
+                const response = await fetch('version.txt');
+                if (!response.ok) throw new Error('version.txt not found');
+                const version = await response.text();
+                const footer = document.querySelector('.footer-content p');
+                if (footer) {
+                    footer.textContent = `MultiAI v${version.trim()} - By StormGamesStudios`;
+                }
+            } catch (error) {
+                console.error('Error al cargar la versión desde version.txt:', error);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             createParticles();
+            loadVersion();
+            const savedLang = localStorage.getItem('multiAILang') || (translations[navigator.language.split('-')[0]] ? navigator.language.split('-')[0] : 'es');
+            setLanguage(savedLang);
         });
 
         // Manejar la tecla Escape para volver al inicio
