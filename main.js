@@ -10,6 +10,8 @@ function createWindow() {
     height: 900,
     minWidth: 1000,
     minHeight: 700,
+    autoHideMenuBar: false, // Asegura que la barra de menú sea visible en Linux/Windows
+    // menuBarVisible: true, // Alternativa más moderna, pero autoHideMenuBar es más común
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -29,11 +31,8 @@ function createWindow() {
     mainWindow.maximize();
   });
 
-  // Crear el menú - FORZAR VISIBILIDAD
+  // Crear y establecer el menú de la aplicación
   createMenu();
-
-  // Forzar que el menú siempre sea visible
-  Menu.setApplicationMenu(Menu.getApplicationMenu());
 
   // Abrir DevTools en desarrollo
   if (process.env.NODE_ENV === "development") {
@@ -189,16 +188,23 @@ function createMenu() {
             }
           },
         },
+        {
+          label: "Atajos de Teclado",
+          accelerator: 'CmdOrCtrl+K',
+          click: () => {
+            mainWindow.loadFile("shortcuts.html");
+          },
+        },
         { type: "separator" },
         {
-          label: "Acerca de AI Hub",
+          label: "Acerca de MultiAI",
           click: () => {
             const { dialog } = require('electron');
             dialog.showMessageBox(mainWindow, {
               type: 'info',
-              title: 'Acerca de AI Hub',
-              message: 'AI Hub v1.0',
-              detail: 'Centro de asistentes de inteligencia artificial\nDesarrollado con Electron'
+              title: 'Acerca de MultiAI',
+              message: 'MultiAI v1.1.1',
+              detail: 'Centro de asistentes de inteligencia artificial\nDesarrollado por StormGamesStudios'
             });
           }
         }
@@ -239,10 +245,28 @@ ipcMain.handle("navigate-to-url", (event, url) => {
   return false;
 });
 
+ipcMain.handle("go-back", () => {
+  if (mainWindow && mainWindow.webContents.canGoBack()) {
+    mainWindow.webContents.goBack();
+    return true;
+  }
+  return false;
+});
+
 ipcMain.handle("go-home", () => {
   if (mainWindow) {
     mainWindow.loadFile("index.html");
     return true;
+  }
+  return false;
+});
+
+ipcMain.handle("window-control", (event, action) => {
+  if (mainWindow) {
+    if (action === 'close') {
+      mainWindow.close();
+      return true;
+    }
   }
   return false;
 });

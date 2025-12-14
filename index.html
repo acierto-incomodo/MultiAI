@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@
             --md-ref-palette-on-background: #E6E1E5;
             --md-ref-palette-on-error: #690005;
             --md-ref-palette-on-error-container: #FFDAD6;
-            
+
             /* Colores adicionales para el tema */
             --md-yellow-50: #FFFDE7;
             --md-yellow-100: #FFF9C4;
@@ -43,7 +44,7 @@
             --md-yellow-700: #FBC02D;
             --md-yellow-800: #F9A825;
             --md-yellow-900: #F57F17;
-            
+
             --md-black-50: #FAFAFA;
             --md-black-100: #F5F5F5;
             --md-black-200: #EEEEEE;
@@ -59,11 +60,13 @@
             --md-elevation-1: 0 1px 3px 1px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
             --md-elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
             --md-elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.7);
-            
+
             /* Gradientes personalizados */
             --gradient-primary: linear-gradient(135deg, #FFD54F 0%, #FFC107 100%);
             --gradient-dark: linear-gradient(135deg, #1C1C1E 0%, #121212 100%);
             --gradient-card: linear-gradient(145deg, #2C2C2E 0%, #1E1E1E 100%);
+
+            --md-ref-palette-surface-variant-transparent: rgba(202, 196, 208, 0.12);
         }
 
         * {
@@ -77,7 +80,7 @@
             background: var(--md-ref-palette-background);
             color: var(--md-ref-palette-on-background);
             line-height: 1.6;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 15% 50%, rgba(255, 213, 79, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 85% 30%, rgba(255, 213, 79, 0.03) 0%, transparent 50%);
         }
@@ -114,7 +117,7 @@
             margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 16px;
+            justify-content: space-between;
             position: relative;
             z-index: 1;
         }
@@ -140,6 +143,72 @@
             font-size: 1.1rem;
             margin-top: 4px;
             color: var(--md-ref-palette-on-surface-variant);
+        }
+
+        .header-subtitle-container {
+            flex-grow: 1;
+            text-align: center;
+            padding: 0 24px;
+            /* Espacio para que no se pegue a los botones */
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .icon-button {
+            background: transparent;
+            border: 2px solid transparent;
+            color: var(--md-ref-palette-on-surface-variant);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .icon-button:hover {
+            background-color: rgba(255, 213, 79, 0.1);
+            color: var(--md-ref-palette-primary);
+            border-color: rgba(255, 213, 79, 0.3);
+            transform: scale(1.1);
+        }
+
+        .logo-button {
+            background: transparent;
+            border: 2px solid transparent;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: inherit;
+            /* Hereda el color del texto del padre (header) */
+        }
+
+        .logo-button:hover {
+            background-color: rgba(255, 213, 79, 0.1);
+            border-color: rgba(255, 213, 79, 0.3);
+        }
+
+        /* Efecto de hover para texto no interactivo */
+        .text-highlight {
+            display: inline-block;
+            padding: 2px 8px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .text-highlight:hover {
+            background-color: rgba(255, 213, 79, 0.05);
+            border-color: rgba(255, 213, 79, 0.2);
         }
 
         /* Main Content */
@@ -199,10 +268,10 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 213, 79, 0.1), 
-                transparent);
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 213, 79, 0.1),
+                    transparent);
             transition: left 0.6s ease;
         }
 
@@ -211,7 +280,7 @@
         }
 
         .ai-card:hover {
-            box-shadow: 
+            box-shadow:
                 0 8px 25px rgba(255, 213, 79, 0.15),
                 var(--md-elevation-3);
             transform: translateY(-6px);
@@ -354,8 +423,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         /* Responsive Design */
@@ -400,6 +476,7 @@
                 opacity: 0;
                 transform: translateY(40px) scale(0.95);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -411,14 +488,37 @@
             opacity: 0;
         }
 
-        .ai-card:nth-child(1) { animation-delay: 0.1s; }
-        .ai-card:nth-child(2) { animation-delay: 0.2s; }
-        .ai-card:nth-child(3) { animation-delay: 0.3s; }
-        .ai-card:nth-child(4) { animation-delay: 0.4s; }
-        .ai-card:nth-child(5) { animation-delay: 0.5s; }
-        .ai-card:nth-child(6) { animation-delay: 0.6s; }
-        .ai-card:nth-child(7) { animation-delay: 0.7s; }
-        .ai-card:nth-child(8) { animation-delay: 0.8s; }
+        .ai-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .ai-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .ai-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .ai-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .ai-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .ai-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .ai-card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .ai-card:nth-child(8) {
+            animation-delay: 0.8s;
+        }
 
         /* Efecto de brillo al hacer hover */
         .ai-card::after {
@@ -458,25 +558,39 @@
         }
     </style>
 </head>
+
 <body>
     <div class="app-container">
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <div class="logo">
-                    <span class="material-icons logo-icon">smart_toy</span>
-                    MultiAI
+                <button class="logo-button" onclick="goToStart()" title="Ir a la página de inicio">
+                    <div class="logo">
+                        <span class="material-icons logo-icon">smart_toy</span>
+                        MultiAI
+                    </div>
+                </button>
+                <div class="header-subtitle-container">
+                    <div class="subtitle text-highlight">Tu centro de asistentes de inteligencia artificial</div>
                 </div>
-                <div class="subtitle">Tu centro de asistentes de inteligencia artificial</div>
+                <div class="header-actions">
+                    <button class="icon-button" onclick="goToShortcuts()" title="Ver Atajos de Teclado">
+                        <span class="material-icons">keyboard</span>
+                    </button>
+                    <button class="icon-button" onclick="closeApp()" title="Cerrar Aplicación">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
             </div>
         </header>
 
         <!-- Main Content -->
         <main class="main-content">
             <section class="welcome-section">
-                <h1 class="welcome-title">Bienvenido a MultiAI</h1>
-                <p class="welcome-subtitle">
-                    Accede a los mejores asistentes de IA desde una sola aplicación. 
+                <h1 class="welcome-title text-highlight">Bienvenido a MultiAI</h1>
+                <br />
+                <p class="welcome-subtitle text-highlight">
+                    Accede a los mejores asistentes de IA desde una sola aplicación.
                     Haz clic en cualquier tarjeta o usa el menú superior para comenzar.
                 </p>
             </section>
@@ -487,13 +601,13 @@
                 <div class="ai-card" onclick="openAssistant('cardinal')">
                     <div class="card-header">
                         <div class="card-icon img-icon">
-                            <img src="assets/images/cardinalai.png" alt="CardinalAI" class="card-icon-img" 
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <img src="assets/images/cardinalai.png" alt="CardinalAI" class="card-icon-img"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="card-icon-fallback" style="display: none;">C</div>
                         </div>
                         <h3 class="card-title">CardinalAI</h3>
                     </div>
-                    <p class="card-description">
+                    <p class="card-description text-highlight">
                         Asistente de IA especializado en conversaciones naturales y resolución de problemas complejos.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -504,12 +618,12 @@
                     <div class="card-header">
                         <div class="card-icon img-icon">
                             <img src="assets/images/chatgpt.png" alt="ChatGPT" class="card-icon-img"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="card-icon-fallback" style="display: none;">G</div>
                         </div>
                         <h3 class="card-title">ChatGPT</h3>
                     </div>
-                    <p class="card-description">
+                    <p class="card-description text-highlight">
                         El asistente de IA más popular de OpenAI, perfecto para conversaciones y tareas creativas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -520,12 +634,12 @@
                     <div class="card-header">
                         <div class="card-icon img-icon">
                             <img src="assets/images/copilot.png" alt="Copilot" class="card-icon-img"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="card-icon-fallback" style="display: none;">M</div>
                         </div>
                         <h3 class="card-title">Copilot</h3>
                     </div>
-                    <p class="card-description">
+                    <p class="card-description text-highlight">
                         Asistente de Microsoft integrado con Bing, ideal para búsquedas y productividad.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -536,12 +650,12 @@
                     <div class="card-header">
                         <div class="card-icon img-icon">
                             <img src="assets/images/deepseek.png" alt="Deepseek" class="card-icon-img"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="card-icon-fallback" style="display: none;">D</div>
                         </div>
                         <h3 class="card-title">Deepseek</h3>
                     </div>
-                    <p class="card-description">
+                    <p class="card-description text-highlight">
                         Modelo de IA avanzado con capacidades de razonamiento y resolución de problemas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -552,12 +666,12 @@
                     <div class="card-header">
                         <div class="card-icon img-icon">
                             <img src="assets/images/perplexity.png" alt="Perplexity AI" class="card-icon-img"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="card-icon-fallback" style="display: none;">P</div>
                         </div>
                         <h3 class="card-title">Perplexity AI</h3>
                     </div>
-                    <p class="card-description">
+                    <p class="card-description text-highlight">
                         Motor de búsqueda conversacional que proporciona respuestas con fuentes citadas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -568,12 +682,12 @@
                     <div class="card-header">
                         <div class="card-icon img-icon">
                             <img src="assets/images/claude.png" alt="Claude" class="card-icon-img"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="card-icon-fallback" style="display: none;">A</div>
                         </div>
                         <h3 class="card-title">Claude</h3>
                     </div>
-                    <p class="card-description">
+                    <p class="card-description text-highlight">
                         Asistente de Anthropic enfocado en conversaciones seguras y éticas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -584,12 +698,12 @@
                     <div class="card-header">
                         <div class="card-icon img-icon">
                             <img src="assets/images/gemini.png" alt="Gemini" class="card-icon-img"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="card-icon-fallback" style="display: none;">G</div>
                         </div>
                         <h3 class="card-title">Gemini</h3>
                     </div>
-                    <p class="card-description">
+                    <p class="card-description text-highlight">
                         Modelo multimodal de Google que entiende texto, imágenes y audio.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -600,12 +714,12 @@
                     <div class="card-header">
                         <div class="card-icon img-icon">
                             <img src="assets/images/mistral.png" alt="Mistral AI" class="card-icon-img"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <div class="card-icon-fallback" style="display: none;">M</div>
                         </div>
                         <h3 class="card-title">Mistral AI</h3>
                     </div>
-                    <p class="card-description">
+                    <p class="card-description text-highlight">
                         Modelos de IA de código abierto eficientes y de alto rendimiento.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
@@ -616,7 +730,7 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <p>MultiAI v1.1.0 - Todos tus asistentes de IA en un solo lugar</p>
+                <p class="text-highlight">MultiAI v1.1.1 - By StormGamesStudios</p>
             </div>
         </footer>
     </div>
@@ -657,10 +771,10 @@
                         <span class="material-icons card-arrow">hourglass_empty</span>
                     `;
                     card.style.opacity = '0.7';
-                    
+
                     // Navegar a la URL usando la API de Electron
                     const success = await window.electronAPI.navigateToUrl(url);
-                    
+
                     if (!success) {
                         // Restaurar contenido si falla
                         card.innerHTML = originalContent;
@@ -678,6 +792,20 @@
             } else if (url) {
                 // Fallback para navegador web
                 window.open(url, '_blank');
+            }
+        }
+
+        function goToShortcuts() {
+            window.location.href = 'shortcuts.html';
+        }
+
+        function goToStart() {
+            window.location.href = 'index.html';
+        }
+
+        async function closeApp() {
+            if (window.electronAPI) {
+                await window.electronAPI.windowControl('close');
             }
         }
 
@@ -704,15 +832,15 @@
         function setupImageErrorHandling() {
             const images = document.querySelectorAll('.card-icon-img');
             images.forEach(img => {
-                img.addEventListener('error', function() {
+                img.addEventListener('error', function () {
                     this.style.display = 'none';
                     const fallback = this.nextElementSibling;
                     if (fallback && fallback.classList.contains('card-icon-fallback')) {
                         fallback.style.display = 'flex';
                     }
                 });
-                
-                img.addEventListener('load', function() {
+
+                img.addEventListener('load', function () {
                     // Imagen cargada correctamente
                     this.style.opacity = '1';
                 });
@@ -723,26 +851,26 @@
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 15;
-            
+
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
+
                 // Tamaño aleatorio entre 2px y 6px
                 const size = Math.random() * 4 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                
+
                 // Posición aleatoria
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
-                
+
                 // Opacidad aleatoria
                 particle.style.opacity = Math.random() * 0.3 + 0.1;
-                
+
                 // Retraso de animación aleatorio
                 particle.style.animationDelay = `${Math.random() * 6}s`;
-                
+
                 particlesContainer.appendChild(particle);
             }
         }
@@ -750,23 +878,23 @@
         // Efectos de interacción adicionales
         function setupCardInteractions() {
             const cards = document.querySelectorAll('.ai-card');
-            
+
             cards.forEach(card => {
-                card.addEventListener('click', function(event) {
+                card.addEventListener('click', function (event) {
                     // Efecto visual al hacer clic
                     this.style.transform = 'scale(0.98)';
                     setTimeout(() => {
                         this.style.transform = '';
                     }, 150);
                 });
-                
+
                 // Agregar tooltip para mejor UX
                 card.title = `Haz clic para abrir ${card.querySelector('.card-title').textContent}`;
             });
         }
 
         // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             preloadImages();
             setupImageErrorHandling();
             createParticles();
@@ -777,7 +905,7 @@
                 window.electronAPI.appVersion.then(version => {
                     const footer = document.querySelector('.footer-content p');
                     if (footer) {
-                        footer.textContent = `MultiAI v${version} - Todos tus asistentes de IA en un solo lugar`;
+                        footer.textContent = `MultiAI v${version} - By StormGamesStudios`;
                     }
                 }).catch(() => {
                     // Fallback si no se puede obtener la versión
@@ -794,4 +922,5 @@
         });
     </script>
 </body>
+
 </html>
