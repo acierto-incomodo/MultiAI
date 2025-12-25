@@ -16,7 +16,7 @@
     "build:mac": "electron-builder --mac"
   },
   "author": "StormGamesStudios",
-  "homepage": "https://github.com/StormGamesStudios/multiai",
+  "homepage": "https://github.com/acierto-incomodo/MultiAI",
   "license": "MIT",
   "devDependencies": {
     "electron": "^29.1.3",
