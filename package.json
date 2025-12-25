@@ -25,11 +25,9 @@
   "build": {
     "appId": "com.stormgamesstudios.multiai",
     "productName": "MultiAI",
-
     "directories": {
       "output": "dist"
     },
-
     "files": [
       "main.js",
       "preload.js",
@@ -41,7 +39,15 @@
       "shortcuts.html",
       "version.txt"
     ],
-
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true
+    },
     "linux": {
       "target": [
         "deb",
@@ -55,7 +61,6 @@
       "vendor": "StormGamesStudios",
       "synopsis": "Aplicación de asistentes de IA",
       "description": "Centro de asistentes de inteligencia artificial",
-
       "desktop": {
         "entry": {
           "Name": "MultiAI",
@@ -65,7 +70,6 @@
         }
       }
     },
-
     "deb": {
       "depends": [
         "libgtk-3-0",
@@ -76,7 +80,6 @@
         "xdg-utils"
       ]
     },
-
     "snap": {
       "grade": "stable",
       "confinement": "strict",
@@ -90,11 +93,9 @@
         "browser-support"
       ]
     },
-
     "appImage": {
       "artifactName": "MultiAI-${version}-${arch}.${ext}"
     },
-
     "flatpak": {
       "runtime": "org.freedesktop.Platform",
       "runtimeVersion": "23.08",
