@@ -11,7 +11,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   platform: process.platform,
   
   // Versión de la aplicación
-  appVersion: process.env.npm_package_version || '1.1.2',
+  appVersion: process.env.npm_package_version || '1.1.5',
   
   // Eventos del menú
   onMenuAction: (callback) => ipcRenderer.on('menu-action', callback)

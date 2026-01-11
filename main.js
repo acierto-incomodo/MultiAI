@@ -217,7 +217,7 @@ function createMenu() {
             dialog.showMessageBox(mainWindow, {
               type: 'info',
               title: 'Acerca de MultiAI',
-              message: 'MultiAI v1.1.1',
+              message: 'MultiAI v1.1.5',
               detail: 'Centro de asistentes de inteligencia artificial\nDesarrollado por StormGamesStudios'
             });
           }
