@@ -81,38 +81,38 @@ function createMenu() {
           },
         },
         {
-          label: "Copilot",
+          label: "Claude",
           accelerator: 'CmdOrCtrl+3',
+          click: () => {
+            mainWindow.loadURL("https://claude.ai/");
+          },
+        },
+        {
+          label: "Copilot",
+          accelerator: 'CmdOrCtrl+4',
           click: () => {
             mainWindow.loadURL("https://copilot.microsoft.com/");
           },
         },
         {
           label: "Deepseek",
-          accelerator: 'CmdOrCtrl+4',
+          accelerator: 'CmdOrCtrl+5',
           click: () => {
             mainWindow.loadURL("https://chat.deepseek.com");
           },
         },
         {
-          label: "Perplexity AI",
-          accelerator: 'CmdOrCtrl+5',
-          click: () => {
-            mainWindow.loadURL("https://www.perplexity.ai/");
-          },
-        },
-        {
-          label: "Claude",
+          label: "Gemini",
           accelerator: 'CmdOrCtrl+6',
           click: () => {
-            mainWindow.loadURL("https://claude.ai/");
+            mainWindow.loadURL("https://gemini.google.com/");
           },
         },
         {
-          label: "Gemini",
+          label: "Grok",
           accelerator: 'CmdOrCtrl+7',
           click: () => {
-            mainWindow.loadURL("https://gemini.google.com/");
+            mainWindow.loadURL("https://grok.com/");
           },
         },
         {
@@ -120,6 +120,20 @@ function createMenu() {
           accelerator: 'CmdOrCtrl+8',
           click: () => {
             mainWindow.loadURL("https://chat.mistral.ai/");
+          },
+        },
+        {
+          label: "NotebookLM",
+          accelerator: 'CmdOrCtrl+9',
+          click: () => {
+            mainWindow.loadURL("https://notebooklm.google.com/");
+          },
+        },
+        {
+          label: "Perplexity AI",
+          accelerator: 'CmdOrCtrl+0',
+          click: () => {
+            mainWindow.loadURL("https://www.perplexity.ai/");
           },
         },
       ],

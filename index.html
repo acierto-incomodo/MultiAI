@@ -520,6 +520,14 @@
             animation-delay: 0.8s;
         }
 
+        .ai-card:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .ai-card:nth-child(10) {
+            animation-delay: 1.0s;
+        }
+
         /* Efecto de brillo al hacer hover */
         .ai-card::after {
             content: '';
@@ -633,6 +641,22 @@
                     <span class="material-icons card-arrow">arrow_forward</span>
                 </div>
 
+                <!-- Claude -->
+                <div class="ai-card" onclick="openAssistant('claude')">
+                    <div class="card-header">
+                        <div class="card-icon img-icon">
+                            <img src="assets/images/claude.png" alt="Claude" class="card-icon-img"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="card-icon-fallback" style="display: none;">A</div>
+                        </div>
+                        <h3 class="card-title">Claude</h3>
+                    </div>
+                    <p class="card-description text-highlight" data-i18n-key="claudeDesc">
+                        Asistente de Anthropic enfocado en conversaciones seguras y éticas.
+                    </p>
+                    <span class="material-icons card-arrow">arrow_forward</span>
+                </div>
+
                 <!-- Copilot -->
                 <div class="ai-card" onclick="openAssistant('copilot')">
                     <div class="card-header">
@@ -665,38 +689,6 @@
                     <span class="material-icons card-arrow">arrow_forward</span>
                 </div>
 
-                <!-- Perplexity AI -->
-                <div class="ai-card" onclick="openAssistant('perplexity')">
-                    <div class="card-header">
-                        <div class="card-icon img-icon">
-                            <img src="assets/images/perplexity.png" alt="Perplexity AI" class="card-icon-img"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="card-icon-fallback" style="display: none;">P</div>
-                        </div>
-                        <h3 class="card-title">Perplexity AI</h3>
-                    </div>
-                    <p class="card-description text-highlight" data-i18n-key="perplexityDesc">
-                        Motor de búsqueda conversacional que proporciona respuestas con fuentes citadas.
-                    </p>
-                    <span class="material-icons card-arrow">arrow_forward</span>
-                </div>
-
-                <!-- Claude -->
-                <div class="ai-card" onclick="openAssistant('claude')">
-                    <div class="card-header">
-                        <div class="card-icon img-icon">
-                            <img src="assets/images/claude.png" alt="Claude" class="card-icon-img"
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="card-icon-fallback" style="display: none;">A</div>
-                        </div>
-                        <h3 class="card-title">Claude</h3>
-                    </div>
-                    <p class="card-description text-highlight" data-i18n-key="claudeDesc">
-                        Asistente de Anthropic enfocado en conversaciones seguras y éticas.
-                    </p>
-                    <span class="material-icons card-arrow">arrow_forward</span>
-                </div>
-
                 <!-- Gemini -->
                 <div class="ai-card" onclick="openAssistant('gemini')">
                     <div class="card-header">
@@ -713,6 +705,22 @@
                     <span class="material-icons card-arrow">arrow_forward</span>
                 </div>
 
+                <!-- Grok -->
+                <div class="ai-card" onclick="openAssistant('grok')">
+                    <div class="card-header">
+                        <div class="card-icon img-icon">
+                            <img src="assets/images/grok.png" alt="Grok" class="card-icon-img"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="card-icon-fallback" style="display: none;">X</div>
+                        </div>
+                        <h3 class="card-title">Grok</h3>
+                    </div>
+                    <p class="card-description text-highlight" data-i18n-key="grokDesc">
+                        IA de xAI con acceso a información en tiempo real y un toque de humor.
+                    </p>
+                    <span class="material-icons card-arrow">arrow_forward</span>
+                </div>
+
                 <!-- Mistral AI -->
                 <div class="ai-card" onclick="openAssistant('mistral')">
                     <div class="card-header">
@@ -725,6 +733,38 @@
                     </div>
                     <p class="card-description text-highlight" data-i18n-key="mistralDesc">
                         Modelos de IA de código abierto eficientes y de alto rendimiento.
+                    </p>
+                    <span class="material-icons card-arrow">arrow_forward</span>
+                </div>
+
+                <!-- NotebookLM -->
+                <div class="ai-card" onclick="openAssistant('notebooklm')">
+                    <div class="card-header">
+                        <div class="card-icon img-icon">
+                            <img src="assets/images/notebooklm.png" alt="NotebookLM" class="card-icon-img"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="card-icon-fallback" style="display: none;">N</div>
+                        </div>
+                        <h3 class="card-title">NotebookLM</h3>
+                    </div>
+                    <p class="card-description text-highlight" data-i18n-key="notebooklmDesc">
+                        Asistente de investigación y toma de notas de Google impulsado por IA.
+                    </p>
+                    <span class="material-icons card-arrow">arrow_forward</span>
+                </div>
+
+                <!-- Perplexity AI -->
+                <div class="ai-card" onclick="openAssistant('perplexity')">
+                    <div class="card-header">
+                        <div class="card-icon img-icon">
+                            <img src="assets/images/perplexity.png" alt="Perplexity AI" class="card-icon-img"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="card-icon-fallback" style="display: none;">P</div>
+                        </div>
+                        <h3 class="card-title">Perplexity AI</h3>
+                    </div>
+                    <p class="card-description text-highlight" data-i18n-key="perplexityDesc">
+                        Motor de búsqueda conversacional que proporciona respuestas con fuentes citadas.
                     </p>
                     <span class="material-icons card-arrow">arrow_forward</span>
                 </div>
@@ -758,7 +798,9 @@
                 perplexityDesc: "Motor de búsqueda conversacional que proporciona respuestas con fuentes citadas.",
                 claudeDesc: "Asistente de Anthropic enfocado en conversaciones seguras y éticas.",
                 geminiDesc: "Modelo multimodal de Google que entiende texto, imágenes y audio.",
+                grokDesc: "IA de xAI con acceso a información en tiempo real y un toque de humor.",
                 mistralDesc: "Modelos de IA de código abierto eficientes y de alto rendimiento.",
+                notebooklmDesc: "Asistente de investigación y toma de notas de Google impulsado por IA.",
                 loading: "Cargando...",
                 redirecting: "Redirigiendo a",
                 clickToOpen: "Haz clic para abrir"
@@ -777,7 +819,9 @@
                 perplexityDesc: "Conversational search engine that provides answers with cited sources.",
                 claudeDesc: "Anthropic's assistant focused on safe and ethical conversations.",
                 geminiDesc: "Google's multimodal model that understands text, images, and audio.",
+                grokDesc: "xAI's AI with real-time information access and a touch of humor.",
                 mistralDesc: "Efficient and high-performance open-source AI models.",
+                notebooklmDesc: "Google's AI-powered research and note-taking assistant.",
                 loading: "Loading...",
                 redirecting: "Redirecting to",
                 clickToOpen: "Click to open"
@@ -793,7 +837,9 @@
             'perplexity': 'https://www.perplexity.ai/',
             'claude': 'https://claude.ai/',
             'gemini': 'https://gemini.google.com/',
-            'mistral': 'https://chat.mistral.ai/'
+            'grok': 'https://grok.com/',
+            'mistral': 'https://chat.mistral.ai/',
+            'notebooklm': 'https://notebooklm.google.com/'
         };
 
         async function openAssistant(assistantKey) {
@@ -864,7 +910,9 @@
                 'assets/images/perplexity.png',
                 'assets/images/claude.png',
                 'assets/images/gemini.png',
-                'assets/images/mistral.png'
+                'assets/images/grok.png',
+                'assets/images/mistral.png',
+                'assets/images/notebooklm.png'
             ];
 
             imageUrls.forEach(url => {
