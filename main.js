@@ -131,7 +131,6 @@ function createMenu() {
         },
         {
           label: "Perplexity AI",
-          accelerator: 'CmdOrCtrl+0',
           click: () => {
             mainWindow.loadURL("https://www.perplexity.ai/");
           },
@@ -167,6 +166,10 @@ function createMenu() {
             }
           },
         },
+        { type: "separator" },
+        { role: "zoomIn", label: "Acercar", accelerator: 'CmdOrCtrl+=' },
+        { role: "zoomOut", label: "Alejar" },
+        { role: "resetZoom", label: "Restablecer Zoom", accelerator: 'CmdOrCtrl+0' },
         { type: "separator" },
         { role: "reload", label: "Recargar", accelerator: 'CmdOrCtrl+R' },
         { role: "forceReload", label: "Forzar Recarga", accelerator: 'CmdOrCtrl+Shift+R' },
@@ -217,7 +220,7 @@ function createMenu() {
             dialog.showMessageBox(mainWindow, {
               type: 'info',
               title: 'Acerca de MultiAI',
-              message: 'MultiAI v1.1.5',
+              message: 'MultiAI v1.1.6',
               detail: 'Centro de asistentes de inteligencia artificial\nDesarrollado por StormGamesStudios'
             });
           }
