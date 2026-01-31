@@ -221,10 +221,11 @@ function createMenu() {
           label: "Acerca de MultiAI",
           click: () => {
             const { dialog } = require('electron');
+            const packageJson = require('./package.json');
             dialog.showMessageBox(mainWindow, {
               type: 'info',
               title: 'Acerca de MultiAI',
-              message: 'MultiAI v1.1.6',
+              message: `MultiAI v${packageJson.version}`,
               detail: 'Centro de asistentes de inteligencia artificial\nDesarrollado por StormGamesStudios'
             });
           }

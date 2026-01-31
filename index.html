@@ -774,7 +774,7 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <p class="text-highlight">MultiAI v1.1.8 - By StormGamesStudios</p>
+                <p class="text-highlight" id="version-text">MultiAI v1.1.8 - By StormGamesStudios</p>
             </div>
         </footer>
     </div>
@@ -1019,15 +1019,14 @@
 
         async function loadVersion() {
             try {
-                const response = await fetch('version.txt');
-                if (!response.ok) throw new Error('version.txt not found');
-                const version = await response.text();
-                const footer = document.querySelector('.footer-content p');
-                if (footer) {
-                    footer.textContent = `MultiAI v${version.trim()} - By StormGamesStudios`;
+                if (window.electronAPI && window.electronAPI.appVersion) {
+                    const versionElement = document.getElementById('version-text');
+                    if (versionElement) {
+                        versionElement.textContent = `MultiAI v${window.electronAPI.appVersion} - By StormGamesStudios`;
+                    }
                 }
             } catch (error) {
-                console.error('Error al cargar la versión desde version.txt:', error);
+                console.error('Error al cargar la versión:', error);
             }
         }
 

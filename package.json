@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "scripts": {
