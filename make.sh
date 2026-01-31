@@ -2,6 +2,13 @@ echo "Preparando build general..."
 
 sleep 1
 
+echo "Iniciando build AppImage..."
+./makeAppImage.sh
+echo "¡Proceso de build completado con éxito!"
+echo "AppImage Finalizado"
+
+sleep 1
+
 echo "Iniciando build DEB..."
 ./makeDeb.sh
 echo "¡Proceso de build completado con éxito!"

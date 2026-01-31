@@ -1,5 +1,6 @@
-const { app, BrowserWindow, Menu, shell, ipcMain } = require("electron");
+const { app, BrowserWindow, Menu, shell, ipcMain, dialog } = require("electron");
 const path = require("path");
+const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
 
@@ -59,6 +60,9 @@ function createWindow() {
     ]);
     contextMenu.popup(mainWindow, params.x, params.y);
   });
+
+  // Iniciar comprobación de actualizaciones
+  setupAutoUpdater();
 }
 
 function createMenu() {
@@ -287,6 +291,27 @@ ipcMain.handle("window-control", (event, action) => {
   }
   return false;
 });
+
+// Configuración del actualizador automático
+function setupAutoUpdater() {
+  // Solo buscar actualizaciones si la app está empaquetada (producción)
+  if (app.isPackaged) {
+    autoUpdater.checkForUpdatesAndNotify();
+  }
+
+  autoUpdater.on('update-downloaded', (info) => {
+    dialog.showMessageBox(mainWindow, {
+      type: 'info',
+      title: 'Actualización disponible',
+      message: `La versión ${info.version} de MultiAI se ha descargado. ¿Quieres reiniciar ahora para instalarla?`,
+      buttons: ['Reiniciar', 'Más tarde']
+    }).then((result) => {
+      if (result.response === 0) {
+        autoUpdater.quitAndInstall();
+      }
+    });
+  });
+}
 
 // Forzar que el menú siempre esté disponible
 app.on('browser-window-focus', () => {
