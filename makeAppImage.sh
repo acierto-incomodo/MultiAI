@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Script para limpiar, construir y subir un paquete Snap a la Snap Store.
+# Script para construir paquete AppImage.
 
 # Termina el script inmediatamente si algún comando falla.
 set -e
 
-echo "Limpiando archivos .deb anteriores de la carpeta dist/..."
+echo "Limpiando archivos .AppImage anteriores de la carpeta dist/..."
 rm -f dist/*.AppImage
 
 echo "Ejecutando el build para el paquete AppImage..."
