@@ -707,7 +707,9 @@
                 let version = '1.0.0';
                 
                 // Primero intentar obtener desde electronAPI
-                if (window.electronAPI && window.electronAPI.appVersion) {
+                if (window.electronAPI && typeof window.electronAPI.getAppVersion === 'function') {
+                    version = await window.electronAPI.getAppVersion();
+                } else if (window.electronAPI && window.electronAPI.appVersion) {
                     version = window.electronAPI.appVersion;
                 } else {
                     // Fallback: cargar desde package.json

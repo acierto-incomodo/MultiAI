@@ -10,8 +10,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // Información de la plataforma
   platform: process.platform,
   
-  // Versión de la aplicación desde package.json
-  appVersion: require('../package.json').version,
+  // Versión de la aplicación
+  getAppVersion: () => ipcRenderer.invoke('get-app-version'),
   
   // Eventos del menú
   onMenuAction: (callback) => ipcRenderer.on('menu-action', callback)

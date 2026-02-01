@@ -320,6 +320,10 @@ ipcMain.handle("window-control", (event, action) => {
   return false;
 });
 
+ipcMain.handle("get-app-version", () => {
+  return app.getVersion();
+});
+
 // Configuración del actualizador automático
 function setupAutoUpdater() {
   // Solo buscar actualizaciones si la app está empaquetada (producción)
