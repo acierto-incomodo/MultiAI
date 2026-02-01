@@ -135,3 +135,6 @@ dist/multiai_1.2.2_amd64.deb
 dist/multiai_1.2.2_amd64.snap
 dist/builder-debug.yml
 dist/builder-effective-config.yaml
+/dist/win-unpacked
+dist/MultiAI-Setup-1.2.2.exe
+dist/MultiAI-Setup-1.2.2.exe.blockmap
