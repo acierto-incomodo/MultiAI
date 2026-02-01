@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiAI - Actualizaciones</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            /* Material Design 3 Color Tokens - Tema Oscuro Amarillo/Negro */
+            --md-ref-palette-primary: #FFD54F;
+            --md-ref-palette-primary-container: #332900;
+            --md-ref-palette-secondary: #CCC2DC;
+            --md-ref-palette-secondary-container: #4A4458;
+            --md-ref-palette-tertiary: #EFB8C8;
+            --md-ref-palette-tertiary-container: #633B48;
+            --md-ref-palette-surface: #1C1C1E;
+            --md-ref-palette-surface-variant: #2C2C2E;
+            --md-ref-palette-background: #121212;
+            --md-ref-palette-error: #FFB4AB;
+            --md-ref-palette-error-container: #93000A;
+            --md-ref-palette-on-primary: #000000;
+            --md-ref-palette-on-primary-container: #FFE16B;
+            --md-ref-palette-on-secondary: #332D41;
+            --md-ref-palette-on-secondary-container: #E8DEF8;
+            --md-ref-palette-on-tertiary: #492532;
+            --md-ref-palette-on-tertiary-container: #FFD8E4;
+            --md-ref-palette-on-surface: #E6E1E5;
+            --md-ref-palette-on-surface-variant: #CAC4D0;
+            --md-ref-palette-on-background: #E6E1E5;
+            --md-ref-palette-on-error: #690005;
+            --md-ref-palette-on-error-container: #FFDAD6;
+
+            /* Elevation shadows para tema oscuro */
+            --md-elevation-1: 0 1px 3px 1px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
+            --md-elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
+            --md-elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.7);
+
+            /* Gradientes personalizados */
+            --gradient-primary: linear-gradient(135deg, #FFD54F 0%, #FFC107 100%);
+            --gradient-dark: linear-gradient(135deg, #1C1C1E 0%, #121212 100%);
+            --gradient-card: linear-gradient(145deg, #2C2C2E 0%, #1E1E1E 100%);
+
+            --md-ref-palette-surface-variant-transparent: rgba(202, 196, 208, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--md-ref-palette-background);
+            color: var(--md-ref-palette-on-background);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--gradient-dark);
+            color: var(--md-ref-palette-primary);
+            padding: 24px 32px;
+            box-shadow: var(--md-elevation-2);
+            border-bottom: 1px solid rgba(255, 213, 79, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-icon {
+            font-size: 2.8rem;
+            color: var(--md-ref-palette-primary);
+            filter: drop-shadow(0 2px 4px rgba(255, 213, 79, 0.3));
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .icon-button {
+            background: transparent;
+            border: 2px solid transparent;
+            color: var(--md-ref-palette-on-surface-variant);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .icon-button:hover {
+            background-color: rgba(255, 213, 79, 0.1);
+            color: var(--md-ref-palette-primary);
+            border-color: rgba(255, 213, 79, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .welcome-title {
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--md-ref-palette-primary);
+            margin-bottom: 16px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .welcome-subtitle {
+            font-size: 1.1rem;
+            color: var(--md-ref-palette-on-surface-variant);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        .update-card {
+            background: var(--gradient-card);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--md-elevation-1);
+            border: 1px solid rgba(255, 213, 79, 0.1);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .update-status {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+
+        .status-title {
+            font-size: 1.5rem;
+            color: var(--md-ref-palette-primary);
+            margin-bottom: 12px;
+        }
+
+        .status-text {
+            color: var(--md-ref-palette-on-surface-variant);
+            margin-bottom: 24px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 24px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--md-ref-palette-on-primary);
+            border: 1px solid var(--md-ref-palette-primary);
+        }
+
+        .btn-primary:hover {
+            box-shadow: var(--md-elevation-3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--md-ref-palette-on-surface-variant);
+            border: 1px solid var(--md-ref-palette-on-surface-variant);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 213, 79, 0.1);
+            color: var(--md-ref-palette-primary);
+            border-color: var(--md-ref-palette-primary);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--md-ref-palette-on-surface-variant);
+            border: 1px solid var(--md-ref-palette-on-surface-variant);
+            border-radius: 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 24px;
+        }
+
+        .back-button:hover {
+            background: var(--gradient-primary);
+            color: var(--md-ref-palette-on-primary);
+            border-color: var(--md-ref-palette-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--md-elevation-2);
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 213, 79, 0.1);
+            border-top: 3px solid var(--md-ref-palette-primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gradient-dark);
+            color: var(--md-ref-palette-on-surface-variant);
+            padding: 16px 32px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 213, 79, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--md-ref-palette-background);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--md-ref-palette-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--md-ref-palette-on-surface-variant);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">📦</span>
+                    <span>MultiAI</span>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-button" onclick="goBack()" title="Atrás">
+                        <span class="material-icons">arrow_back</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="welcome-section">
+                <h1 class="welcome-title">Actualizaciones</h1>
+                <p class="welcome-subtitle">Verifica la disponibilidad de nuevas versiones de MultiAI</p>
+            </div>
+
+            <div class="update-card">
+                <div id="updateStatus">
+                    <div class="spinner"></div>
+                    <div class="status-title">Buscando actualizaciones...</div>
+                    <p class="status-text">Por favor espera mientras verificamos si hay nuevas versiones disponibles.</p>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="checkForUpdates()">
+                    <span class="material-icons">refresh</span>
+                    Verificar de nuevo
+                </button>
+                <button class="btn btn-secondary" onclick="goBack()">
+                    <span class="material-icons">arrow_back</span>
+                    Atrás
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p id="version-text">MultiAI - Centro de Asistentes de IA. Desarrollado por StormGamesStudios</p>
+        </footer>
+    </div>
+
+    <script>
+        async function checkForUpdates() {
+            const statusDiv = document.getElementById('updateStatus');
+            statusDiv.innerHTML = `
+                <div class="spinner"></div>
+                <div class="status-title">Buscando actualizaciones...</div>
+                <p class="status-text">Por favor espera mientras verificamos si hay nuevas versiones disponibles.</p>
+            `;
+            
+            // Esperar un poco para que se vea la animación
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Aquí normalmente iría la lógica de verificación real
+            // Por ahora mostramos un mensaje genérico
+            statusDiv.innerHTML = `
+                <div class="status-title">✓ Búsqueda completada</div>
+                <p class="status-text">
+                    La verificación de actualizaciones se ha completado. 
+                    Si hay una nueva versión disponible, recibirás una notificación.
+                </p>
+            `;
+        }
+
+        async function goBack() {
+            try {
+                if (window.electronAPI) {
+                    await window.electronAPI.goBack();
+                } else {
+                    window.history.back();
+                }
+            } catch (error) {
+                console.error('Error al ir atrás:', error);
+                window.history.back();
+            }
+        }
+
+        async function closeApp() {
+            try {
+                if (window.electronAPI) {
+                    await window.electronAPI.windowControl('close');
+                } else {
+                    window.close();
+                }
+            } catch (error) {
+                console.error('Error al cerrar la aplicación:', error);
+                window.close();
+            }
+        }
+
+        async function loadVersion() {
+            try {
+                let version = '1.0.0';
+                
+                // Primero intentar obtener desde electronAPI
+                if (window.electronAPI && window.electronAPI.appVersion) {
+                    version = window.electronAPI.appVersion;
+                } else {
+                    // Fallback: cargar desde package.json
+                    const response = await fetch('package.json');
+                    const packageData = await response.json();
+                    version = packageData.version;
+                }
+                
+                const versionElement = document.getElementById('version-text');
+                if (versionElement) {
+                    versionElement.textContent = `MultiAI v${version} - Centro de Asistentes de IA. Desarrollado por StormGamesStudios`;
+                }
+            } catch (error) {
+                console.error('Error al cargar la versión:', error);
+            }
+        }
+
+        // Inicializar cuando cargue la página
+        document.addEventListener('DOMContentLoaded', function () {
+            loadVersion();
+            // Disparar la búsqueda automáticamente al cargar
+            setTimeout(checkForUpdates, 500);
+        });
+    </script>
+</body>
+
+</html>

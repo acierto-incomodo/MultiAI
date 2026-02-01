@@ -587,6 +587,9 @@
                         <span style="color: var(--md-ref-palette-on-surface-variant);">/</span>
                         <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('en')">EN</button>
                     </div>
+                    <button class="icon-button" onclick="goToUpdates()" title="Verificar Actualizaciones" data-i18n-key="updatesTooltip">
+                        <span class="material-icons">system_update</span>
+                    </button>
                     <button class="icon-button" onclick="goToShortcuts()" title="Ver Atajos de Teclado" data-i18n-key="shortcutsTooltip">
                         <span class="material-icons">keyboard</span>
                     </button>
@@ -844,46 +847,51 @@
 
         async function openAssistant(assistantKey) {
             const url = assistants[assistantKey];
-            if (url && window.electronAPI) {
-                try {
-                    // Mostrar estado de carga en la tarjeta
-                    const card = event.currentTarget;
-                    const originalContent = card.innerHTML;
-                    card.innerHTML = `
-                        <div class="card-header">
-                            <div class="card-icon" style="animation: spin 1s linear infinite;">
-                                <div class="card-icon-fallback">...</div>
-                            </div>
-                            <h3 class="card-title">${translations[currentLanguage].loading}</h3>
-                        </div>
-                        <p class="card-description">
-                            ${translations[currentLanguage].redirecting} ${assistantKey}...
-                        </p>
-                        <span class="material-icons card-arrow">hourglass_empty</span>
-                    `;
-                    card.style.opacity = '0.7';
-
-                    // Navegar a la URL usando la API de Electron
-                    const success = await window.electronAPI.navigateToUrl(url);
-
-                    if (!success) {
-                        // Restaurar contenido si falla
-                        card.innerHTML = originalContent;
-                        card.style.opacity = '1';
-                        console.error('Error al navegar a:', url);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    // Restaurar contenido en caso de error
-                    const card = event.currentTarget;
-                    const originalContent = card.innerHTML;
-                    card.innerHTML = originalContent;
-                    card.style.opacity = '1';
-                }
-            } else if (url) {
-                // Fallback para navegador web
-                window.open(url, '_blank');
+            if (!url) {
+                console.error('URL no encontrada para:', assistantKey);
+                return;
             }
+
+            try {
+                // Mostrar estado de carga en la tarjeta
+                const card = event.currentTarget;
+                const originalContent = card.innerHTML;
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-icon" style="animation: spin 1s linear infinite;">
+                            <div class="card-icon-fallback">...</div>
+                        </div>
+                        <h3 class="card-title">${translations[currentLanguage].loading}</h3>
+                    </div>
+                    <p class="card-description">
+                        ${translations[currentLanguage].redirecting} ${assistantKey}...
+                    </p>
+                    <span class="material-icons card-arrow">hourglass_empty</span>
+                `;
+                card.style.opacity = '0.7';
+
+                // Navegar a la URL usando la API de Electron
+                if (window.electronAPI) {
+                    const success = await window.electronAPI.navigateToUrl(url);
+                    if (!success) {
+                        // Si falla, navegar directamente en la misma ventana
+                        window.location.href = url;
+                    }
+                } else {
+                    // Fallback: navegar directamente en la misma ventana si electronAPI no está disponible
+                    window.location.href = url;
+                }
+            } catch (error) {
+                console.error('Error al abrir asistente:', error);
+                // En caso de error, intentar navegación directa
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+        }
+
+        function goToUpdates() {
+            window.location.href = 'updates.html';
         }
 
         function goToShortcuts() {
@@ -895,8 +903,16 @@
         }
 
         async function closeApp() {
-            if (window.electronAPI) {
-                await window.electronAPI.windowControl('close');
+            try {
+                if (window.electronAPI) {
+                    await window.electronAPI.windowControl('close');
+                } else {
+                    // Fallback si no está en Electron
+                    window.close();
+                }
+            } catch (error) {
+                console.error('Error al cerrar la aplicación:', error);
+                window.close();
             }
         }
 
@@ -1019,11 +1035,21 @@
 
         async function loadVersion() {
             try {
+                let version = '1.0.0';
+                
+                // Primero intentar obtener desde electronAPI
                 if (window.electronAPI && window.electronAPI.appVersion) {
-                    const versionElement = document.getElementById('version-text');
-                    if (versionElement) {
-                        versionElement.textContent = `MultiAI v${window.electronAPI.appVersion} - By StormGamesStudios`;
-                    }
+                    version = window.electronAPI.appVersion;
+                } else {
+                    // Fallback: cargar desde package.json
+                    const response = await fetch('package.json');
+                    const packageData = await response.json();
+                    version = packageData.version;
+                }
+                
+                const versionElement = document.getElementById('version-text');
+                if (versionElement) {
+                    versionElement.textContent = `MultiAI v${version} - By StormGamesStudios`;
                 }
             } catch (error) {
                 console.error('Error al cargar la versión:', error);

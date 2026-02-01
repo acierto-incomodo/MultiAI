@@ -4,6 +4,21 @@ const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
 
+// Prevenir múltiples instancias de la aplicación
+const gotTheLock = app.requestSingleInstanceLock();
+
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on('second-instance', () => {
+    // Si el usuario intenta abrir otra instancia, traer la existente al frente
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
+  });
+}
+
 function createWindow() {
   // Crear la ventana principal
   mainWindow = new BrowserWindow({
@@ -11,7 +26,7 @@ function createWindow() {
     height: 900,
     minWidth: 1000,
     minHeight: 700,
-    autoHideMenuBar: false, // Asegura que la barra de menú sea visible en Linux/Windows
+    autoHideMenuBar: true, // Menú escondido por defecto, presiona Alt para mostrarlo
     // menuBarVisible: true, // Alternativa más moderna, pero autoHideMenuBar es más común
     webPreferences: {
       nodeIntegration: false,
@@ -218,6 +233,18 @@ function createMenu() {
         },
         { type: "separator" },
         {
+          label: "Verificar Actualizaciones",
+          click: () => {
+            autoUpdater.checkForUpdatesAndNotify();
+            dialog.showMessageBox(mainWindow, {
+              type: 'info',
+              title: 'Buscando actualizaciones',
+              message: 'Se está verificando si hay nuevas versiones disponibles...'
+            });
+          }
+        },
+        { type: "separator" },
+        {
           label: "Acerca de MultiAI",
           click: () => {
             const { dialog } = require('electron');
@@ -296,18 +323,39 @@ ipcMain.handle("window-control", (event, action) => {
 // Configuración del actualizador automático
 function setupAutoUpdater() {
   // Solo buscar actualizaciones si la app está empaquetada (producción)
-  if (app.isPackaged) {
-    autoUpdater.checkForUpdatesAndNotify();
+  if (!app.isPackaged) {
+    return;
   }
 
+  // Configurar autoUpdater
+  autoUpdater.checkForUpdatesAndNotify();
+  
+  // Verificar actualizaciones cada 30 minutos
+  setInterval(() => {
+    autoUpdater.checkForUpdatesAndNotify();
+  }, 30 * 60 * 1000);
+
+  // Evento cuando hay una actualización disponible
+  autoUpdater.on('update-available', (info) => {
+    console.log('Actualización disponible:', info.version);
+  });
+
+  // Evento cuando ha fallado la búsqueda
+  autoUpdater.on('error', (error) => {
+    console.error('Error en autoUpdater:', error);
+  });
+
+  // Evento cuando la actualización se ha descargado
   autoUpdater.on('update-downloaded', (info) => {
     dialog.showMessageBox(mainWindow, {
       type: 'info',
       title: 'Actualización disponible',
-      message: `La versión ${info.version} de MultiAI se ha descargado. ¿Quieres reiniciar ahora para instalarla?`,
-      buttons: ['Reiniciar', 'Más tarde']
+      message: `MultiAI v${info.version} está lista para instalar`,
+      detail: 'Se descargó la actualización. ¿Quieres instalarla ahora?',
+      buttons: ['Instalar ahora', 'Más tarde']
     }).then((result) => {
       if (result.response === 0) {
+        // Instalar actualización inmediatamente
         autoUpdater.quitAndInstall();
       }
     });

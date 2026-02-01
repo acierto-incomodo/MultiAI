@@ -437,9 +437,16 @@
                         <span style="color: var(--md-ref-palette-on-surface-variant);">/</span>
                         <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('en')">EN</button>
                     </div>
+                    <!---
                     <button class="icon-button" onclick="closeApp()" title="Cerrar Aplicación" data-i18n-key="closeTooltip">
                         <span class="material-icons">close</span>
                     </button>
+                    --->
+                    <div class="header-actions">
+                    <button class="icon-button" onclick="goBack()" title="Atrás">
+                        <span class="material-icons">arrow_back</span>
+                    </button>
+                </div>
                 </div>
             </div>
         </header>
@@ -519,7 +526,10 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 40px;">
+            <div style="text-align: center; margin-top: 40px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <button class="back-button" onclick="goToUpdates()">
+                    <span class="material-icons">system_update</span><span>Actualizaciones</span>
+                </button>
                 <button class="back-button" onclick="goBack()">
                     <span class="material-icons">arrow_back</span><span data-i18n-key="backButton">Atrás</span>
                 </button>
@@ -610,29 +620,38 @@
         async function goHome() {
             if (window.electronAPI) {
                 await window.electronAPI.goHome();
+            } else {
+                window.location.href = 'index.html';
             }
         }
 
         async function goBack() {
             if (window.electronAPI) {
                 await window.electronAPI.goBack();
+            } else {
+                window.history.back();
             }
         }
 
+        function goToUpdates() {
+            window.location.href = 'updates.html';
+        }
+
         async function closeApp() {
-            if (window.electronAPI) {
-                await window.electronAPI.windowControl('close');
+            try {
+                if (window.electronAPI) {
+                    await window.electronAPI.windowControl('close');
+                } else {
+                    window.close();
+                }
+            } catch (error) {
+                console.error('Error al cerrar la aplicación:', error);
+                window.close();
             }
         }
 
         function goToStart() {
             window.location.href = 'index.html';
-        }
-
-        async function closeApp() {
-            if (window.electronAPI) {
-                await window.electronAPI.windowControl('close');
-            }
         }
 
         // Crear partículas decorativas
@@ -685,11 +704,21 @@
 
         async function loadVersion() {
             try {
+                let version = '1.0.0';
+                
+                // Primero intentar obtener desde electronAPI
                 if (window.electronAPI && window.electronAPI.appVersion) {
-                    const versionElement = document.getElementById('version-text');
-                    if (versionElement) {
-                        versionElement.textContent = `MultiAI v${window.electronAPI.appVersion} - By StormGamesStudios`;
-                    }
+                    version = window.electronAPI.appVersion;
+                } else {
+                    // Fallback: cargar desde package.json
+                    const response = await fetch('package.json');
+                    const packageData = await response.json();
+                    version = packageData.version;
+                }
+                
+                const versionElement = document.getElementById('version-text');
+                if (versionElement) {
+                    versionElement.textContent = `MultiAI v${version} - By StormGamesStudios`;
                 }
             } catch (error) {
                 console.error('Error al cargar la versión:', error);
