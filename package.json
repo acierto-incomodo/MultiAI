@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.1.11",
+  "version": "1.2.0",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "scripts": {
@@ -35,9 +35,6 @@
         "repo": "MultiAI"
       }
     ],
-    "directories": {
-      "output": "dist"
-    },
     "files": [
       "main.js",
       "preload.js",
@@ -50,6 +47,9 @@
       "updates.html",
       "README.md"
     ],
+    "directories": {
+      "output": "dist"
+    },
     "win": {
       "target": "nsis",
       "icon": "assets/icons/icon.ico"
