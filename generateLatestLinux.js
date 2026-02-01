@@ -21,9 +21,11 @@ const version = packageJson.version;
 
 const distDir = path.join(__dirname, 'dist');
 
-// Buscar archivos .deb y .AppImage
-const debFile = fs.readdirSync(distDir).find(f => f.endsWith('.deb'));
-const appImageFile = fs.readdirSync(distDir).find(f => f.endsWith('.AppImage'));
+// Buscar archivos .deb, .AppImage y opcionalmente .snap
+const filesInDist = fs.readdirSync(distDir);
+const debFile = filesInDist.find(f => f.endsWith('.deb'));
+const appImageFile = filesInDist.find(f => f.endsWith('.AppImage'));
+const snapFile = filesInDist.find(f => f.endsWith('.snap'));
 
 if (!debFile || !appImageFile) {
   console.error('Error: No se encontraron ambos archivos (.deb y .AppImage) en la carpeta dist/');
@@ -34,26 +36,32 @@ if (!debFile || !appImageFile) {
 
 const debPath = path.join(distDir, debFile);
 const appImagePath = path.join(distDir, appImageFile);
+const snapPath = snapFile ? path.join(distDir, snapFile) : null;
 
 const debSha512 = calculateSHA512(debPath);
 const appImageSha512 = calculateSHA512(appImagePath);
+const snapSha512 = snapPath ? calculateSHA512(snapPath) : null;
 
 const debSize = getFileSize(debPath);
 const appImageSize = getFileSize(appImagePath);
+const snapSize = snapPath ? getFileSize(snapPath) : null;
 
-// Generar el archivo YAML con ambos formatos
-const latestLinuxContent = `version: ${version}
-files:
-  - url: ${debFile}
-    sha512: ${debSha512}
-    size: ${debSize}
-  - url: ${appImageFile}
-    sha512: ${appImageSha512}
-    size: ${appImageSize}
-path: ${debFile}
-sha512: ${debSha512}
-releaseDate: '${new Date().toISOString()}'
-`;
+// Construir la sección files dinámicamente (incluir snap si existe)
+const filesList = [];
+filesList.push({ url: debFile, sha512: debSha512, size: debSize });
+filesList.push({ url: appImageFile, sha512: appImageSha512, size: appImageSize });
+if (snapFile) {
+  filesList.push({ url: snapFile, sha512: snapSha512, size: snapSize });
+}
+
+// Elegir el `path` principal: si existe snap, usarlo; si no, usar el .deb
+const mainPath = snapFile ? snapFile : debFile;
+const mainSha = snapFile ? snapSha512 : debSha512;
+
+// Generar el archivo YAML con los formatos detectados
+const filesYaml = filesList.map(f => `  - url: ${f.url}\n    sha512: ${f.sha512}\n    size: ${f.size}`).join('\n');
+
+const latestLinuxContent = `version: ${version}\nfiles:\n${filesYaml}\npath: ${mainPath}\nsha512: ${mainSha}\nreleaseDate: '${new Date().toISOString()}'\n`;
 
 const latestLinuxPath = path.join(distDir, 'latest-linux.yml');
 fs.writeFileSync(latestLinuxPath, latestLinuxContent);
