@@ -1,0 +1,11 @@
+version: 1.2.2
+files:
+  - url: multiai_1.2.2_amd64.deb
+    sha512: Td12SC+yz1Kqre6H4UFehCCwsDD+RCgeovsgF8WvwPTz1JQE+xhIp7e2RRvi1znt+yVzpPYLunRuot3d1BkUAQ==
+    size: 94859216
+  - url: MultiAI-1.2.2-x86_64.AppImage
+    sha512: GOR7ve16Aybxbu0cBz2wVegLe71ozXfbOdJbPNd9RJCraXlWWmyJM8fGHbh7DCNQPFsGHPu2C8rFS1sHCzzQWQ==
+    size: 123308703
+path: multiai_1.2.2_amd64.deb
+sha512: Td12SC+yz1Kqre6H4UFehCCwsDD+RCgeovsgF8WvwPTz1JQE+xhIp7e2RRvi1znt+yVzpPYLunRuot3d1BkUAQ==
+releaseDate: '2026-02-01T12:33:32.973Z'

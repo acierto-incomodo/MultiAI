@@ -89,7 +89,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
@@ -129,3 +128,10 @@ dist
 .yarn/install-state.gz
 .pnp.*
 .package-lock.json
+/dist/.icon-set
+/dist/linux-unpacked
+dist/MultiAI-1.2.2-x86_64.AppImage
+dist/multiai_1.2.2_amd64.deb
+dist/multiai_1.2.2_amd64.snap
+dist/builder-debug.yml
+dist/builder-effective-config.yaml
