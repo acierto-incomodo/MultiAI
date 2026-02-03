@@ -1,6 +1,13 @@
 const { app, BrowserWindow, Menu, shell, ipcMain, dialog } = require("electron");
 const path = require("path");
 const { autoUpdater } = require("electron-updater");
+const log = require("electron-log");
+
+// Configura electron-log
+log.transports.file.level = "info";
+log.transports.file.format = "[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] {text}";
+// Captura excepciones no controladas
+log.catchErrors();
 
 let mainWindow;
 
@@ -8,10 +15,12 @@ let mainWindow;
 const gotTheLock = app.requestSingleInstanceLock();
 
 if (!gotTheLock) {
+  log.warn("Se intentó abrir una segunda instancia, cerrando...");
   app.quit();
 } else {
-  app.on('second-instance', () => {
+  app.on("second-instance", () => {
     // Si el usuario intenta abrir otra instancia, traer la existente al frente
+    log.info("Detectada segunda instancia. Trayendo la ventana principal al frente.");
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore();
       mainWindow.focus();
@@ -20,6 +29,7 @@ if (!gotTheLock) {
 }
 
 function createWindow() {
+  log.info("Creando la ventana principal (createWindow)...");
   // Crear la ventana principal
   mainWindow = new BrowserWindow({
     width: 1400,
@@ -40,9 +50,11 @@ function createWindow() {
 
   // Cargar la página principal
   mainWindow.loadFile("index.html");
+  log.info("Cargando index.html en la ventana principal.");
 
   // Mostrar ventana cuando esté lista
   mainWindow.once("ready-to-show", () => {
+    log.info("La ventana está lista para mostrarse. Mostrando y maximizando.");
     mainWindow.show();
     mainWindow.maximize();
   });
@@ -56,12 +68,13 @@ function createWindow() {
   }
 
   // Manejar el cierre de la ventana
-  mainWindow.on('closed', () => {
+  mainWindow.on("closed", () => {
+    log.info("La ventana principal ha sido cerrada.");
     mainWindow = null;
   });
 
   // Crear menú contextual (clic derecho)
-  mainWindow.webContents.on('context-menu', (e, params) => {
+  mainWindow.webContents.on("context-menu", (e, params) => {
     const contextMenu = Menu.buildFromTemplate([
       { role: 'undo', label: 'Deshacer' },
       { role: 'redo', label: 'Rehacer' },
@@ -89,6 +102,7 @@ function createMenu() {
           label: "CardinalAI",
           accelerator: 'CmdOrCtrl+1',
           click: () => {
+            log.info("Menu: Navegando a CardinalAI.");
             mainWindow.loadURL("https://cardinal-ai-h4rt.vercel.app/");
           },
         },
@@ -96,6 +110,7 @@ function createMenu() {
           label: "ChatGPT",
           accelerator: 'CmdOrCtrl+2',
           click: () => {
+            log.info("Menu: Navegando a ChatGPT.");
             mainWindow.loadURL("https://chatgpt.com/");
           },
         },
@@ -103,6 +118,7 @@ function createMenu() {
           label: "Claude",
           accelerator: 'CmdOrCtrl+3',
           click: () => {
+            log.info("Menu: Navegando a Claude.");
             mainWindow.loadURL("https://claude.ai/");
           },
         },
@@ -110,6 +126,7 @@ function createMenu() {
           label: "Copilot",
           accelerator: 'CmdOrCtrl+4',
           click: () => {
+            log.info("Menu: Navegando a Copilot.");
             mainWindow.loadURL("https://copilot.microsoft.com/");
           },
         },
@@ -117,6 +134,7 @@ function createMenu() {
           label: "Deepseek",
           accelerator: 'CmdOrCtrl+5',
           click: () => {
+            log.info("Menu: Navegando a Deepseek.");
             mainWindow.loadURL("https://chat.deepseek.com");
           },
         },
@@ -124,6 +142,7 @@ function createMenu() {
           label: "Gemini",
           accelerator: 'CmdOrCtrl+6',
           click: () => {
+            log.info("Menu: Navegando a Gemini.");
             mainWindow.loadURL("https://gemini.google.com/");
           },
         },
@@ -131,6 +150,7 @@ function createMenu() {
           label: "Grok",
           accelerator: 'CmdOrCtrl+7',
           click: () => {
+            log.info("Menu: Navegando a Grok.");
             mainWindow.loadURL("https://grok.com/");
           },
         },
@@ -138,6 +158,7 @@ function createMenu() {
           label: "Mistral AI",
           accelerator: 'CmdOrCtrl+8',
           click: () => {
+            log.info("Menu: Navegando a Mistral AI.");
             mainWindow.loadURL("https://chat.mistral.ai/");
           },
         },
@@ -145,12 +166,14 @@ function createMenu() {
           label: "NotebookLM",
           accelerator: 'CmdOrCtrl+9',
           click: () => {
+            log.info("Menu: Navegando a NotebookLM.");
             mainWindow.loadURL("https://notebooklm.google.com/");
           },
         },
         {
           label: "Perplexity AI",
           click: () => {
+            log.info("Menu: Navegando a Perplexity AI.");
             mainWindow.loadURL("https://www.perplexity.ai/");
           },
         },
@@ -163,6 +186,7 @@ function createMenu() {
           label: "Página Principal",
           accelerator: 'CmdOrCtrl+H',
           click: () => {
+            log.info("Menu: Navegando a la página principal.");
             mainWindow.loadFile("index.html");
           },
         },
@@ -172,6 +196,7 @@ function createMenu() {
           accelerator: 'Alt+Left',
           click: () => {
             if (mainWindow.webContents.canGoBack()) {
+              log.info("Menu: Navegando hacia atrás.");
               mainWindow.webContents.goBack();
             }
           },
@@ -181,6 +206,7 @@ function createMenu() {
           accelerator: 'Alt+Right',
           click: () => {
             if (mainWindow.webContents.canGoForward()) {
+              log.info("Menu: Navegando hacia adelante.");
               mainWindow.webContents.goForward();
             }
           },
@@ -206,7 +232,9 @@ function createMenu() {
           label: "Toggle Full Screen", 
           accelerator: 'F11',
           click: () => {
-            mainWindow.setFullScreen(!mainWindow.isFullScreen());
+            const isFullScreen = !mainWindow.isFullScreen();
+            log.info(`Menu: Cambiando a pantalla completa: ${isFullScreen}.`);
+            mainWindow.setFullScreen(isFullScreen);
           }
         },
       ],
@@ -220,7 +248,10 @@ function createMenu() {
           click: () => {
             const currentURL = mainWindow.webContents.getURL();
             if (currentURL && !currentURL.startsWith("file://")) {
+              log.info(`Menu: Abriendo URL externa: ${currentURL}`);
               shell.openExternal(currentURL);
+            } else {
+              log.warn(`Menu: No se puede abrir en navegador externo. URL actual: ${currentURL}`);
             }
           },
         },
@@ -228,6 +259,7 @@ function createMenu() {
           label: "Atajos de Teclado",
           accelerator: 'CmdOrCtrl+K',
           click: () => {
+            log.info("Menu: Mostrando atajos de teclado.");
             mainWindow.loadFile("shortcuts.html");
           },
         },
@@ -235,18 +267,15 @@ function createMenu() {
         {
           label: "Verificar Actualizaciones",
           click: () => {
-            autoUpdater.checkForUpdatesAndNotify();
-            dialog.showMessageBox(mainWindow, {
-              type: 'info',
-              title: 'Buscando actualizaciones',
-              message: 'Se está verificando si hay nuevas versiones disponibles...'
-            });
+            log.info("Iniciada la búsqueda manual de actualizaciones desde el menú.");
+            autoUpdater.checkForUpdates();
           }
         },
         { type: "separator" },
         {
           label: "Acerca de MultiAI",
           click: () => {
+            log.info("Menu: Mostrando diálogo 'Acerca de'.");
             const { dialog } = require('electron');
             const packageJson = require('./package.json');
             dialog.showMessageBox(mainWindow, {
@@ -287,6 +316,7 @@ function createMenu() {
 
 // Manejar la comunicación desde el renderer process
 ipcMain.handle("navigate-to-url", (event, url) => {
+  log.info(`IPC: Navegando a la URL: ${url}`);
   if (mainWindow) {
     mainWindow.loadURL(url);
     return true;
@@ -296,14 +326,17 @@ ipcMain.handle("navigate-to-url", (event, url) => {
 
 ipcMain.handle("go-back", () => {
   if (mainWindow && mainWindow.webContents.canGoBack()) {
+    log.info("IPC: Navegando hacia atrás.");
     mainWindow.webContents.goBack();
     return true;
   }
+  log.warn("IPC: Intento de ir hacia atrás fallido (no se puede retroceder).");
   return false;
 });
 
 ipcMain.handle("go-home", () => {
   if (mainWindow) {
+    log.info("IPC: Navegando a la página de inicio (index.html).");
     mainWindow.loadFile("index.html");
     return true;
   }
@@ -313,6 +346,7 @@ ipcMain.handle("go-home", () => {
 ipcMain.handle("window-control", (event, action) => {
   if (mainWindow) {
     if (action === 'close') {
+      log.info("IPC: Recibida acción de cerrar ventana.");
       mainWindow.close();
       return true;
     }
@@ -324,33 +358,93 @@ ipcMain.handle("get-app-version", () => {
   return app.getVersion();
 });
 
+ipcMain.on('check-for-updates', () => {
+  log.info('IPC: Recibida solicitud para buscar actualizaciones desde la página de actualizaciones.');
+  if (app.isPackaged) {
+    autoUpdater.checkForUpdates();
+  } else {
+    log.warn('IPC: Omitiendo búsqueda de actualizaciones en modo de desarrollo.');
+    if (mainWindow) {
+      // Simula un evento para una experiencia de UI consistente en desarrollo
+      setTimeout(() => {
+        mainWindow.webContents.send('update-state', 'update-not-available', { version: app.getVersion() });
+      }, 1500);
+    }
+  }
+});
+
+ipcMain.on('quit-and-install-update', () => {
+  log.info('IPC: Recibida solicitud para salir e instalar la actualización.');
+  if (app.isPackaged) {
+    autoUpdater.quitAndInstall();
+  }
+});
+
 // Configuración del actualizador automático
 function setupAutoUpdater() {
   // Solo buscar actualizaciones si la app está empaquetada (producción)
   if (!app.isPackaged) {
+    log.info("AutoUpdater: La aplicación no está empaquetada, se omite la configuración del actualizador.");
     return;
   }
 
-  // Configurar autoUpdater
-  autoUpdater.checkForUpdatesAndNotify();
+  log.info("AutoUpdater: Configurando el actualizador automático.");
+
+  autoUpdater.on('checking-for-update', () => {
+    log.info('AutoUpdater: Buscando actualizaciones...');
+    if (mainWindow) {
+      mainWindow.webContents.send('update-state', 'checking-for-update');
+    }
+  });
+
+  // Inicia la primera búsqueda al arrancar
+  autoUpdater.checkForUpdates();
   
   // Verificar actualizaciones cada 30 minutos
   setInterval(() => {
-    autoUpdater.checkForUpdatesAndNotify();
+    log.info("AutoUpdater: Buscando actualizaciones (intervalo de 30 min).");
+    autoUpdater.checkForUpdates();
   }, 30 * 60 * 1000);
 
   // Evento cuando hay una actualización disponible
   autoUpdater.on('update-available', (info) => {
-    console.log('Actualización disponible:', info.version);
+    log.info(`AutoUpdater: Actualización disponible: ${info.version}`);
+    if (mainWindow) {
+      mainWindow.webContents.send('update-state', 'update-available', info);
+    }
+  });
+
+  // Evento cuando no hay actualización disponible
+  autoUpdater.on('update-not-available', (info) => {
+    log.info('AutoUpdater: No hay actualizaciones disponibles.');
+    if (mainWindow) {
+      mainWindow.webContents.send('update-state', 'update-not-available', info);
+    }
   });
 
   // Evento cuando ha fallado la búsqueda
   autoUpdater.on('error', (error) => {
-    console.error('Error en autoUpdater:', error);
+    log.error("Error en autoUpdater:", error);
+    if (mainWindow) {
+      mainWindow.webContents.send('update-state', 'error', error);
+    }
+  });
+
+  // Evento de progreso de descarga
+  autoUpdater.on('download-progress', (progressObj) => {
+    let log_message = `Velocidad de descarga: ${progressObj.bytesPerSecond} - Descargado ${progressObj.percent}% (${progressObj.transferred}/${progressObj.total})`;
+    log.info(`AutoUpdater: ${log_message}`);
+    if (mainWindow) {
+      mainWindow.webContents.send('update-state', 'download-progress', progressObj);
+    }
   });
 
   // Evento cuando la actualización se ha descargado
   autoUpdater.on('update-downloaded', (info) => {
+    log.info(`AutoUpdater: Actualización v${info.version} descargada. Notificando al renderer y mostrando diálogo.`);
+    if (mainWindow) {
+        mainWindow.webContents.send('update-state', 'update-downloaded', info);
+    }
     dialog.showMessageBox(mainWindow, {
       type: 'info',
       title: 'Actualización disponible',
@@ -360,7 +454,10 @@ function setupAutoUpdater() {
     }).then((result) => {
       if (result.response === 0) {
         // Instalar actualización inmediatamente
+        log.info("AutoUpdater: El usuario eligió instalar ahora. Saliendo e instalando...");
         autoUpdater.quitAndInstall();
+      } else {
+        log.info("AutoUpdater: El usuario eligió instalar más tarde.");
       }
     });
   });
@@ -374,16 +471,23 @@ app.on('browser-window-focus', () => {
 });
 
 // Eventos de la aplicación
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  log.info('Evento "ready" de la aplicación. Creando ventana...');
+  createWindow();
+});
 
 app.on("window-all-closed", () => {
+  log.info("Todas las ventanas han sido cerradas.");
   if (process.platform !== "darwin") {
+    log.info("Saliendo de la aplicación (no es macOS).");
     app.quit();
   }
 });
 
 app.on("activate", () => {
+  log.info('Evento "activate" de la aplicación (macOS).');
   if (BrowserWindow.getAllWindows().length === 0) {
+    log.info("No hay ventanas abiertas, creando una nueva.");
     createWindow();
   }
 });

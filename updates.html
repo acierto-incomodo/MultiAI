@@ -178,11 +178,6 @@
             text-align: center;
         }
 
-        .update-status {
-            font-size: 4rem;
-            margin-bottom: 16px;
-        }
-
         .status-title {
             font-size: 1.5rem;
             color: var(--md-ref-palette-primary);
@@ -357,26 +352,91 @@
     </div>
 
     <script>
+        const statusDiv = document.getElementById('updateStatus');
+
         async function checkForUpdates() {
-            const statusDiv = document.getElementById('updateStatus');
+            // Mostrar estado de carga inmediatamente para dar feedback al usuario
             statusDiv.innerHTML = `
                 <div class="spinner"></div>
                 <div class="status-title">Buscando actualizaciones...</div>
                 <p class="status-text">Por favor espera mientras verificamos si hay nuevas versiones disponibles.</p>
             `;
-            
-            // Esperar un poco para que se vea la animación
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Aquí normalmente iría la lógica de verificación real
-            // Por ahora mostramos un mensaje genérico
-            statusDiv.innerHTML = `
-                <div class="status-title">✓ Búsqueda completada</div>
-                <p class="status-text">
-                    La verificación de actualizaciones se ha completado. 
-                    Si hay una nueva versión disponible, recibirás una notificación.
-                </p>
-            `;
+            if (window.electronAPI) {
+                window.electronAPI.checkForUpdates();
+            } else {
+                console.warn('electronAPI no disponible. No se puede buscar actualizaciones.');
+                statusDiv.innerHTML = `
+                    <span class="material-icons update-status" style="color: var(--md-ref-palette-error);">error</span>
+                    <div class="status-title">Error de Conexión</div>
+                    <p class="status-text">La API de la aplicación no está disponible. No se puede buscar actualizaciones.</p>
+                `;
+            }
+        }
+
+        if (window.electronAPI) {
+            window.electronAPI.onUpdateState((event, state, data) => {
+                switch (state) {
+                    case 'checking-for-update':
+                        statusDiv.innerHTML = `
+                            <div class="spinner"></div>
+                            <div class="status-title">Buscando actualizaciones...</div>
+                            <p class="status-text">Por favor espera mientras verificamos si hay nuevas versiones disponibles.</p>
+                        `;
+                        break;
+                    case 'update-available':
+                        statusDiv.innerHTML = `
+                            <span class="material-icons update-status" style="color: var(--md-ref-palette-primary);">downloading</span>
+                            <div class="status-title">¡Actualización encontrada! (v${data.version})</div>
+                            <p class="status-text">Descargando la nueva versión en segundo plano. Se te notificará cuando esté lista para instalar.</p>
+                        `;
+                        break;
+                    case 'update-not-available':
+                        statusDiv.innerHTML = `
+                            <span class="material-icons update-status" style="color: #4CAF50;">check_circle</span>
+                            <div class="status-title">¡Estás actualizado!</div>
+                            <p class="status-text">Ya tienes la última versión de MultiAI (v${data.version}).</p>
+                        `;
+                        break;
+                    case 'download-progress':
+                        statusDiv.innerHTML = `
+                            <div class="spinner"></div>
+                            <div class="status-title">Descargando... (${Math.round(data.percent)}%)</div>
+                            <p class="status-text">
+                                Velocidad: ${(data.bytesPerSecond / 1024 / 1024).toFixed(2)} MB/s <br>
+                                (${(data.transferred / 1024 / 1024).toFixed(2)} de ${(data.total / 1024 / 1024).toFixed(2)} MB)
+                            </p>
+                            <div style="width: 100%; background-color: var(--md-ref-palette-surface-variant); border-radius: 4px; overflow: hidden; margin-top: 1rem;">
+                                <div style="width: ${data.percent}%; height: 8px; background: var(--gradient-primary);"></div>
+                            </div>
+                        `;
+                        break;
+                    case 'update-downloaded':
+                        statusDiv.innerHTML = `
+                            <span class="material-icons update-status" style="color: var(--md-ref-palette-primary);">system_update</span>
+                            <div class="status-title">¡Actualización lista para instalar! (v${data.version})</div>
+                            <p class="status-text">La nueva versión se ha descargado. Reinicia la aplicación para instalarla.</p>
+                            <button class="btn btn-primary" onclick="installUpdate()" style="margin-top: 1rem;">
+                                <span class="material-icons">restart_alt</span>
+                                Reiniciar e Instalar Ahora
+                            </button>
+                        `;
+                        break;
+                    case 'error':
+                        statusDiv.innerHTML = `
+                            <span class="material-icons update-status" style="color: var(--md-ref-palette-error);">error</span>
+                            <div class="status-title">Error de actualización</div>
+                            <p class="status-text">No se pudo completar la actualización. Revisa tu conexión a internet o inténtalo más tarde.</p>
+                            <p class="status-text" style="font-size: 0.8rem; opacity: 0.7; margin-top: 1rem;">${data ? data.message : ''}</p>
+                        `;
+                        break;
+                }
+            });
+        }
+
+        function installUpdate() {
+            if (window.electronAPI) {
+                window.electronAPI.quitAndInstallUpdate();
+            }
         }
 
         async function goBack() {
@@ -433,8 +493,8 @@
         // Inicializar cuando cargue la página
         document.addEventListener('DOMContentLoaded', function () {
             loadVersion();
-            // Disparar la búsqueda automáticamente al cargar
-            setTimeout(checkForUpdates, 500);
+            // Dispara la búsqueda automáticamente al cargar la página
+            checkForUpdates();
         });
     </script>
 </body>

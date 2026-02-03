@@ -5,8 +5,9 @@ if (Test-Path -Path "node_modules") {
 }
 
 if (Test-Path -Path "dist") {
-    Write-Host "Eliminando dist..."
-    Remove-Item -Path "dist" -Recurse -Force -ErrorAction SilentlyContinue
+    Write-Host "Limpiando directorio dist, pero conservando latest-linux.yml..."
+    # Elimina todo dentro de 'dist' excepto 'latest-linux.yml'
+    Get-ChildItem -Path "dist" -Exclude "latest-linux.yml" | Remove-Item -Recurse -Force
 }
 
 if (Test-Path -Path "package-lock.json") {
@@ -20,7 +21,7 @@ npm i
 npm run build:win
 
 # Reemplazar espacios por guiones en los nombres de archivo .exe y .blockmap generados
-Get-ChildItem -Path . -Recurse -Include '*.exe', '*.blockmap' | ForEach-Object {
+Get-ChildItem -Path . -Recurse -Include '*.exe', '*.blockmap', '*.msi' | ForEach-Object {
     $newName = $_.Name -replace ' ', '-'
     Rename-Item -Path $_.FullName -NewName $newName
 }

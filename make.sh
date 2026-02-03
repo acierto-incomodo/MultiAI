@@ -1,6 +1,10 @@
 echo "Preparando build general..."
 rm -rf node_modules/
-rm -rf dist/
+if [ -d "dist" ]; then
+    echo "Limpiando directorio dist, pero conservando latest.yml..."
+    # Limpiar directorio dist, pero conservar latest.yml de Windows
+    find dist -mindepth 1 -not -name "latest.yml" -delete
+fi
 rm -f package-lock.json
 npm i
 
