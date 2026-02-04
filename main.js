@@ -32,9 +32,7 @@ function createWindow() {
   log.info("Creando la ventana principal (createWindow)...");
   // Crear la ventana principal
   mainWindow = new BrowserWindow({
-    width: 1400,
-    height: 900,
-    minWidth: 1000,
+    minWidth: 400,
     minHeight: 700,
     autoHideMenuBar: true, // Menú escondido por defecto, presiona Alt para mostrarlo
     // menuBarVisible: true, // Alternativa más moderna, pero autoHideMenuBar es más común
@@ -54,9 +52,9 @@ function createWindow() {
 
   // Mostrar ventana cuando esté lista
   mainWindow.once("ready-to-show", () => {
-    log.info("La ventana está lista para mostrarse. Mostrando y maximizando.");
-    mainWindow.show();
+    log.info("La ventana está lista para mostrarse. Maximizando y mostrando.");
     mainWindow.maximize();
+    mainWindow.show();
   });
 
   // Crear y establecer el menú de la aplicación
