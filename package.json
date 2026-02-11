@@ -53,8 +53,7 @@
     },
     "win": {
       "target": [
-        "nsis",
-        "msi"
+        "nsis"
       ],
       "icon": "assets/icons/icon.ico"
     },
