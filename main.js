@@ -9,6 +9,9 @@ log.transports.file.format = "[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] {text}";
 // Captura excepciones no controladas
 log.catchErrors();
 
+// Asignar el logger a autoUpdater para ver logs detallados de actualización
+autoUpdater.logger = log;
+
 let mainWindow;
 
 // Prevenir múltiples instancias de la aplicación
@@ -57,6 +60,13 @@ function createWindow() {
     mainWindow.show();
   });
 
+  // Forzar que todos los enlaces se abran en la misma ventana
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    log.info(`Interceptada apertura de nueva ventana. Cargando en la misma ventana: ${url}`);
+    mainWindow.loadURL(url);
+    return { action: 'deny' };
+  });
+
   // Crear y establecer el menú de la aplicación
   createMenu();
 
@@ -87,8 +97,6 @@ function createWindow() {
     contextMenu.popup(mainWindow, params.x, params.y);
   });
 
-  // Iniciar comprobación de actualizaciones
-  setupAutoUpdater();
 }
 
 function createMenu() {
@@ -359,7 +367,12 @@ ipcMain.handle("get-app-version", () => {
 ipcMain.on('check-for-updates', () => {
   log.info('IPC: Recibida solicitud para buscar actualizaciones desde la página de actualizaciones.');
   if (app.isPackaged) {
-    autoUpdater.checkForUpdates();
+    autoUpdater.checkForUpdates().catch(err => {
+      log.error("Error al buscar actualizaciones (manual):", err);
+      if (mainWindow) {
+        mainWindow.webContents.send('update-state', 'error', { message: err.message });
+      }
+    });
   } else {
     log.warn('IPC: Omitiendo búsqueda de actualizaciones en modo de desarrollo.');
     if (mainWindow) {
@@ -379,14 +392,19 @@ ipcMain.on('quit-and-install-update', () => {
 });
 
 // Configuración del actualizador automático
+let autoUpdaterSetupDone = false;
+
 function setupAutoUpdater() {
   // Solo buscar actualizaciones si la app está empaquetada (producción)
-  if (!app.isPackaged) {
-    log.info("AutoUpdater: La aplicación no está empaquetada, se omite la configuración del actualizador.");
+  if (!app.isPackaged || autoUpdaterSetupDone) {
     return;
   }
+  autoUpdaterSetupDone = true;
 
   log.info("AutoUpdater: Configurando el actualizador automático.");
+  
+  // Limpiar listeners previos para evitar duplicados
+  autoUpdater.removeAllListeners();
 
   autoUpdater.on('checking-for-update', () => {
     log.info('AutoUpdater: Buscando actualizaciones...');
@@ -396,12 +414,14 @@ function setupAutoUpdater() {
   });
 
   // Inicia la primera búsqueda al arrancar
-  autoUpdater.checkForUpdates();
+  autoUpdater.checkForUpdates().catch(err => {
+    log.error("Error en la búsqueda inicial:", err);
+  });
   
   // Verificar actualizaciones cada 30 minutos
   setInterval(() => {
     log.info("AutoUpdater: Buscando actualizaciones (intervalo de 30 min).");
-    autoUpdater.checkForUpdates();
+    autoUpdater.checkForUpdates().catch(err => log.error("Error en intervalo:", err));
   }, 30 * 60 * 1000);
 
   // Evento cuando hay una actualización disponible
@@ -414,7 +434,7 @@ function setupAutoUpdater() {
 
   // Evento cuando no hay actualización disponible
   autoUpdater.on('update-not-available', (info) => {
-    log.info('AutoUpdater: No hay actualizaciones disponibles.');
+    log.info(`AutoUpdater: No hay actualizaciones disponibles. Remota: ${info.version}, Actual: ${app.getVersion()}`);
     if (mainWindow) {
       mainWindow.webContents.send('update-state', 'update-not-available', info);
     }
@@ -472,6 +492,7 @@ app.on('browser-window-focus', () => {
 app.whenReady().then(() => {
   log.info('Evento "ready" de la aplicación. Creando ventana...');
   createWindow();
+  setupAutoUpdater();
 });
 
 app.on("window-all-closed", () => {
