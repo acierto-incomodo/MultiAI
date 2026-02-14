@@ -1,0 +1,11 @@
+version: 1.2.8
+files:
+  - url: multiai_1.2.8_amd64.deb
+    sha512: IRC0HkTWleQILx75zCPBV5Dlo45p4glA32ZfjBsaYf3nAMOUEn/umjgZG2lCGVCwnPSn73JSmq/MOK0pjobG0g==
+    size: 104360600
+  - url: MultiAI-1.2.8-x86_64.AppImage
+    sha512: v4Ns4GD0NwLXsapkfUoWI18EJW2gst94bXbYGOHanXtS5+By0uxHd3SssaqEiKbNB/IxfHF0k6kdLkzQnqDuFQ==
+    size: 134916640
+path: multiai_1.2.8_amd64.deb
+sha512: IRC0HkTWleQILx75zCPBV5Dlo45p4glA32ZfjBsaYf3nAMOUEn/umjgZG2lCGVCwnPSn73JSmq/MOK0pjobG0g==
+releaseDate: '2026-02-14T13:48:49.043Z'
