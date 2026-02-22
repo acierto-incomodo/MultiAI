@@ -1,11 +1,14 @@
-version: 1.2.8
+version: 1.2.9
 files:
-  - url: multiai_1.2.8_amd64.deb
-    sha512: IRC0HkTWleQILx75zCPBV5Dlo45p4glA32ZfjBsaYf3nAMOUEn/umjgZG2lCGVCwnPSn73JSmq/MOK0pjobG0g==
-    size: 104360600
-  - url: MultiAI-1.2.8-x86_64.AppImage
-    sha512: v4Ns4GD0NwLXsapkfUoWI18EJW2gst94bXbYGOHanXtS5+By0uxHd3SssaqEiKbNB/IxfHF0k6kdLkzQnqDuFQ==
-    size: 134916640
-path: multiai_1.2.8_amd64.deb
-sha512: IRC0HkTWleQILx75zCPBV5Dlo45p4glA32ZfjBsaYf3nAMOUEn/umjgZG2lCGVCwnPSn73JSmq/MOK0pjobG0g==
-releaseDate: '2026-02-14T13:48:49.043Z'
+  - url: multiai_1.2.9_amd64.deb
+    sha512: AQdPg+wzbwBxZvOQRvTIWVkXeXhTB6bE1j3fhND7IkH1GXcKews98Clbll1yy2kk+xmtJ/BHKCgJ7v0RelLvkg==
+    size: 104361460
+  - url: MultiAI-1.2.9-x86_64.AppImage
+    sha512: 7MDEDSlvnAiGL2jspeSHaKDyXJN4HqtjKYat0Gu4dM5dQ8h1Qoz+y/RSm719hF4r/il+Md4L8R/Uh/CumYFx9A==
+    size: 134916699
+  - url: multiai_1.2.8_amd64.snap
+    sha512: asTfWi/ttNbjYmnLO5XjHyj8Hxwpp8zdh8a94l1M7DnD8rM1dSfvs38VRQxur33JiNZ1nf4UqiGL66anQ8OYZQ==
+    size: 115662848
+path: multiai_1.2.8_amd64.snap
+sha512: asTfWi/ttNbjYmnLO5XjHyj8Hxwpp8zdh8a94l1M7DnD8rM1dSfvs38VRQxur33JiNZ1nf4UqiGL66anQ8OYZQ==
+releaseDate: '2026-02-22T14:38:15.511Z'
