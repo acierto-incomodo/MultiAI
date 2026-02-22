@@ -1,14 +1,14 @@
-version: 1.2.9
+version: 1.2.10
 files:
-  - url: multiai_1.2.9_amd64.deb
-    sha512: AQdPg+wzbwBxZvOQRvTIWVkXeXhTB6bE1j3fhND7IkH1GXcKews98Clbll1yy2kk+xmtJ/BHKCgJ7v0RelLvkg==
-    size: 104361460
-  - url: MultiAI-1.2.9-x86_64.AppImage
-    sha512: 7MDEDSlvnAiGL2jspeSHaKDyXJN4HqtjKYat0Gu4dM5dQ8h1Qoz+y/RSm719hF4r/il+Md4L8R/Uh/CumYFx9A==
-    size: 134916699
-  - url: multiai_1.2.8_amd64.snap
-    sha512: asTfWi/ttNbjYmnLO5XjHyj8Hxwpp8zdh8a94l1M7DnD8rM1dSfvs38VRQxur33JiNZ1nf4UqiGL66anQ8OYZQ==
+  - url: multiai_1.2.10_amd64.deb
+    sha512: NWei9DTqFOe+CBet9gH6Vu/mJ7DO3kWH5y1trapvNTFEZlcyEX5F/1U3OAuQITxYbCPreeUBBvVu1ptd2ryc8g==
+    size: 104536952
+  - url: MultiAI-1.2.10-x86_64.AppImage
+    sha512: nzlppL325CxvWfh986sZTK/08eTaZcHaLOrXvcRkBcY14Q1Tt2yZ4b29fZmhaLAVSwLr8XYFVrtasZf4QVjkoA==
+    size: 135097113
+  - url: multiai_1.2.9_amd64.snap
+    sha512: eh7/Te30eePZhPi2Z3yE87/eefxl5U5xFSkKfeknh6+Db+b+74QXMrw06qXkkmsazbvGzNE5Viym/Y2zHXYtaw==
     size: 115662848
-path: multiai_1.2.8_amd64.snap
-sha512: asTfWi/ttNbjYmnLO5XjHyj8Hxwpp8zdh8a94l1M7DnD8rM1dSfvs38VRQxur33JiNZ1nf4UqiGL66anQ8OYZQ==
-releaseDate: '2026-02-22T14:38:15.511Z'
+path: multiai_1.2.9_amd64.snap
+sha512: eh7/Te30eePZhPi2Z3yE87/eefxl5U5xFSkKfeknh6+Db+b+74QXMrw06qXkkmsazbvGzNE5Viym/Y2zHXYtaw==
+releaseDate: '2026-02-22T17:47:03.470Z'
