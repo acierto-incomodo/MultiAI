@@ -12,6 +12,29 @@ log.catchErrors();
 // Asignar el logger a autoUpdater para ver logs detallados de actualización
 autoUpdater.logger = log;
 
+// Mapeo de argumentos a URLs
+const assistantsArgs = {
+  '--cardinal': 'https://cardinal-ai-h4rt.vercel.app/',
+  '--chatgpt': 'https://chatgpt.com/',
+  '--claude': 'https://claude.ai/',
+  '--copilot': 'https://copilot.microsoft.com/',
+  '--deepseek': 'https://chat.deepseek.com',
+  '--gemini': 'https://gemini.google.com/',
+  '--grok': 'https://grok.com/',
+  '--mistral': 'https://chat.mistral.ai/',
+  '--notebooklm': 'https://notebooklm.google.com/',
+  '--perplexity': 'https://www.perplexity.ai/'
+};
+
+function getUrlFromArgs(argv) {
+  for (const arg of argv) {
+    if (assistantsArgs[arg]) {
+      return assistantsArgs[arg];
+    }
+  }
+  return null;
+}
+
 let mainWindow;
 
 // Prevenir múltiples instancias de la aplicación
@@ -21,12 +44,19 @@ if (!gotTheLock) {
   log.warn("Se intentó abrir una segunda instancia, cerrando...");
   app.quit();
 } else {
-  app.on("second-instance", () => {
+  app.on("second-instance", (event, commandLine, workingDirectory) => {
     // Si el usuario intenta abrir otra instancia, traer la existente al frente
     log.info("Detectada segunda instancia. Trayendo la ventana principal al frente.");
     if (mainWindow) {
       if (mainWindow.isMinimized()) mainWindow.restore();
       mainWindow.focus();
+      
+      // Manejar argumentos en segunda instancia
+      const newUrl = getUrlFromArgs(commandLine);
+      if (newUrl) {
+        mainWindow.loadURL(newUrl);
+        log.info(`Navegando a URL por argumento (segunda instancia): ${newUrl}`);
+      }
     }
   });
 }
@@ -49,9 +79,16 @@ function createWindow() {
     show: false,
   });
 
-  // Cargar la página principal
-  mainWindow.loadFile("index.html");
-  log.info("Cargando index.html en la ventana principal.");
+  // Verificar argumentos de línea de comandos para carga inicial
+  const startUrl = getUrlFromArgs(process.argv);
+  if (startUrl) {
+    mainWindow.loadURL(startUrl);
+    log.info(`Cargando URL por argumento: ${startUrl}`);
+  } else {
+    // Cargar la página principal
+    mainWindow.loadFile("index.html");
+    log.info("Cargando index.html en la ventana principal.");
+  }
 
   // Mostrar ventana cuando esté lista
   mainWindow.once("ready-to-show", () => {
@@ -409,6 +446,7 @@ function setupAutoUpdater() {
   autoUpdater.on('checking-for-update', () => {
     log.info('AutoUpdater: Buscando actualizaciones...');
     if (mainWindow) {
+      mainWindow.setProgressBar(2); // Estado indeterminado
       mainWindow.webContents.send('update-state', 'checking-for-update');
     }
   });
@@ -436,6 +474,7 @@ function setupAutoUpdater() {
   autoUpdater.on('update-not-available', (info) => {
     log.info(`AutoUpdater: No hay actualizaciones disponibles. Remota: ${info.version}, Actual: ${app.getVersion()}`);
     if (mainWindow) {
+      mainWindow.setProgressBar(-1); // Limpiar barra de progreso
       mainWindow.webContents.send('update-state', 'update-not-available', info);
     }
   });
@@ -444,6 +483,7 @@ function setupAutoUpdater() {
   autoUpdater.on('error', (error) => {
     log.error("Error en autoUpdater:", error);
     if (mainWindow) {
+      mainWindow.setProgressBar(-1); // Limpiar barra de progreso en error
       mainWindow.webContents.send('update-state', 'error', error);
     }
   });
@@ -453,6 +493,7 @@ function setupAutoUpdater() {
     let log_message = `Velocidad de descarga: ${progressObj.bytesPerSecond} - Descargado ${progressObj.percent}% (${progressObj.transferred}/${progressObj.total})`;
     log.info(`AutoUpdater: ${log_message}`);
     if (mainWindow) {
+      mainWindow.setProgressBar(progressObj.percent / 100);
       mainWindow.webContents.send('update-state', 'download-progress', progressObj);
     }
   });
@@ -461,6 +502,7 @@ function setupAutoUpdater() {
   autoUpdater.on('update-downloaded', (info) => {
     log.info(`AutoUpdater: Actualización v${info.version} descargada. Notificando al renderer y mostrando diálogo.`);
     if (mainWindow) {
+        mainWindow.setProgressBar(-1); // Limpiar barra de progreso
         mainWindow.webContents.send('update-state', 'update-downloaded', info);
     }
     dialog.showMessageBox(mainWindow, {
