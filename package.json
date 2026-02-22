@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "scripts": {
@@ -29,6 +29,13 @@
   "build": {
     "appId": "com.stormgamesstudios.multiai",
     "productName": "MultiAI",
+    "extraResources": [
+      {
+        "from": "assets/images",
+        "to": "icons",
+        "filter": ["*.ico"]
+      }
+    ],
     "publish": [
       {
         "provider": "github",
@@ -39,14 +46,12 @@
     "files": [
       "main.js",
       "preload.js",
-      "src/**/*",
       "assets/**/*",
       "node_modules/**/*",
       "index.html",
       "build/**/*",
       "shortcuts.html",
-      "updates.html",
-      "README.md"
+      "updates.html"
     ],
     "directories": {
       "output": "dist"

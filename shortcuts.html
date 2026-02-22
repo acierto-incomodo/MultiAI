@@ -397,6 +397,10 @@
             animation-delay: 0.3s;
         }
 
+        .shortcut-category:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
         /* Scrollbar personalizado */
         ::-webkit-scrollbar {
             width: 8px;
@@ -492,6 +496,24 @@
                     </ul>
                 </div>
 
+                <!-- Argumentos de Inicio -->
+                <div class="shortcut-category">
+                    <h2 class="category-title" data-i18n-key="catArgs"><span class="material-icons">terminal</span>Argumentos de Inicio</h2>
+                    <p style="margin-bottom: 15px; color: var(--md-ref-palette-on-surface-variant); padding: 0 8px;" data-i18n-key="argsDesc">Puedes iniciar MultiAI con estos argumentos para abrir directamente un asistente:</p>
+                    <ul class="shortcut-list">
+                        <li class="shortcut-item"><span class="shortcut-action">CardinalAI</span><span class="shortcut-key">--cardinal</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">ChatGPT</span><span class="shortcut-key">--chatgpt</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">Claude</span><span class="shortcut-key">--claude</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">Copilot</span><span class="shortcut-key">--copilot</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">Deepseek</span><span class="shortcut-key">--deepseek</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">Gemini</span><span class="shortcut-key">--gemini</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">Grok</span><span class="shortcut-key">--grok</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">Mistral AI</span><span class="shortcut-key">--mistral</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">NotebookLM</span><span class="shortcut-key">--notebooklm</span></li>
+                        <li class="shortcut-item"><span class="shortcut-action">Perplexity AI</span><span class="shortcut-key">--perplexity</span></li>
+                    </ul>
+                </div>
+
                 <!-- Navegación -->
                 <div class="shortcut-category">
                     <h2 class="category-title" data-i18n-key="catNav"><span class="material-icons">navigation</span>Navegación</h2>
@@ -567,6 +589,8 @@
                 openGrok: "Abrir Grok",
                 openMistral: "Abrir Mistral AI",
                 openNotebookLM: "Abrir NotebookLM",
+                catArgs: '<span class="material-icons">terminal</span>Argumentos de Inicio',
+                argsDesc: "Puedes iniciar MultiAI con estos argumentos para abrir directamente un asistente:",
                 catNav: '<span class="material-icons">navigation</span>Navegación',
                 navHome: "Ir a la Página Principal",
                 navBackHome: "Volver a la Página Principal",
@@ -599,6 +623,8 @@
                 openGrok: "Open Grok",
                 openMistral: "Open Mistral AI",
                 openNotebookLM: "Open NotebookLM",
+                catArgs: '<span class="material-icons">terminal</span>Launch Arguments',
+                argsDesc: "You can launch MultiAI with these arguments to open an assistant directly:",
                 catNav: '<span class="material-icons">navigation</span>Navigation',
                 navHome: "Go to Main Page",
                 navBackHome: "Return to Main Page",

@@ -1,8 +1,8 @@
-version: 1.2.9
+version: 1.2.10
 files:
-  - url: MultiAI-Setup-1.2.9.exe
-    sha512: wKYHbr27ma9oEWkbwGxTp33fnEJYta4Iep0adrd8PdDyvsPGMNKgorwFceJ8gBCmH6VOOirurszUxSBMDDShOg==
-    size: 112728033
-path: MultiAI-Setup-1.2.9.exe
-sha512: wKYHbr27ma9oEWkbwGxTp33fnEJYta4Iep0adrd8PdDyvsPGMNKgorwFceJ8gBCmH6VOOirurszUxSBMDDShOg==
-releaseDate: '2026-02-22T16:02:17.539Z'
+  - url: MultiAI-Setup-1.2.10.exe
+    sha512: FBEYncF+/4Yc550sTlaQCvPsVbUmCb+mkZYJ+5XFcyQKk9xjeq4Ftso5NOZOOO6QWKtso+WT+z0hZj80dzUUvA==
+    size: 112902017
+path: MultiAI-Setup-1.2.10.exe
+sha512: FBEYncF+/4Yc550sTlaQCvPsVbUmCb+mkZYJ+5XFcyQKk9xjeq4Ftso5NOZOOO6QWKtso+WT+z0hZj80dzUUvA==
+releaseDate: '2026-02-22T17:37:54.698Z'
