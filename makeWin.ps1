@@ -1,3 +1,9 @@
+if (Test-Path -Path "dist") {
+    Write-Host "Limpiando directorio dist, pero conservando latest-linux.yml..."
+    # Elimina todo dentro de 'dist' excepto 'latest-linux.yml'
+    Get-ChildItem -Path "dist" -Exclude "latest-linux.yml" | Remove-Item -Recurse -Force
+}
+
 npm i
 
 # Continuar con el resto del script
