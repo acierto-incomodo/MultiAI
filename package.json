@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "scripts": {
@@ -29,6 +29,7 @@
   "build": {
     "appId": "com.stormgamesstudios.multiai",
     "productName": "MultiAI",
+
     "extraResources": [
       {
         "from": "assets/images",
@@ -36,6 +37,7 @@
         "filter": ["*.ico"]
       }
     ],
+
     "publish": [
       {
         "provider": "github",
@@ -43,6 +45,7 @@
         "repo": "MultiAI"
       }
     ],
+
     "files": [
       "main.js",
       "preload.js",
@@ -53,15 +56,28 @@
       "shortcuts.html",
       "updates.html"
     ],
+
     "directories": {
       "output": "dist"
     },
+
     "win": {
       "target": [
-        "nsis"
+        "nsis",
+        "msix"
       ],
       "icon": "assets/icons/icon.ico"
     },
+
+    "msix": {
+      "identityName": "StormGamesStudios.MultiAI",
+      "publisher": "CN=StormGamesStudios",
+      "publisherDisplayName": "StormGamesStudios",
+      "displayName": "MultiAI",
+      "description": "Centro de asistentes de inteligencia artificial",
+      "backgroundColor": "#171719"
+    },
+
     "nsis": {
       "oneClick": true,
       "allowToChangeInstallationDirectory": false,
@@ -69,6 +85,7 @@
       "include": "installer.nsh",
       "differentialPackage": true
     },
+
     "linux": {
       "target": [
         "deb",
@@ -91,6 +108,7 @@
         }
       }
     },
+
     "deb": {
       "depends": [
         "libgtk-3-0",
@@ -101,6 +119,7 @@
         "xdg-utils"
       ]
     },
+
     "snap": {
       "grade": "stable",
       "confinement": "strict",
@@ -114,9 +133,11 @@
         "browser-support"
       ]
     },
+
     "appImage": {
       "artifactName": "MultiAI-${version}-${arch}.${ext}"
     },
+
     "flatpak": {
       "runtime": "org.freedesktop.Platform",
       "runtimeVersion": "23.08",
