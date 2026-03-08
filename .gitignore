@@ -151,3 +151,4 @@ dist/*.msi
 package-lock.json
 dist/*.blockmap
 *.blockmap
+*.appx

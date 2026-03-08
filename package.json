@@ -64,17 +64,16 @@
     "win": {
       "target": [
         "nsis",
-        "msix"
+        "appx"
       ],
       "icon": "assets/icons/icon.ico"
     },
 
-    "msix": {
+    "appx": {
       "identityName": "StormGamesStudios.MultiAI",
       "publisher": "CN=StormGamesStudios",
       "publisherDisplayName": "StormGamesStudios",
       "displayName": "MultiAI",
-      "description": "Centro de asistentes de inteligencia artificial",
       "backgroundColor": "#171719"
     },
 
