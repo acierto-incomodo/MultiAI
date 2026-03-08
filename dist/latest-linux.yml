@@ -1,14 +1,11 @@
-version: 1.2.10
+version: 1.2.11
 files:
-  - url: multiai_1.2.10_amd64.deb
-    sha512: NWei9DTqFOe+CBet9gH6Vu/mJ7DO3kWH5y1trapvNTFEZlcyEX5F/1U3OAuQITxYbCPreeUBBvVu1ptd2ryc8g==
-    size: 104536952
-  - url: MultiAI-1.2.10-x86_64.AppImage
-    sha512: nzlppL325CxvWfh986sZTK/08eTaZcHaLOrXvcRkBcY14Q1Tt2yZ4b29fZmhaLAVSwLr8XYFVrtasZf4QVjkoA==
-    size: 135097113
-  - url: multiai_1.2.9_amd64.snap
-    sha512: eh7/Te30eePZhPi2Z3yE87/eefxl5U5xFSkKfeknh6+Db+b+74QXMrw06qXkkmsazbvGzNE5Viym/Y2zHXYtaw==
-    size: 115662848
-path: multiai_1.2.9_amd64.snap
-sha512: eh7/Te30eePZhPi2Z3yE87/eefxl5U5xFSkKfeknh6+Db+b+74QXMrw06qXkkmsazbvGzNE5Viym/Y2zHXYtaw==
-releaseDate: '2026-02-22T17:47:03.470Z'
+  - url: multiai_1.2.11_amd64.deb
+    sha512: xzIzaCRhaULSpRQ0WWyJUCV7uxUmsqntkW7u+PBOz0FwV69deQSGjBwnk8m/HPPTIvVFeJZjASTYy+Mgz1WRRQ==
+    size: 104537028
+  - url: MultiAI-1.2.11-x86_64.AppImage
+    sha512: IPOufcykckF0KEZx+K+RsbIdxsKsG2B2aPLID/5fncmsa1u4bPTtCjXE2+7ce8gFW6AGvaCl79ReiWHCGFKL+A==
+    size: 135097110
+path: multiai_1.2.11_amd64.deb
+sha512: xzIzaCRhaULSpRQ0WWyJUCV7uxUmsqntkW7u+PBOz0FwV69deQSGjBwnk8m/HPPTIvVFeJZjASTYy+Mgz1WRRQ==
+releaseDate: '2026-03-08T11:36:27.459Z'
