@@ -9,30 +9,28 @@ log.transports.file.format = "[{y}-{m}-{d} {h}:{i}:{s}.{ms}] [{level}] {text}";
 // Captura excepciones no controladas
 log.catchErrors();
 
-// Asignar el logger a autoUpdater para ver logs detallados de actualización
 autoUpdater.logger = log;
 
-// Mapeo de argumentos a URLs
-const assistantsArgs = {
-  '--cardinal': 'https://cardinal-ai-h4rt.vercel.app/',
-  '--chatgpt': 'https://chatgpt.com/',
-  '--claude': 'https://claude.ai/',
-  '--copilot': 'https://copilot.microsoft.com/',
-  '--deepseek': 'https://chat.deepseek.com',
-  '--gemini': 'https://gemini.google.com/',
-  '--grok': 'https://grok.com/',
-  '--mistral': 'https://chat.mistral.ai/',
-  '--notebooklm': 'https://notebooklm.google.com/',
-  '--perplexity': 'https://www.perplexity.ai/'
-};
+// Configuración centralizada de asistentes
+const ASSISTANTS = [
+  { id: 'cardinal', name: 'CardinalAI', url: 'https://cardinal-ai-h4rt.vercel.app/', acc: '1' },
+  { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com/', acc: '2' },
+  { id: 'claude', name: 'Claude', url: 'https://claude.ai/', acc: '3' },
+  { id: 'copilot', name: 'Copilot', url: 'https://copilot.microsoft.com/', acc: '4' },
+  { id: 'deepseek', name: 'Deepseek', url: 'https://chat.deepseek.com', acc: '5' },
+  { id: 'gemini', name: 'Gemini', url: 'https://gemini.google.com/', acc: '6' },
+  { id: 'grok', name: 'Grok', url: 'https://grok.com/', acc: '7' },
+  { id: 'mistral', name: 'Mistral AI', url: 'https://chat.mistral.ai/', acc: '8' },
+  { id: 'notebooklm', name: 'NotebookLM', url: 'https://notebooklm.google.com/', acc: '9' },
+  { id: 'perplexity', name: 'Perplexity AI', url: 'https://www.perplexity.ai/', acc: '0' }
+];
 
 function getUrlFromArgs(argv) {
-  for (const arg of argv) {
-    if (assistantsArgs[arg]) {
-      return assistantsArgs[arg];
-    }
-  }
-  return null;
+  const arg = argv.find(a => a.startsWith('--'));
+  if (!arg) return null;
+  const key = arg.replace('--', '');
+  const assistant = ASSISTANTS.find(a => a.id === key);
+  return assistant ? assistant.url : null;
 }
 
 let mainWindow;
@@ -140,87 +138,14 @@ function createMenu() {
   const template = [
     {
       label: "Asistentes IA",
-      submenu: [
-        {
-          label: "CardinalAI",
-          accelerator: 'CmdOrCtrl+1',
-          click: () => {
-            log.info("Menu: Navegando a CardinalAI.");
-            mainWindow.loadURL("https://cardinal-ai-h4rt.vercel.app/");
-          },
-        },
-        {
-          label: "ChatGPT",
-          accelerator: 'CmdOrCtrl+2',
-          click: () => {
-            log.info("Menu: Navegando a ChatGPT.");
-            mainWindow.loadURL("https://chatgpt.com/");
-          },
-        },
-        {
-          label: "Claude",
-          accelerator: 'CmdOrCtrl+3',
-          click: () => {
-            log.info("Menu: Navegando a Claude.");
-            mainWindow.loadURL("https://claude.ai/");
-          },
-        },
-        {
-          label: "Copilot",
-          accelerator: 'CmdOrCtrl+4',
-          click: () => {
-            log.info("Menu: Navegando a Copilot.");
-            mainWindow.loadURL("https://copilot.microsoft.com/");
-          },
-        },
-        {
-          label: "Deepseek",
-          accelerator: 'CmdOrCtrl+5',
-          click: () => {
-            log.info("Menu: Navegando a Deepseek.");
-            mainWindow.loadURL("https://chat.deepseek.com");
-          },
-        },
-        {
-          label: "Gemini",
-          accelerator: 'CmdOrCtrl+6',
-          click: () => {
-            log.info("Menu: Navegando a Gemini.");
-            mainWindow.loadURL("https://gemini.google.com/");
-          },
-        },
-        {
-          label: "Grok",
-          accelerator: 'CmdOrCtrl+7',
-          click: () => {
-            log.info("Menu: Navegando a Grok.");
-            mainWindow.loadURL("https://grok.com/");
-          },
-        },
-        {
-          label: "Mistral AI",
-          accelerator: 'CmdOrCtrl+8',
-          click: () => {
-            log.info("Menu: Navegando a Mistral AI.");
-            mainWindow.loadURL("https://chat.mistral.ai/");
-          },
-        },
-        {
-          label: "NotebookLM",
-          accelerator: 'CmdOrCtrl+9',
-          click: () => {
-            log.info("Menu: Navegando a NotebookLM.");
-            mainWindow.loadURL("https://notebooklm.google.com/");
-          },
-        },
-        {
-          label: "Perplexity AI",
-          click: () => {
-            log.info("Menu: Navegando a Perplexity AI.");
-            mainWindow.loadURL("https://www.perplexity.ai/");
-          },
-        },
-      ],
+      submenu: ASSISTANTS.map(a => ({
+        label: a.name,
+        accelerator: a.acc ? `CmdOrCtrl+${a.acc}` : undefined,
+        click: () => {
+          log.info(`Menu: Navegando a ${a.name}.`);
+          mainWindow.loadURL(a.url);
+        }
+      }))
     },
     {
       label: "Navegación",

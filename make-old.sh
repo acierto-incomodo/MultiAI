@@ -6,7 +6,7 @@ if [ -d "dist" ]; then
     find dist -mindepth 1 -not -name "latest.yml" -delete
 fi
 rm -f package-lock.json
-npm i
+npm install
 
 sleep 1
 

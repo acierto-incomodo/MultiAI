@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.2.11",
+  "version": "1.3.0",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "scripts": {
@@ -20,15 +20,16 @@
   "license": "MIT",
   "dependencies": {
     "electron-log": "^5.4.3",
-    "electron-updater": "^6.3.9"
+    "electron-updater": "^6.8.3"
   },
   "devDependencies": {
-    "electron": "^40.0.0",
-    "electron-builder": "^26.4.0"
+    "electron": "^41.1.0",
+    "electron-builder": "^26.8.1"
   },
   "build": {
     "appId": "com.stormgamesstudios.multiai",
     "productName": "MultiAI",
+    "artifactName": "MultiAI-${arch}.${ext}",
 
     "extraResources": [
       {
@@ -134,10 +135,6 @@
         "x11",
         "browser-support"
       ]
-    },
-
-    "appImage": {
-      "artifactName": "MultiAI-${version}-${arch}.${ext}"
     },
 
     "flatpak": {

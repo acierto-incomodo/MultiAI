@@ -564,6 +564,21 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--md-yellow-600);
         }
+
+        /* Spinner Animado */
+        .spinner-small {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 213, 79, 0.2);
+            border-top: 3px solid var(--md-ref-palette-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 
@@ -845,40 +860,27 @@
             'notebooklm': 'https://notebooklm.google.com/'
         };
 
-        async function openAssistant(assistantKey) {
+        async function openAssistant(assistantKey, event) {
             const url = assistants[assistantKey];
-            if (!url) {
-                console.error('URL no encontrada para:', assistantKey);
-                return;
-            }
-
+            if (!url) return;
+            
             try {
-                // Mostrar estado de carga en la tarjeta
-                const card = event.currentTarget;
-                const originalContent = card.innerHTML;
+                const card = event?.currentTarget || document.querySelector(`[onclick*="${assistantKey}"]`);
+                card.style.pointerEvents = 'none'; // Evitar múltiples clics
                 card.innerHTML = `
                     <div class="card-header">
-                        <div class="card-icon" style="animation: spin 1s linear infinite;">
-                            <div class="card-icon-fallback">...</div>
-                        </div>
+                        <div class="spinner-small"></div>
                         <h3 class="card-title">${translations[currentLanguage].loading}</h3>
                     </div>
                     <p class="card-description">
                         ${translations[currentLanguage].redirecting} ${assistantKey}...
                     </p>
-                    <span class="material-icons card-arrow">hourglass_empty</span>
+                    <span class="material-icons card-arrow" style="animation: pulse 1.5s infinite;">hourglass_empty</span>
                 `;
                 card.style.opacity = '0.7';
-
-                // Navegar a la URL usando la API de Electron
                 if (window.electronAPI) {
-                    const success = await window.electronAPI.navigateToUrl(url);
-                    if (!success) {
-                        // Si falla, navegar directamente en la misma ventana
-                        window.location.href = url;
-                    }
+                    await window.electronAPI.navigateToUrl(url);
                 } else {
-                    // Fallback: navegar directamente en la misma ventana si electronAPI no está disponible
                     window.location.href = url;
                 }
             } catch (error) {
@@ -1035,20 +1037,10 @@
 
         async function loadVersion() {
             try {
-                let version = '1.0.0';
-                
-                // Primero intentar obtener desde electronAPI
-                if (window.electronAPI && typeof window.electronAPI.getAppVersion === 'function') {
-                    version = await window.electronAPI.getAppVersion();
-                } else if (window.electronAPI && window.electronAPI.appVersion) {
-                    version = window.electronAPI.appVersion;
-                } else {
-                    // Fallback: cargar desde package.json
-                    const response = await fetch('package.json');
-                    const packageData = await response.json();
-                    version = packageData.version;
-                }
-                
+                const version = window.electronAPI 
+                    ? await window.electronAPI.getAppVersion() 
+                    : '1.2.11';
+
                 const versionElement = document.getElementById('version-text');
                 if (versionElement) {
                     versionElement.textContent = `MultiAI v${version} - By StormGamesStudios`;
