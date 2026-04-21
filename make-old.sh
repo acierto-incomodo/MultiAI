@@ -31,4 +31,11 @@ echo "SNAP Finalizado"
 
 sleep 1
 
+echo "Iniciando build Arch (Pacman)..."
+./makeArch.sh
+echo "¡Proceso de build completado con éxito!"
+echo "Arch Finalizado"
+
+sleep 1
+
 echo "Build general completado con éxito."

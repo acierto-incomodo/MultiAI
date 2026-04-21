@@ -9,6 +9,7 @@
     "build:linux:deb": "electron-builder --linux deb",
     "build:linux:snap": "electron-builder --linux snap",
     "build:linux:appimage": "electron-builder --linux AppImage",
+    "build:linux:pacman": "electron-builder --linux pacman",
     "build:linux:flatpak": "electron-builder --linux flatpak",
     "buidl:linux:flatpak2": "DEBUG=flatpak-bundler* npm run build:linux:flatpak",
     "build:linux:all": "electron-builder --linux",
@@ -23,7 +24,7 @@
     "electron-updater": "^6.8.3"
   },
   "devDependencies": {
-    "electron": "^41.1.0",
+    "electron": "^41.2.2",
     "electron-builder": "^26.8.1"
   },
   "build": {
@@ -94,6 +95,7 @@
         "deb",
         "snap",
         "AppImage",
+        "pacman",
         "flatpak"
       ],
       "icon": "assets/icons/",
