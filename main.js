@@ -358,7 +358,7 @@ let autoUpdaterSetupDone = false;
 
 function setupAutoUpdater() {
   // Solo buscar actualizaciones si la app está empaquetada (producción)
-  if (!app.isPackaged || autoUpdaterSetupDone) {
+  if (!app.isPackaged || autoUpdaterSetupDone || process.windowsStore) {
     return;
   }
   autoUpdaterSetupDone = true;
