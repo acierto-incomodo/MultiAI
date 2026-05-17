@@ -1,0 +1,8 @@
+StoreLogo.png	                                        50x50	        Icono en la tienda
+Square44x44Logo.png	                                    44x44	        Lista de apps y menú inicio
+Square44x44Logo.targetsize-24_altform-unplated.png	    24x24	        Crítico: Icono de la barra de tareas
+Square150x150Logo.png	                                150x150	        Mosaico mediano del menú inicio
+Wide310x150Logo.png	                                    310x150	        Mosaico ancho del menú inicio
+Square310x310Logo.png	                                310x310	        Mosaico grande del menú inicio
+SplashScreen.png	                                    620x300	        Imagen de carga inicial
+BadgeLogo.png	                                        24x24	        Icono para notificaciones
