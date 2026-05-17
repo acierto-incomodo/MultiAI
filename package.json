@@ -95,7 +95,6 @@
     "linux": {
       "target": [
         "deb",
-        "snap",
         "AppImage",
         "pacman",
         "flatpak"
