@@ -1,9 +1,0 @@
-version: 1.3.2
-files:
-  - url: MultiAI-x86_64.AppImage
-    sha512: phSGBEva47N/Z4HPoBB3PLQiHePYGF/4ieYyE+/E7JOp5S+oSdAi/jdGY0IpDcCUIiMqyJU7ndHNUjaLKmGSHQ==
-    size: 159076412
-    blockMapSize: 155728
-path: MultiAI-x86_64.AppImage
-sha512: phSGBEva47N/Z4HPoBB3PLQiHePYGF/4ieYyE+/E7JOp5S+oSdAi/jdGY0IpDcCUIiMqyJU7ndHNUjaLKmGSHQ==
-releaseDate: '2026-05-17T12:47:11.620Z'

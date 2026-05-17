@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=MultiAI
+Exec=electron-wrapper %U
+Terminal=false
+Type=Application
+Icon=com.stormgamesstudios.multiai
+StartupWMClass=MultiAI
+Comment=Centro de asistentes de inteligencia artificial
+Keywords=ai;assistant;chatgpt;claude;gemini;
+Categories=Utility;
