@@ -1,0 +1,15 @@
+version: 1.3.2
+files:
+  - url: MultiAI-x86_64.AppImage
+    sha512: QC2pyPF0R9Dw9gOYTVIy8hCIA0Zlo3G3ZiM3WlHLbR7fl2jDrgo7v4RuTUVRq4m1Dvj8S+Pg32VVS/EsYNNUyA==
+    size: 150257508
+    blockMapSize: 155512
+  - url: MultiAI-amd64.deb
+    sha512: 8M7W/gFU9Cb2LG17dd0bRcwGEIvy94COaRSp+OYgWZQRCYNhJ7kA/Vi7fo4+pkwUmRzzJqg7rF9nhGhsT8CDEQ==
+    size: 121211476
+  - url: MultiAI-x64.pacman
+    sha512: uHhtcbR0xuDfF+p4dc7z0MTikFgUqgwbAS/sPgyuitje3QEA6R3C9miGMzGessQmCAIbE1TZpJOeSfmZh1JiaA==
+    size: 110024492
+path: MultiAI-x86_64.AppImage
+sha512: QC2pyPF0R9Dw9gOYTVIy8hCIA0Zlo3G3ZiM3WlHLbR7fl2jDrgo7v4RuTUVRq4m1Dvj8S+Pg32VVS/EsYNNUyA==
+releaseDate: '2026-05-17T14:37:01.154Z'

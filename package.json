@@ -100,7 +100,7 @@
         "pacman",
         "flatpak"
       ],
-      "icon": "assets/icons/",
+      "icon": "assets/icons/icon-new.png",
       "category": "Utility",
       "maintainer": "StormGamesStudios <meliodas.aitor@gmail.com>",
       "vendor": "StormGamesStudios",

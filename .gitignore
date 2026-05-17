@@ -155,3 +155,5 @@ dist/*.blockmap
 
 
 package-lock.json
+*.pacman
+*.flatpak
