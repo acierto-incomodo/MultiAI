@@ -241,6 +241,7 @@ function createMenu() {
         { type: "separator" },
         {
           label: "Verificar Actualizaciones",
+          visible: !process.windowsStore,
           click: () => {
             log.info("Iniciada la búsqueda manual de actualizaciones desde el menú.");
             autoUpdater.checkForUpdates();

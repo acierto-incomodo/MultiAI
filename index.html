@@ -667,7 +667,7 @@
                         <span style="color: var(--md-ref-palette-on-surface-variant);">/</span>
                         <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('en')">EN</button>
                     </div>
-                    <button class="icon-button" onclick="goToUpdates()" title="Verificar Actualizaciones" data-i18n-key="updatesTooltip">
+                    <button id="updates-btn" class="icon-button" onclick="goToUpdates()" title="Verificar Actualizaciones" data-i18n-key="updatesTooltip">
                         <span class="material-icons">system_update</span>
                     </button>
                     <button class="icon-button" onclick="goToShortcuts()" title="Ver Atajos de Teclado" data-i18n-key="shortcutsTooltip">
@@ -1162,6 +1162,12 @@
             const savedLang = localStorage.getItem('multiAILang');
             const browserLang = navigator.language.split('-')[0];
             setLanguage(savedLang || (translations[browserLang] ? browserLang : 'es'));
+
+            // Ocultar botón de actualizaciones si es una app de la Windows Store
+            if (window.electronAPI && window.electronAPI.isWindowsStore) {
+                const updatesBtn = document.getElementById('updates-btn');
+                if (updatesBtn) updatesBtn.style.display = 'none';
+            }
         });
 
         // Escuchar el evento de alerta de bloqueo desde el proceso principal

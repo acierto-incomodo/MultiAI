@@ -21,4 +21,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   // Nuevo: Escuchar cuando el proceso principal quiere mostrar la alerta de bloqueo
   onShowBlockedAlert: (callback) => ipcRenderer.on('show-blocked-alert', callback),
+
+  // Informar si la app es de la Windows Store (AppX)
+  isWindowsStore: !!process.windowsStore
 });
