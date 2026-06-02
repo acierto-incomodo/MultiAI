@@ -32,15 +32,15 @@
     "appId": "com.stormgamesstudios.multiai",
     "productName": "MultiAI",
     "artifactName": "MultiAI-${arch}.${ext}",
-
     "extraResources": [
       {
         "from": "assets/images",
         "to": "icons",
-        "filter": ["*.ico"]
+        "filter": [
+          "*.ico"
+        ]
       }
     ],
-
     "publish": [
       {
         "provider": "github",
@@ -48,7 +48,6 @@
         "repo": "MultiAI"
       }
     ],
-
     "files": [
       "main.js",
       "preload.js",
@@ -59,11 +58,9 @@
       "shortcuts.html",
       "updates.html"
     ],
-
     "directories": {
       "output": "dist"
     },
-
     "win": {
       "target": [
         "nsis",
@@ -71,7 +68,6 @@
       ],
       "icon": "assets/icons/icon.ico"
     },
-
     "appx": {
       "identityName": "StormGamesStudios.MultiAIPack",
       "publisher": "CN=70477E23-461B-419C-8A6F-59A57ABE941D",
@@ -81,10 +77,12 @@
         "runFullTrust"
       ],
       "backgroundColor": "#121212",
-      "languages": ["es-ES", "en-US"],
+      "languages": [
+        "es-ES",
+        "en-US"
+      ],
       "showNameOnTiles": true
     },
-
     "nsis": {
       "oneClick": true,
       "allowToChangeInstallationDirectory": false,
@@ -92,7 +90,6 @@
       "include": "installer.nsh",
       "differentialPackage": true
     },
-
     "linux": {
       "target": [
         "deb",
@@ -115,7 +112,6 @@
         }
       }
     },
-
     "deb": {
       "depends": [
         "libgtk-3-0",
@@ -126,7 +122,6 @@
         "xdg-utils"
       ]
     },
-
     "snap": {
       "grade": "stable",
       "confinement": "strict",
@@ -140,7 +135,6 @@
         "browser-support"
       ]
     },
-
     "flatpak": {
       "runtime": "org.freedesktop.Platform",
       "runtimeVersion": "23.08",

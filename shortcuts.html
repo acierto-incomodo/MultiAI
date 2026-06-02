@@ -1,772 +1,966 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MultiAI - Atajos de Teclado</title>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono&display=swap">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            /* Material Design 3 Color Tokens - Tema Oscuro Amarillo/Negro */
-            --md-ref-palette-primary: #FFD54F;
-            --md-ref-palette-primary-container: #332900;
-            --md-ref-palette-secondary: #CCC2DC;
-            --md-ref-palette-secondary-container: #4A4458;
-            --md-ref-palette-tertiary: #EFB8C8;
-            --md-ref-palette-tertiary-container: #633B48;
-            --md-ref-palette-surface: #1C1C1E;
-            --md-ref-palette-surface-variant: #2C2C2E;
-            --md-ref-palette-background: #121212;
-            --md-ref-palette-error: #FFB4AB;
-            --md-ref-palette-error-container: #93000A;
-            --md-ref-palette-on-primary: #000000;
-            --md-ref-palette-on-primary-container: #FFE16B;
-            --md-ref-palette-on-secondary: #332D41;
-            --md-ref-palette-on-secondary-container: #E8DEF8;
-            --md-ref-palette-on-tertiary: #492532;
-            --md-ref-palette-on-tertiary-container: #FFD8E4;
-            --md-ref-palette-on-surface: #E6E1E5;
-            --md-ref-palette-on-surface-variant: #CAC4D0;
-            --md-ref-palette-on-background: #E6E1E5;
-            --md-ref-palette-on-error: #690005;
-            --md-ref-palette-on-error-container: #FFDAD6;
+      :root {
+        /* Material Design 3 Color Tokens - Tema Oscuro Amarillo/Negro */
+        --md-ref-palette-primary: #ffd54f;
+        --md-ref-palette-primary-container: #332900;
+        --md-ref-palette-secondary: #ccc2dc;
+        --md-ref-palette-secondary-container: #4a4458;
+        --md-ref-palette-tertiary: #efb8c8;
+        --md-ref-palette-tertiary-container: #633b48;
+        --md-ref-palette-surface: #1c1c1e;
+        --md-ref-palette-surface-variant: #2c2c2e;
+        --md-ref-palette-background: #121212;
+        --md-ref-palette-error: #ffb4ab;
+        --md-ref-palette-error-container: #93000a;
+        --md-ref-palette-on-primary: #000000;
+        --md-ref-palette-on-primary-container: #ffe16b;
+        --md-ref-palette-on-secondary: #332d41;
+        --md-ref-palette-on-secondary-container: #e8def8;
+        --md-ref-palette-on-tertiary: #492532;
+        --md-ref-palette-on-tertiary-container: #ffd8e4;
+        --md-ref-palette-on-surface: #e6e1e5;
+        --md-ref-palette-on-surface-variant: #cac4d0;
+        --md-ref-palette-on-background: #e6e1e5;
+        --md-ref-palette-on-error: #690005;
+        --md-ref-palette-on-error-container: #ffdad6;
 
-            /* Elevation shadows para tema oscuro */
-            --md-elevation-1: 0 1px 3px 1px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
-            --md-elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
-            --md-elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.7);
+        /* Elevation shadows para tema oscuro */
+        --md-elevation-1:
+          0 1px 3px 1px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
+        --md-elevation-2:
+          0 2px 6px 2px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
+        --md-elevation-3:
+          0 4px 8px 3px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.7);
 
-            /* Gradientes personalizados */
-            --gradient-primary: linear-gradient(135deg, #FFD54F 0%, #FFC107 100%);
-            --gradient-dark: linear-gradient(135deg, #1C1C1E 0%, #121212 100%);
-            --gradient-card: linear-gradient(145deg, #2C2C2E 0%, #1E1E1E 100%);
+        /* Gradientes personalizados */
+        --gradient-primary: linear-gradient(135deg, #ffd54f 0%, #ffc107 100%);
+        --gradient-dark: linear-gradient(135deg, #1c1c1e 0%, #121212 100%);
+        --gradient-card: linear-gradient(145deg, #2c2c2e 0%, #1e1e1e 100%);
 
-            --md-ref-palette-surface-variant-transparent: rgba(202, 196, 208, 0.12);
+        --md-ref-palette-surface-variant-transparent: rgba(202, 196, 208, 0.12);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background: var(--md-ref-palette-background);
+        color: var(--md-ref-palette-on-background);
+        line-height: 1.6;
+        background-image:
+          radial-gradient(
+            circle at 15% 50%,
+            rgba(255, 213, 79, 0.05) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(255, 213, 79, 0.03) 0%,
+            transparent 50%
+          );
+      }
+
+      .app-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Header Styles */
+      .header {
+        background: var(--gradient-dark);
+        color: var(--md-ref-palette-primary);
+        padding: 24px 32px;
+        box-shadow: var(--md-elevation-2);
+        border-bottom: 1px solid rgba(255, 213, 79, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gradient-primary);
+      }
+
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .logo-icon {
+        font-size: 2.8rem;
+        color: var(--md-ref-palette-primary);
+        filter: drop-shadow(0 2px 4px rgba(255, 213, 79, 0.3));
+      }
+
+      .subtitle {
+        font-weight: 400;
+        opacity: 0.9;
+        font-size: 1.1rem;
+        margin-top: 4px;
+        color: var(--md-ref-palette-on-surface-variant);
+      }
+
+      .header-subtitle-container {
+        flex-grow: 1;
+        text-align: center;
+        padding: 0 24px;
+        /* Espacio para que no se pegue a los botones */
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .icon-button {
+        background: transparent;
+        border: 2px solid transparent;
+        color: var(--md-ref-palette-on-surface-variant);
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .icon-button:hover {
+        background-color: rgba(255, 213, 79, 0.1);
+        color: var(--md-ref-palette-primary);
+        border-color: rgba(255, 213, 79, 0.3);
+        transform: scale(1.1);
+      }
+
+      .logo-button {
+        background: transparent;
+        border: 2px solid transparent;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        color: inherit;
+        /* Hereda el color del texto del padre (header) */
+      }
+
+      .logo-button:hover {
+        background-color: rgba(255, 213, 79, 0.1);
+        border-color: rgba(255, 213, 79, 0.3);
+      }
+
+      /* Efecto de hover para texto no interactivo */
+      .text-highlight {
+        display: inline-block;
+        padding: 2px 8px;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .text-highlight:hover {
+        background-color: rgba(255, 213, 79, 0.05);
+        border-color: rgba(255, 213, 79, 0.2);
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        padding: 40px 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .welcome-section {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .welcome-title {
+        font-size: 2.2rem;
+        font-weight: 400;
+        color: var(--md-ref-palette-primary);
+        margin-bottom: 16px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .welcome-subtitle {
+        font-size: 1.1rem;
+        color: var(--md-ref-palette-on-surface-variant);
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.8;
+      }
+
+      /* Shortcuts Styles */
+      .shortcuts-container {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .shortcut-category {
+        background: var(--gradient-card);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: var(--md-elevation-1);
+        border: 1px solid rgba(255, 213, 79, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .category-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--md-ref-palette-primary);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid
+          var(--md-ref-palette-surface-variant-transparent);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .shortcut-list {
+        list-style: none;
+      }
+
+      .shortcut-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 8px;
+        border-radius: 8px;
+        transition: background-color 0.2s ease;
+        border-bottom: 1px solid
+          var(--md-ref-palette-surface-variant-transparent);
+      }
+
+      .shortcut-item:last-child {
+        border-bottom: none;
+      }
+
+      .shortcut-item:hover {
+        background-color: rgba(255, 213, 79, 0.05);
+      }
+
+      .shortcut-action {
+        color: var(--md-ref-palette-on-surface);
+        font-size: 1rem;
+      }
+
+      .shortcut-key {
+        font-family: "Roboto Mono", monospace;
+        background-color: var(--md-ref-palette-background);
+        color: var(--md-ref-palette-primary);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        border: 1px solid var(--md-ref-palette-surface-variant);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: transparent;
+        color: var(--md-ref-palette-on-surface-variant);
+        border: 1px solid var(--md-ref-palette-on-surface-variant);
+        border-radius: 24px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 24px;
+        text-decoration: none;
+      }
+
+      .back-button:hover {
+        background: var(--gradient-primary);
+        color: var(--md-ref-palette-on-primary);
+        border-color: transparent;
+        box-shadow: 0 4px 15px rgba(255, 213, 79, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--gradient-dark);
+        color: var(--md-ref-palette-on-surface-variant);
+        padding: 24px 32px;
+        text-align: center;
+        margin-top: auto;
+        border-top: 1px solid rgba(255, 213, 79, 0.1);
+        position: relative;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: var(--gradient-primary);
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        opacity: 0.8;
+      }
+
+      /* Efectos de partículas decorativas */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .particle {
+        position: absolute;
+        background: rgba(255, 213, 79, 0.1);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
+      }
+
+      /* Loading Animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: var(--md-ref-palette-background);
-            color: var(--md-ref-palette-on-background);
-            line-height: 1.6;
-            background-image:
-                radial-gradient(circle at 15% 50%, rgba(255, 213, 79, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 85% 30%, rgba(255, 213, 79, 0.03) 0%, transparent 50%);
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
         }
+      }
 
-        .app-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+      .shortcut-category {
+        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        opacity: 0;
+      }
 
-        /* Header Styles */
-        .header {
-            background: var(--gradient-dark);
-            color: var(--md-ref-palette-primary);
-            padding: 24px 32px;
-            box-shadow: var(--md-elevation-2);
-            border-bottom: 1px solid rgba(255, 213, 79, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
+      .shortcut-category:nth-child(1) {
+        animation-delay: 0.1s;
+      }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-        }
+      .shortcut-category:nth-child(2) {
+        animation-delay: 0.2s;
+      }
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 1;
-        }
+      .shortcut-category:nth-child(3) {
+        animation-delay: 0.3s;
+      }
 
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
+      .shortcut-category:nth-child(4) {
+        animation-delay: 0.4s;
+      }
 
-        .logo-icon {
-            font-size: 2.8rem;
-            color: var(--md-ref-palette-primary);
-            filter: drop-shadow(0 2px 4px rgba(255, 213, 79, 0.3));
-        }
+      /* Scrollbar personalizado */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
 
-        .subtitle {
-            font-weight: 400;
-            opacity: 0.9;
-            font-size: 1.1rem;
-            margin-top: 4px;
-            color: var(--md-ref-palette-on-surface-variant);
-        }
+      ::-webkit-scrollbar-track {
+        background: var(--md-ref-palette-surface);
+      }
 
-        .header-subtitle-container {
-            flex-grow: 1;
-            text-align: center;
-            padding: 0 24px;
-            /* Espacio para que no se pegue a los botones */
-        }
+      ::-webkit-scrollbar-thumb {
+        background: var(--md-ref-palette-primary);
+        border-radius: 4px;
+      }
 
-        .header-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .icon-button {
-            background: transparent;
-            border: 2px solid transparent;
-            color: var(--md-ref-palette-on-surface-variant);
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .icon-button:hover {
-            background-color: rgba(255, 213, 79, 0.1);
-            color: var(--md-ref-palette-primary);
-            border-color: rgba(255, 213, 79, 0.3);
-            transform: scale(1.1);
-        }
-
-        .logo-button {
-            background: transparent;
-            border: 2px solid transparent;
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: 12px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            color: inherit;
-            /* Hereda el color del texto del padre (header) */
-        }
-
-        .logo-button:hover {
-            background-color: rgba(255, 213, 79, 0.1);
-            border-color: rgba(255, 213, 79, 0.3);
-        }
-
-        /* Efecto de hover para texto no interactivo */
-        .text-highlight {
-            display: inline-block;
-            padding: 2px 8px;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .text-highlight:hover {
-            background-color: rgba(255, 213, 79, 0.05);
-            border-color: rgba(255, 213, 79, 0.2);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 40px 32px;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .welcome-section {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .welcome-title {
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: var(--md-ref-palette-primary);
-            margin-bottom: 16px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .welcome-subtitle {
-            font-size: 1.1rem;
-            color: var(--md-ref-palette-on-surface-variant);
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.8;
-        }
-
-        /* Shortcuts Styles */
-        .shortcuts-container {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .shortcut-category {
-            background: var(--gradient-card);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: var(--md-elevation-1);
-            border: 1px solid rgba(255, 213, 79, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .category-title {
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: var(--md-ref-palette-primary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--md-ref-palette-surface-variant-transparent);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .shortcut-list {
-            list-style: none;
-        }
-
-        .shortcut-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 8px;
-            border-radius: 8px;
-            transition: background-color 0.2s ease;
-            border-bottom: 1px solid var(--md-ref-palette-surface-variant-transparent);
-        }
-
-        .shortcut-item:last-child {
-            border-bottom: none;
-        }
-
-        .shortcut-item:hover {
-            background-color: rgba(255, 213, 79, 0.05);
-        }
-
-        .shortcut-action {
-            color: var(--md-ref-palette-on-surface);
-            font-size: 1rem;
-        }
-
-        .shortcut-key {
-            font-family: 'Roboto Mono', monospace;
-            background-color: var(--md-ref-palette-background);
-            color: var(--md-ref-palette-primary);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            border: 1px solid var(--md-ref-palette-surface-variant);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: transparent;
-            color: var(--md-ref-palette-on-surface-variant);
-            border: 1px solid var(--md-ref-palette-on-surface-variant);
-            border-radius: 24px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 24px;
-            text-decoration: none;
-        }
-
-        .back-button:hover {
-            background: var(--gradient-primary);
-            color: var(--md-ref-palette-on-primary);
-            border-color: transparent;
-            box-shadow: 0 4px 15px rgba(255, 213, 79, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--gradient-dark);
-            color: var(--md-ref-palette-on-surface-variant);
-            padding: 24px 32px;
-            text-align: center;
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 213, 79, 0.1);
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: var(--gradient-primary);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            opacity: 0.8;
-        }
-
-        /* Efectos de partículas decorativas */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 213, 79, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
-        }
-
-        /* Loading Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .shortcut-category {
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            opacity: 0;
-        }
-
-        .shortcut-category:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .shortcut-category:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .shortcut-category:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .shortcut-category:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        /* Scrollbar personalizado */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--md-ref-palette-surface);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--md-ref-palette-primary);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--md-yellow-600);
-        }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--md-yellow-600);
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="app-container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <button class="logo-button" onclick="goToStart()" title="Ir a Inicio">
-                    <div class="logo">
-                        <span class="material-icons logo-icon">smart_toy</span>
-                        MultiAI
-                    </div>
-                </button>
-                <div class="header-subtitle-container">
-                    <div class="subtitle text-highlight" data-i18n-key="headerSubtitle">Atajos de Teclado</div>
-                </div>
-                <div class="header-actions">
-                    <div id="lang-switcher" style="display: flex; gap: 4px; align-items: center; margin-right: 8px;">
-                        <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('es')">ES</button>
-                        <span style="color: var(--md-ref-palette-on-surface-variant);">/</span>
-                        <button class="icon-button" style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px;" onclick="setLanguage('en')">EN</button>
-                    </div>
-                    <!---
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <button class="logo-button" onclick="goToStart()" title="Ir a Inicio">
+            <div class="logo">
+              <span class="material-icons logo-icon">smart_toy</span>
+              MultiAI
+            </div>
+          </button>
+          <div class="header-subtitle-container">
+            <div class="subtitle text-highlight" data-i18n-key="headerSubtitle">
+              Atajos de Teclado
+            </div>
+          </div>
+          <div class="header-actions">
+            <div
+              id="lang-switcher"
+              style="
+                display: flex;
+                gap: 4px;
+                align-items: center;
+                margin-right: 8px;
+              "
+            >
+              <button
+                class="icon-button"
+                style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px"
+                onclick="setLanguage('es')"
+              >
+                ES
+              </button>
+              <span style="color: var(--md-ref-palette-on-surface-variant)"
+                >/</span
+              >
+              <button
+                class="icon-button"
+                style="font-size: 0.9rem; padding: 8px 10px; border-radius: 8px"
+                onclick="setLanguage('en')"
+              >
+                EN
+              </button>
+            </div>
+            <!---
                     <button class="icon-button" onclick="closeApp()" title="Cerrar Aplicación" data-i18n-key="closeTooltip">
                         <span class="material-icons">close</span>
                     </button>
                     --->
-                    <div class="header-actions">
-                    <button class="icon-button" onclick="goBack()" title="Atrás">
-                        <span class="material-icons">arrow_back</span>
-                    </button>
-                </div>
-                </div>
+            <div class="header-actions">
+              <button class="icon-button" onclick="goBack()" title="Atrás">
+                <span class="material-icons">arrow_back</span>
+              </button>
             </div>
-        </header>
+          </div>
+        </div>
+      </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <section class="welcome-section">
-                <h1 class="welcome-title text-highlight" data-i18n-key="welcomeTitle">Optimiza tu Flujo de Trabajo</h1>
-                <br />
-                <p class="welcome-subtitle text-highlight">
-                    Usa estos atajos para navegar y utilizar MultiAI de forma más rápida y eficiente.
-                <p class="welcome-subtitle">
-                    <span class="text-highlight" data-i18n-key="welcomeSubtitle">Usa estos atajos para navegar y utilizar MultiAI de forma más rápida y
-                        eficiente.</span>
-                </p>
-            </section>
+      <!-- Main Content -->
+      <main class="main-content">
+        <section class="welcome-section">
+          <h1 class="welcome-title text-highlight" data-i18n-key="welcomeTitle">
+            Optimiza tu Flujo de Trabajo
+          </h1>
+          <br />
+          <p class="welcome-subtitle text-highlight">
+            Usa estos atajos para navegar y utilizar MultiAI de forma más rápida
+            y eficiente.
+          </p>
 
-            <div class="shortcuts-container">
-                <!-- Asistentes IA -->
-                <div class="shortcut-category">
-                    <h2 class="category-title" data-i18n-key="catAI"><span class="material-icons">smart_toy</span>Asistentes IA</h2>
-                    <ul class="shortcut-list">
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openCardinal">Abrir CardinalAI</span><span
-                                class="shortcut-key">Ctrl/Cmd + 1</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openChatGPT">Abrir ChatGPT</span><span
-                                class="shortcut-key">Ctrl/Cmd + 2</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openClaude">Abrir Claude</span><span
-                                class="shortcut-key">Ctrl/Cmd + 3</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openCopilot">Abrir Copilot</span><span
-                                class="shortcut-key">Ctrl/Cmd + 4</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openDeepseek">Abrir Deepseek</span><span
-                                class="shortcut-key">Ctrl/Cmd + 5</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openGemini">Abrir Gemini</span><span
-                                class="shortcut-key">Ctrl/Cmd + 6</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openGrok">Abrir Grok</span><span
-                                class="shortcut-key">Ctrl/Cmd + 7</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openMistral">Abrir Mistral AI</span><span
-                                class="shortcut-key">Ctrl/Cmd + 8</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openNotebookLM">Abrir NotebookLM</span><span
-                                class="shortcut-key">Ctrl/Cmd + 9</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="openPerplexity">Abrir Perplexity AI</span><span
-                                class="shortcut-key">Ctrl/Cmd + 0</span></li>
-                    </ul>
-                </div>
+          <p class="welcome-subtitle">
+            <span class="text-highlight" data-i18n-key="welcomeSubtitle"
+              >Usa estos atajos para navegar y utilizar MultiAI de forma más
+              rápida y eficiente.</span
+            >
+          </p>
+        </section>
 
-                <!-- Argumentos de Inicio -->
-                <div class="shortcut-category">
-                    <h2 class="category-title" data-i18n-key="catArgs"><span class="material-icons">terminal</span>Argumentos de Inicio</h2>
-                    <p style="margin-bottom: 15px; color: var(--md-ref-palette-on-surface-variant); padding: 0 8px;" data-i18n-key="argsDesc">Puedes iniciar MultiAI con estos argumentos para abrir directamente un asistente:</p>
-                    <ul class="shortcut-list">
-                        <li class="shortcut-item"><span class="shortcut-action">CardinalAI</span><span class="shortcut-key">--cardinal</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">ChatGPT</span><span class="shortcut-key">--chatgpt</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Claude</span><span class="shortcut-key">--claude</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Copilot</span><span class="shortcut-key">--copilot</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Deepseek</span><span class="shortcut-key">--deepseek</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Gemini</span><span class="shortcut-key">--gemini</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Grok</span><span class="shortcut-key">--grok</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Mistral AI</span><span class="shortcut-key">--mistral</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">NotebookLM</span><span class="shortcut-key">--notebooklm</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action">Perplexity AI</span><span class="shortcut-key">--perplexity</span></li>
-                    </ul>
-                </div>
+        <div class="shortcuts-container">
+          <!-- Asistentes IA -->
+          <div class="shortcut-category">
+            <h2 class="category-title" data-i18n-key="catAI">
+              <span class="material-icons">smart_toy</span>Asistentes IA
+            </h2>
+            <ul class="shortcut-list">
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openCardinal"
+                  >Abrir CardinalAI</span
+                ><span class="shortcut-key">Ctrl/Cmd + 1</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openChatGPT"
+                  >Abrir ChatGPT</span
+                ><span class="shortcut-key">Ctrl/Cmd + 2</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openClaude"
+                  >Abrir Claude</span
+                ><span class="shortcut-key">Ctrl/Cmd + 3</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openCopilot"
+                  >Abrir Copilot</span
+                ><span class="shortcut-key">Ctrl/Cmd + 4</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openDeepseek"
+                  >Abrir Deepseek</span
+                ><span class="shortcut-key">Ctrl/Cmd + 5</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openGemini"
+                  >Abrir Gemini</span
+                ><span class="shortcut-key">Ctrl/Cmd + 6</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openGrok"
+                  >Abrir Grok</span
+                ><span class="shortcut-key">Ctrl/Cmd + 7</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openMistral"
+                  >Abrir Mistral AI</span
+                ><span class="shortcut-key">Ctrl/Cmd + 8</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openNotebookLM"
+                  >Abrir NotebookLM</span
+                ><span class="shortcut-key">Ctrl/Cmd + 9</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openPerplexity"
+                  >Abrir Perplexity AI</span
+                ><span class="shortcut-key">Ctrl/Cmd + 0</span>
+              </li>
+            </ul>
+          </div>
 
-                <!-- Navegación -->
-                <div class="shortcut-category">
-                    <h2 class="category-title" data-i18n-key="catNav"><span class="material-icons">navigation</span>Navegación</h2>
-                    <ul class="shortcut-list">
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navHome">Ir a la Página Principal</span><span
-                                class="shortcut-key">Ctrl/Cmd + H</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navBackHome">Volver a la Página Principal</span><span
-                                class="shortcut-key">Esc</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navPrev">Página Anterior</span><span
-                                class="shortcut-key">Alt + Izquierda</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navNext">Página Siguiente</span><span
-                                class="shortcut-key">Alt + Derecha</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navReload">Recargar Página</span><span
-                                class="shortcut-key">Ctrl/Cmd + R</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="navForceReload">Forzar Recarga de Página</span><span
-                                class="shortcut-key">Ctrl/Cmd + Shift + R</span></li>
-                    </ul>
-                </div>
+          <!-- Argumentos de Inicio -->
+          <div class="shortcut-category">
+            <h2 class="category-title" data-i18n-key="catArgs">
+              <span class="material-icons">terminal</span>Argumentos de Inicio
+            </h2>
+            <p
+              style="
+                margin-bottom: 15px;
+                color: var(--md-ref-palette-on-surface-variant);
+                padding: 0 8px;
+              "
+              data-i18n-key="argsDesc"
+            >
+              Puedes iniciar MultiAI con estos argumentos para abrir
+              directamente un asistente:
+            </p>
+            <ul class="shortcut-list">
+              <li class="shortcut-item">
+                <span class="shortcut-action">CardinalAI</span
+                ><span class="shortcut-key">--cardinal</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">ChatGPT</span
+                ><span class="shortcut-key">--chatgpt</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">Claude</span
+                ><span class="shortcut-key">--claude</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">Copilot</span
+                ><span class="shortcut-key">--copilot</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">Deepseek</span
+                ><span class="shortcut-key">--deepseek</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">Gemini</span
+                ><span class="shortcut-key">--gemini</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">Grok</span
+                ><span class="shortcut-key">--grok</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">Mistral AI</span
+                ><span class="shortcut-key">--mistral</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">NotebookLM</span
+                ><span class="shortcut-key">--notebooklm</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">Perplexity AI</span
+                ><span class="shortcut-key">--perplexity</span>
+              </li>
+            </ul>
+          </div>
 
-                <!-- Ventana y Herramientas -->
-                <div class="shortcut-category">
-                    <h2 class="category-title" data-i18n-key="catWindow"><span class="material-icons">fullscreen</span>Ventana y Herramientas</h2>
-                    <ul class="shortcut-list">
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winMinimize">Minimizar Ventana</span><span
-                                class="shortcut-key">Ctrl/Cmd + M</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winClose">Cerrar Ventana</span><span
-                                class="shortcut-key">Ctrl/Cmd + W</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winFullscreen">Activar/Desactivar Pantalla Completa</span><span class="shortcut-key">F11</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winDevTools">Abrir Herramientas de Desarrollo</span><span class="shortcut-key">F12</span></li>
-                        <li class="shortcut-item"><span class="shortcut-action" data-i18n-key="winExternal">Abrir URL en Navegador Externo</span><span class="shortcut-key">Ctrl/Cmd + O</span></li>
-                    </ul>
-                </div>
-            </div>
+          <!-- Navegación -->
+          <div class="shortcut-category">
+            <h2 class="category-title" data-i18n-key="catNav">
+              <span class="material-icons">navigation</span>Navegación
+            </h2>
+            <ul class="shortcut-list">
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="navHome"
+                  >Ir a la Página Principal</span
+                ><span class="shortcut-key">Ctrl/Cmd + H</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="navBackHome"
+                  >Volver a la Página Principal</span
+                ><span class="shortcut-key">Esc</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="navPrev"
+                  >Página Anterior</span
+                ><span class="shortcut-key">Alt + Izquierda</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="navNext"
+                  >Página Siguiente</span
+                ><span class="shortcut-key">Alt + Derecha</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="navReload"
+                  >Recargar Página</span
+                ><span class="shortcut-key">Ctrl/Cmd + R</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="navForceReload"
+                  >Forzar Recarga de Página</span
+                ><span class="shortcut-key">Ctrl/Cmd + Shift + R</span>
+              </li>
+            </ul>
+          </div>
 
-            <div style="text-align: center; margin-top: 40px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-                <button class="back-button" onclick="goToUpdates()">
-                    <span class="material-icons">system_update</span><span>Actualizaciones</span>
-                </button>
-                <button class="back-button" onclick="goBack()">
-                    <span class="material-icons">arrow_back</span><span data-i18n-key="backButton">Atrás</span>
-                </button>
-            </div>
+          <!-- Ventana y Herramientas -->
+          <div class="shortcut-category">
+            <h2 class="category-title" data-i18n-key="catWindow">
+              <span class="material-icons">fullscreen</span>Ventana y
+              Herramientas
+            </h2>
+            <ul class="shortcut-list">
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="winMinimize"
+                  >Minimizar Ventana</span
+                ><span class="shortcut-key">Ctrl/Cmd + M</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="winClose"
+                  >Cerrar Ventana</span
+                ><span class="shortcut-key">Ctrl/Cmd + W</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="winFullscreen"
+                  >Activar/Desactivar Pantalla Completa</span
+                ><span class="shortcut-key">F11</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="winDevTools"
+                  >Abrir Herramientas de Desarrollo</span
+                ><span class="shortcut-key">F12</span>
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="winExternal"
+                  >Abrir URL en Navegador Externo</span
+                ><span class="shortcut-key">Ctrl/Cmd + O</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        </main>
+        <div
+          style="
+            text-align: center;
+            margin-top: 40px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <button class="back-button" onclick="goToUpdates()">
+            <span class="material-icons">system_update</span
+            ><span>Actualizaciones</span>
+          </button>
+          <button class="back-button" onclick="goBack()">
+            <span class="material-icons">arrow_back</span
+            ><span data-i18n-key="backButton">Atrás</span>
+          </button>
+        </div>
+      </main>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <p class="text-highlight" id="version-text">MultiAI v1.1.8 - By StormGamesStudios</p>
-            </div>
-        </footer>
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <p class="text-highlight" id="version-text">
+            MultiAI v1.1.8 - By StormGamesStudios
+          </p>
+        </div>
+      </footer>
     </div>
 
     <!-- Efectos de partículas -->
     <div class="particles" id="particles"></div>
 
     <script>
-        const translations = {
-            'es': {
-                pageTitle: "MultiAI - Atajos de Teclado",
-                headerSubtitle: "Atajos de Teclado",
-                closeTooltip: "Cerrar Aplicación",
-                welcomeTitle: "Optimiza tu Flujo de Trabajo",
-                welcomeSubtitle: "Usa estos atajos para navegar y utilizar MultiAI de forma más rápida y eficiente.",
-                catAI: '<span class="material-icons">smart_toy</span>Asistentes IA',
-                openCardinal: "Abrir CardinalAI",
-                openChatGPT: "Abrir ChatGPT",
-                openCopilot: "Abrir Copilot",
-                openDeepseek: "Abrir Deepseek",
-                openPerplexity: "Abrir Perplexity AI",
-                openClaude: "Abrir Claude",
-                openGemini: "Abrir Gemini",
-                openGrok: "Abrir Grok",
-                openMistral: "Abrir Mistral AI",
-                openNotebookLM: "Abrir NotebookLM",
-                catArgs: '<span class="material-icons">terminal</span>Argumentos de Inicio',
-                argsDesc: "Puedes iniciar MultiAI con estos argumentos para abrir directamente un asistente:",
-                catNav: '<span class="material-icons">navigation</span>Navegación',
-                navHome: "Ir a la Página Principal",
-                navBackHome: "Volver a la Página Principal",
-                navPrev: "Página Anterior",
-                navNext: "Página Siguiente",
-                navReload: "Recargar Página",
-                navForceReload: "Forzar Recarga de Página",
-                catWindow: '<span class="material-icons">fullscreen</span>Ventana y Herramientas',
-                winMinimize: "Minimizar Ventana",
-                winClose: "Cerrar Ventana",
-                winFullscreen: "Activar/Desactivar Pantalla Completa",
-                winDevTools: "Abrir Herramientas de Desarrollo",
-                winExternal: "Abrir URL en Navegador Externo",
-                backButton: "Atrás"
-            },
-            'en': {
-                pageTitle: "MultiAI - Keyboard Shortcuts",
-                headerSubtitle: "Keyboard Shortcuts",
-                closeTooltip: "Close Application",
-                welcomeTitle: "Optimize Your Workflow",
-                welcomeSubtitle: "Use these shortcuts to navigate and use MultiAI faster and more efficiently.",
-                catAI: '<span class="material-icons">smart_toy</span>AI Assistants',
-                openCardinal: "Open CardinalAI",
-                openChatGPT: "Open ChatGPT",
-                openCopilot: "Open Copilot",
-                openDeepseek: "Open Deepseek",
-                openPerplexity: "Open Perplexity AI",
-                openClaude: "Open Claude",
-                openGemini: "Open Gemini",
-                openGrok: "Open Grok",
-                openMistral: "Open Mistral AI",
-                openNotebookLM: "Open NotebookLM",
-                catArgs: '<span class="material-icons">terminal</span>Launch Arguments',
-                argsDesc: "You can launch MultiAI with these arguments to open an assistant directly:",
-                catNav: '<span class="material-icons">navigation</span>Navigation',
-                navHome: "Go to Main Page",
-                navBackHome: "Return to Main Page",
-                navPrev: "Previous Page",
-                navNext: "Next Page",
-                navReload: "Reload Page",
-                navForceReload: "Force Reload Page",
-                catWindow: '<span class="material-icons">fullscreen</span>Window & Tools',
-                winMinimize: "Minimize Window",
-                winClose: "Close Window",
-                winFullscreen: "Toggle Fullscreen",
-                winDevTools: "Open Developer Tools",
-                winExternal: "Open URL in External Browser",
-                backButton: "Back"
-            }
-        };
+      const translations = {
+        es: {
+          pageTitle: "MultiAI - Atajos de Teclado",
+          headerSubtitle: "Atajos de Teclado",
+          closeTooltip: "Cerrar Aplicación",
+          welcomeTitle: "Optimiza tu Flujo de Trabajo",
+          welcomeSubtitle:
+            "Usa estos atajos para navegar y utilizar MultiAI de forma más rápida y eficiente.",
+          catAI: '<span class="material-icons">smart_toy</span>Asistentes IA',
+          openCardinal: "Abrir CardinalAI",
+          openChatGPT: "Abrir ChatGPT",
+          openCopilot: "Abrir Copilot",
+          openDeepseek: "Abrir Deepseek",
+          openPerplexity: "Abrir Perplexity AI",
+          openClaude: "Abrir Claude",
+          openGemini: "Abrir Gemini",
+          openGrok: "Abrir Grok",
+          openMistral: "Abrir Mistral AI",
+          openNotebookLM: "Abrir NotebookLM",
+          catArgs:
+            '<span class="material-icons">terminal</span>Argumentos de Inicio',
+          argsDesc:
+            "Puedes iniciar MultiAI con estos argumentos para abrir directamente un asistente:",
+          catNav: '<span class="material-icons">navigation</span>Navegación',
+          navHome: "Ir a la Página Principal",
+          navBackHome: "Volver a la Página Principal",
+          navPrev: "Página Anterior",
+          navNext: "Página Siguiente",
+          navReload: "Recargar Página",
+          navForceReload: "Forzar Recarga de Página",
+          catWindow:
+            '<span class="material-icons">fullscreen</span>Ventana y Herramientas',
+          winMinimize: "Minimizar Ventana",
+          winClose: "Cerrar Ventana",
+          winFullscreen: "Activar/Desactivar Pantalla Completa",
+          winDevTools: "Abrir Herramientas de Desarrollo",
+          winExternal: "Abrir URL en Navegador Externo",
+          backButton: "Atrás",
+        },
+        en: {
+          pageTitle: "MultiAI - Keyboard Shortcuts",
+          headerSubtitle: "Keyboard Shortcuts",
+          closeTooltip: "Close Application",
+          welcomeTitle: "Optimize Your Workflow",
+          welcomeSubtitle:
+            "Use these shortcuts to navigate and use MultiAI faster and more efficiently.",
+          catAI: '<span class="material-icons">smart_toy</span>AI Assistants',
+          openCardinal: "Open CardinalAI",
+          openChatGPT: "Open ChatGPT",
+          openCopilot: "Open Copilot",
+          openDeepseek: "Open Deepseek",
+          openPerplexity: "Open Perplexity AI",
+          openClaude: "Open Claude",
+          openGemini: "Open Gemini",
+          openGrok: "Open Grok",
+          openMistral: "Open Mistral AI",
+          openNotebookLM: "Open NotebookLM",
+          catArgs:
+            '<span class="material-icons">terminal</span>Launch Arguments',
+          argsDesc:
+            "You can launch MultiAI with these arguments to open an assistant directly:",
+          catNav: '<span class="material-icons">navigation</span>Navigation',
+          navHome: "Go to Main Page",
+          navBackHome: "Return to Main Page",
+          navPrev: "Previous Page",
+          navNext: "Next Page",
+          navReload: "Reload Page",
+          navForceReload: "Force Reload Page",
+          catWindow:
+            '<span class="material-icons">fullscreen</span>Window & Tools',
+          winMinimize: "Minimize Window",
+          winClose: "Close Window",
+          winFullscreen: "Toggle Fullscreen",
+          winDevTools: "Open Developer Tools",
+          winExternal: "Open URL in External Browser",
+          backButton: "Back",
+        },
+      };
 
-        // Reutilizamos la API expuesta en preload.js
-        async function goHome() {
-            if (window.electronAPI) {
-                await window.electronAPI.goHome();
+      // Reutilizamos la API expuesta en preload.js
+      async function goHome() {
+        if (window.electronAPI) {
+          await window.electronAPI.goHome();
+        } else {
+          window.location.href = "index.html";
+        }
+      }
+
+      async function goBack() {
+        if (window.electronAPI) {
+          await window.electronAPI.goBack();
+        } else {
+          window.history.back();
+        }
+      }
+
+      function goToUpdates() {
+        window.location.href = "updates.html";
+      }
+
+      async function closeApp() {
+        try {
+          if (window.electronAPI) {
+            await window.electronAPI.windowControl("close");
+          } else {
+            window.close();
+          }
+        } catch (error) {
+          console.error("Error al cerrar la aplicación:", error);
+          window.close();
+        }
+      }
+
+      function goToStart() {
+        window.location.href = "index.html";
+      }
+
+      // Crear partículas decorativas
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        if (!particlesContainer) return;
+        const particleCount = 15;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+
+          const size = Math.random() * 4 + 2;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+
+          particle.style.opacity = Math.random() * 0.3 + 0.1;
+
+          particle.style.animationDelay = `${Math.random() * 6}s`;
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      function setLanguage(lang) {
+        if (!translations[lang]) return;
+
+        localStorage.setItem("multiAILang", lang);
+        document.documentElement.lang = lang;
+
+        document.title = translations[lang].pageTitle;
+
+        document.querySelectorAll("[data-i18n-key]").forEach((element) => {
+          const key = element.getAttribute("data-i18n-key");
+          if (translations[lang][key]) {
+            if (element.hasAttribute("title")) {
+              element.setAttribute("title", translations[lang][key]);
             } else {
-                window.location.href = 'index.html';
+              element.innerHTML = translations[lang][key];
             }
-        }
-
-        async function goBack() {
-            if (window.electronAPI) {
-                await window.electronAPI.goBack();
-            } else {
-                window.history.back();
-            }
-        }
-
-        function goToUpdates() {
-            window.location.href = 'updates.html';
-        }
-
-        async function closeApp() {
-            try {
-                if (window.electronAPI) {
-                    await window.electronAPI.windowControl('close');
-                } else {
-                    window.close();
-                }
-            } catch (error) {
-                console.error('Error al cerrar la aplicación:', error);
-                window.close();
-            }
-        }
-
-        function goToStart() {
-            window.location.href = 'index.html';
-        }
-
-        // Crear partículas decorativas
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            if (!particlesContainer) return;
-            const particleCount = 15;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-
-                const size = Math.random() * 4 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-
-                particle.style.opacity = Math.random() * 0.3 + 0.1;
-
-                particle.style.animationDelay = `${Math.random() * 6}s`;
-
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        function setLanguage(lang) {
-            if (!translations[lang]) return;
-
-            localStorage.setItem('multiAILang', lang);
-            document.documentElement.lang = lang;
-
-            document.title = translations[lang].pageTitle;
-
-            document.querySelectorAll('[data-i18n-key]').forEach(element => {
-                const key = element.getAttribute('data-i18n-key');
-                if (translations[lang][key]) {
-                    if (element.hasAttribute('title')) {
-                        element.setAttribute('title', translations[lang][key]);
-                    } else {
-                        element.innerHTML = translations[lang][key];
-                    }
-                }
-            });
-            // Highlight active language button
-            document.querySelector('#lang-switcher button[onclick="setLanguage(\'es\')"]').style.backgroundColor = lang === 'es' ? 'rgba(255, 213, 79, 0.1)' : 'transparent';
-            document.querySelector('#lang-switcher button[onclick="setLanguage(\'en\')"]').style.backgroundColor = lang === 'en' ? 'rgba(255, 213, 79, 0.1)' : 'transparent';
-        }
-
-        async function loadVersion() {
-            try {
-                let version = '1.0.0';
-                
-                // Primero intentar obtener desde electronAPI
-                if (window.electronAPI && typeof window.electronAPI.getAppVersion === 'function') {
-                    version = await window.electronAPI.getAppVersion();
-                } else if (window.electronAPI && window.electronAPI.appVersion) {
-                    version = window.electronAPI.appVersion;
-                } else {
-                    // Fallback: cargar desde package.json
-                    const response = await fetch('package.json');
-                    const packageData = await response.json();
-                    version = packageData.version;
-                }
-                
-                const versionElement = document.getElementById('version-text');
-                if (versionElement) {
-                    versionElement.textContent = `MultiAI v${version} - By StormGamesStudios`;
-                }
-            } catch (error) {
-                console.error('Error al cargar la versión:', error);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            createParticles();
-            loadVersion();
-            const savedLang = localStorage.getItem('multiAILang') || (translations[navigator.language.split('-')[0]] ? navigator.language.split('-')[0] : 'es');
-            setLanguage(savedLang);
+          }
         });
+        // Highlight active language button
+        document.querySelector(
+          "#lang-switcher button[onclick=\"setLanguage('es')\"]",
+        ).style.backgroundColor =
+          lang === "es" ? "rgba(255, 213, 79, 0.1)" : "transparent";
+        document.querySelector(
+          "#lang-switcher button[onclick=\"setLanguage('en')\"]",
+        ).style.backgroundColor =
+          lang === "en" ? "rgba(255, 213, 79, 0.1)" : "transparent";
+      }
 
-        // Manejar la tecla Escape para volver al inicio
-        document.addEventListener('keydown', async (event) => {
-            if (event.key === 'Escape' && window.electronAPI) {
-                await window.electronAPI.goHome();
-            }
-        });
+      async function loadVersion() {
+        try {
+          let version = "1.0.0";
+
+          // Primero intentar obtener desde electronAPI
+          if (
+            window.electronAPI &&
+            typeof window.electronAPI.getAppVersion === "function"
+          ) {
+            version = await window.electronAPI.getAppVersion();
+          } else if (window.electronAPI && window.electronAPI.appVersion) {
+            version = window.electronAPI.appVersion;
+          } else {
+            // Fallback: cargar desde package.json
+            const response = await fetch("package.json");
+            const packageData = await response.json();
+            version = packageData.version;
+          }
+
+          const versionElement = document.getElementById("version-text");
+          if (versionElement) {
+            versionElement.textContent = `MultiAI v${version} - By StormGamesStudios`;
+          }
+        } catch (error) {
+          console.error("Error al cargar la versión:", error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        createParticles();
+        loadVersion();
+        const savedLang =
+          localStorage.getItem("multiAILang") ||
+          (translations[navigator.language.split("-")[0]]
+            ? navigator.language.split("-")[0]
+            : "es");
+        setLanguage(savedLang);
+      });
+
+      // Manejar la tecla Escape para volver al inicio
+      document.addEventListener("keydown", async (event) => {
+        if (event.key === "Escape" && window.electronAPI) {
+          await window.electronAPI.goHome();
+        }
+      });
     </script>
-</body>
-
+  </body>
 </html>
