@@ -18,6 +18,15 @@
 
 ### Installation
 
+#### Microsoft Store & Windows Installer
+You can install MultiAI directly from the [Microsoft Store](https://apps.microsoft.com/detail/9nx0mvrkd93v?cid=DevShareMCLPCS&hl=es-ES&gl=ES) or by downloading the `MultiAI-Pack-Installer.exe` from GitHub.
+You can install MultiAI directly from the Microsoft Store or by downloading the MultiAI-Pack-Installer.exe from GitHub.
+
+#### Direct Download (GitHub)
+Standalone installers are available on GitHub:
+- **Windows:** [`MultiAI-x64.exe`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.exe), [`MultiAI-x64.appx`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.appx)
+- **Linux:** [`MultiAI-x64.deb`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.deb), [`MultiAI-x64.AppImage`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.AppImage), [`MultiAI-x64.flatpak`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/`MultiAI-x64.flatpak), [`MultiAI-x64.pacman`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.pacman)
+
 #### Via Repository (for .deb based systems like Debian, Ubuntu, etc.)
 
 ```bash
@@ -38,6 +47,15 @@ Snap:
 **Descripción:** MultiAI es una aplicación de escritorio que te permite usar diferentes modelos de IA desde un solo lugar. Combina múltiples proveedores de IA en una única interfaz, facilitando el cambio entre modelos, el envío de mensajes, la gestión de conversaciones y un trabajo más eficiente. La aplicación está diseñada para ser rápida, sencilla y fácil de usar, ofreciendo una experiencia de chat unificada para todas tus herramientas de IA.
 
 ### Instalación
+
+#### Microsoft Store y Windows Installer
+Puedes instalar MultiAI directamente desde la [Microsoft Store](https://apps.microsoft.com/detail/9nx0mvrkd93v?cid=DevShareMCLPCS&hl=es-ES&gl=ES) o descargando el archivo `MultiAI-Pack-Installer.exe` desde GitHub.
+Puedes instalar MultiAI directamente desde la Microsoft Store o descargando el archivo MultiAI-Pack-Installer.exe desde GitHub.
+
+#### Descarga Directa (GitHub)
+Puedes encontrar instaladores independientes en GitHub:
+- **Windows:** [`MultiAI-x64.exe`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.exe), [`MultiAI-x64.appx`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.appx)
+- **Linux:** [`MultiAI-x64.deb`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.deb), [`MultiAI-x64.AppImage`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.AppImage), [`MultiAI-x64.flatpak`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/`MultiAI-x64.flatpak), [`MultiAI-x64.pacman`](https://github.com/acierto-incomodo/MultiAI/releases/latest/download/MultiAI-x64.pacman)
 
 #### Vía Repositorio (para sistemas basados en .deb como Debian, Ubuntu, etc.)
 
