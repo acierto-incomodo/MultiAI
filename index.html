@@ -869,7 +869,7 @@
             <span class="material-icons" style="font-size: 80px; color: var(--md-ref-palette-primary); margin-bottom: 20px;">lock_person</span>
             <h2 id="modalTitle" style="color: var(--md-ref-palette-primary); margin-bottom: 15px;" data-i18n-key="modalBlockedTitle">Acceso Restringido</h2>
             <p id="modalMessage" style="color: var(--md-ref-palette-on-surface-variant); margin-bottom: 30px; font-size: 1.1rem;" data-i18n-key="modalBlockedMsg">Este asistente no está disponible en tu versión actual o se encuentra en mantenimiento.</p>
-            <button class="icon-button" onclick="closeCustomAlert()" style="background: var(--gradient-primary); color: var(--md-ref-palette-on-primary); padding: 12px 30px; border-radius: 25px; width: 100%; font-weight: 700; font-size: 1rem;">
+            <button class="icon-button" onclick="closeCustomAlert()" style="background: var(--gradient-primary); color: var(--md-ref-palette-on-primary); padding: 12px 30px; border-radius: 25px; width: 100%; font-weight: 700; font-size: 1rem;" data-i18n-key="modalBlockedBtn">
                 ENTENDIDO
             </button>
         </div>
@@ -902,7 +902,8 @@
                 clickToOpen: "Haz clic para abrir",
                 blockedBadge: "BLOQUEADO",
                 modalBlockedTitle: "Acceso Restringido",
-                modalBlockedMsg: "Este asistente no está disponible en este momento o se encuentra en mantenimiento."
+                modalBlockedMsg: "Este asistente no está disponible en este momento o se encuentra en mantenimiento.",
+                modalBlockedBtn: "ENTENDIDO"
             },
             'en': {
                 pageTitle: "MultiAI - Artificial Intelligence Assistants",
@@ -926,7 +927,8 @@
                 clickToOpen: "Click to open",
                 blockedBadge: "LOCKED",
                 modalBlockedTitle: "Access Restricted",
-                modalBlockedMsg: "This assistant is not available at this time or is under maintenance."
+                modalBlockedMsg: "This assistant is not available at this time or is under maintenance.",
+                modalBlockedBtn: "UNDERSTOOD"
             }
         };
 
@@ -1161,6 +1163,13 @@
             const browserLang = navigator.language.split('-')[0];
             setLanguage(savedLang || (translations[browserLang] ? browserLang : 'es'));
         });
+
+        // Escuchar el evento de alerta de bloqueo desde el proceso principal
+        if (window.electronAPI) {
+            window.electronAPI.onShowBlockedAlert(() => {
+                showCustomAlert();
+            });
+        }
 
         // Manejar la tecla Escape para volver al inicio
         document.addEventListener('keydown', async (event) => {

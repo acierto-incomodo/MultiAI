@@ -18,4 +18,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // El renderer llama a estas funciones para interactuar con el actualizador
   checkForUpdates: () => ipcRenderer.send('check-for-updates'),
   quitAndInstallUpdate: () => ipcRenderer.send('quit-and-install-update'),
+
+  // Nuevo: Escuchar cuando el proceso principal quiere mostrar la alerta de bloqueo
+  onShowBlockedAlert: (callback) => ipcRenderer.on('show-blocked-alert', callback),
 });

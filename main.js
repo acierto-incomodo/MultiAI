@@ -13,7 +13,7 @@ autoUpdater.logger = log;
 
 // Configuración centralizada de asistentes
 const ASSISTANTS = [
-  { id: 'cardinal', name: 'CardinalAI', url: 'https://cardinal-ai-h4rt.vercel.app/', acc: '1' },
+  { id: 'cardinal', name: 'CardinalAI', url: 'https://cardinal-ai-h4rt.vercel.app/', acc: '1', blocked: true },
   { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com/', acc: '2' },
   { id: 'claude', name: 'Claude', url: 'https://claude.ai/', acc: '3' },
   { id: 'copilot', name: 'Copilot', url: 'https://copilot.microsoft.com/', acc: '4' },
@@ -142,8 +142,15 @@ function createMenu() {
         label: a.name,
         accelerator: a.acc ? `CmdOrCtrl+${a.acc}` : undefined,
         click: () => {
-          log.info(`Menu: Navegando a ${a.name}.`);
-          mainWindow.loadURL(a.url);
+          if (a.blocked) {
+            log.info(`Menu: Intento de acceder a ${a.name} bloqueado.`);
+            if (mainWindow) {
+              mainWindow.webContents.send('show-blocked-alert');
+            }
+          } else {
+            log.info(`Menu: Navegando a ${a.name}.`);
+            mainWindow.loadURL(a.url);
+          }
         }
       }))
     },
