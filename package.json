@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "scripts": {
@@ -97,7 +97,7 @@
         "pacman",
         "flatpak"
       ],
-      "icon": "assets/icons/icon-new.png",
+      "icon": "assets/icons/icon.png",
       "category": "Utility",
       "maintainer": "StormGamesStudios <meliodas.aitor@gmail.com>",
       "vendor": "StormGamesStudios",

@@ -115,7 +115,7 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
       webSecurity: true,
     },
-    icon: path.join(__dirname, "build/icon.png"),
+    icon: path.join(__dirname, "assets/icons/icon.png"),
     show: false,
   });
 
