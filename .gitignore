@@ -157,3 +157,4 @@ dist/*.blockmap
 package-lock.json
 *.pacman
 *.flatpak
+/dist/__flatpak-x86_64
