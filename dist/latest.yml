@@ -1,8 +1,8 @@
-version: 1.3.3
+version: 1.3.4
 files:
   - url: MultiAI-x64.exe
-    sha512: fKojWFcKFFTDKIyjPSkOQSgvud8UlYid172Yl5SIGgMrm9kLQQyRr8Fs17Mr3+1Fq+ACFsjKtK7zBW8qKhNpvg==
-    size: 128620329
+    sha512: mOcpM/kwd/YuchK/Zk32WNumOlMqK+4HcXDvR6BSI+hO6cgEfQFYZeIOR8ian77W9fYR/92hCN/Gu9CEf3J1nQ==
+    size: 128620173
 path: MultiAI-x64.exe
-sha512: fKojWFcKFFTDKIyjPSkOQSgvud8UlYid172Yl5SIGgMrm9kLQQyRr8Fs17Mr3+1Fq+ACFsjKtK7zBW8qKhNpvg==
-releaseDate: '2026-06-02T15:54:16.941Z'
+sha512: mOcpM/kwd/YuchK/Zk32WNumOlMqK+4HcXDvR6BSI+hO6cgEfQFYZeIOR8ian77W9fYR/92hCN/Gu9CEf3J1nQ==
+releaseDate: '2026-08-28T18:24:56.530Z'
