@@ -21,6 +21,8 @@
         --text: #e6e1e5;
         --muted: #cac4d0;
         --error: #ffb4ab;
+        --gradient-dark: linear-gradient(135deg, #1c1c1e 0%, #121212 100%);
+        --gradient-primary: linear-gradient(135deg, #ffd54f 0%, #ffc107 100%);
       }
 
       * {
@@ -230,11 +232,30 @@
         color: var(--error);
       }
 
-      footer {
-        padding: 24px;
+      .footer {
+        position: relative;
+        margin-top: auto;
+        padding: 24px 32px;
+        border-top: 1px solid rgba(255, 213, 79, 0.1);
+        background: var(--gradient-dark);
         color: var(--muted);
         text-align: center;
-        background: #1c1c1e;
+      }
+
+      .footer::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 1px;
+        background: var(--gradient-primary);
+        content: "";
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        opacity: 0.8;
       }
 
       @media (max-width: 700px) {
@@ -336,7 +357,11 @@
         </div>
         <div id="status" role="status" aria-live="polite"></div>
       </main>
-      <footer>MultiAI</footer>
+      <footer class="footer">
+        <div class="footer-content">
+          <p id="version-text">MultiAI v1.1.8 - By StormGamesStudios</p>
+        </div>
+      </footer>
     </div>
 
     <script>
@@ -719,7 +744,28 @@
         window.location.href = "shortcuts.html";
       }
 
+      async function loadVersion() {
+        try {
+          let version;
+          if (window.electronAPI) {
+            version = await window.electronAPI.getAppVersion();
+          } else {
+            const response = await fetch("package.json");
+            if (!response.ok) {
+              throw new Error(`No se pudo cargar package.json: ${response.status}`);
+            }
+            version = (await response.json()).version;
+          }
+
+          document.getElementById("version-text").textContent =
+            `MultiAI v${version} - By StormGamesStudios`;
+        } catch (error) {
+          console.error("No se pudo cargar la versión:", error);
+        }
+      }
+
       document.addEventListener("DOMContentLoaded", async () => {
+        loadVersion();
         let language =
           localStorage.getItem("multiAILang") ||
           (translations[navigator.language.split("-")[0]] ? navigator.language.split("-")[0] : "es");
