@@ -11,6 +11,12 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
   // App info
   getAppVersion: () => ipcRenderer.invoke("get-app-version"),
+  getAppLanguage: () => ipcRenderer.invoke("get-app-language"),
+  saveAppLanguage: (language) =>
+    ipcRenderer.invoke("save-app-language", language),
+  getShortcutSettings: () => ipcRenderer.invoke("get-shortcut-settings"),
+  saveShortcutSettings: (settings) =>
+    ipcRenderer.invoke("save-shortcut-settings", settings),
 
   // Updater API
   // El proceso principal envía eventos con este nombre

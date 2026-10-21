@@ -490,6 +490,14 @@
               <button class="icon-button" onclick="goBack()" title="Atrás">
                 <span class="material-icons">arrow_back</span>
               </button>
+              <button
+                class="icon-button"
+                onclick="goToSettings()"
+                title="Configuración"
+                data-i18n-key="settingsTooltip"
+              >
+                <span class="material-icons">settings</span>
+              </button>
             </div>
           </div>
         </div>
@@ -525,52 +533,83 @@
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openCardinal"
                   >Abrir CardinalAI</span
-                ><span class="shortcut-key">Ctrl/Cmd + 1</span>
+                ><span class="shortcut-key" data-shortcut-id="assistant_cardinal"
+                  >Ctrl/Cmd + 1</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openChatGPT"
                   >Abrir ChatGPT</span
-                ><span class="shortcut-key">Ctrl/Cmd + 2</span>
+                ><span class="shortcut-key" data-shortcut-id="assistant_chatgpt"
+                  >Ctrl/Cmd + 2</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openClaude"
                   >Abrir Claude</span
-                ><span class="shortcut-key">Ctrl/Cmd + 3</span>
+                ><span class="shortcut-key" data-shortcut-id="assistant_claude"
+                  >Ctrl/Cmd + 3</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openCopilot"
                   >Abrir Copilot</span
-                ><span class="shortcut-key">Ctrl/Cmd + 4</span>
+                ><span class="shortcut-key" data-shortcut-id="assistant_copilot"
+                  >Ctrl/Cmd + 4</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openDeepseek"
                   >Abrir Deepseek</span
-                ><span class="shortcut-key">Ctrl/Cmd + 5</span>
+                ><span class="shortcut-key" data-shortcut-id="assistant_deepseek"
+                  >Ctrl/Cmd + 5</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openGemini"
                   >Abrir Gemini</span
-                ><span class="shortcut-key">Ctrl/Cmd + 6</span>
+                ><span class="shortcut-key" data-shortcut-id="assistant_gemini"
+                  >Ctrl/Cmd + 6</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openGrok"
                   >Abrir Grok</span
-                ><span class="shortcut-key">Ctrl/Cmd + 7</span>
+                ><span class="shortcut-key" data-shortcut-id="assistant_grok"
+                  >Ctrl/Cmd + 7</span
+                >
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openKimi"
+                  >Abrir Kimi</span
+                ><span class="shortcut-key" data-shortcut-id="assistant_kimi"
+                  >Sin asignar</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openMistral"
                   >Abrir Mistral AI</span
-                ><span class="shortcut-key">Ctrl/Cmd + 8</span>
+                ><span class="shortcut-key" data-shortcut-id="assistant_mistral"
+                  >Ctrl/Cmd + 8</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openNotebookLM"
                   >Abrir NotebookLM</span
-                ><span class="shortcut-key">Ctrl/Cmd + 9</span>
+                ><span
+                  class="shortcut-key"
+                  data-shortcut-id="assistant_notebooklm"
+                  >Ctrl/Cmd + 9</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openPerplexity"
                   >Abrir Perplexity AI</span
-                ><span class="shortcut-key">Ctrl/Cmd + 0</span>
+                ><span
+                  class="shortcut-key"
+                  data-shortcut-id="assistant_perplexity"
+                  >Ctrl/Cmd + 0</span
+                >
               </li>
             </ul>
           </div>
@@ -632,6 +671,10 @@
                 <span class="shortcut-action">Perplexity AI</span
                 ><span class="shortcut-key">--perplexity</span>
               </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action">Kimi</span
+                ><span class="shortcut-key">--kimi</span>
+              </li>
             </ul>
           </div>
 
@@ -644,32 +687,58 @@
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="navHome"
                   >Ir a la Página Principal</span
-                ><span class="shortcut-key">Ctrl/Cmd + H</span>
+                ><span class="shortcut-key" data-shortcut-id="home"
+                  >Ctrl/Cmd + H</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="navBackHome"
                   >Volver a la Página Principal</span
-                ><span class="shortcut-key">Esc</span>
+                ><span class="shortcut-key" data-shortcut-id="homeEscape"
+                  >Esc</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="navPrev"
                   >Página Anterior</span
-                ><span class="shortcut-key">Alt + Izquierda</span>
+                ><span class="shortcut-key" data-shortcut-id="back"
+                  >Alt + Left</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="navNext"
                   >Página Siguiente</span
-                ><span class="shortcut-key">Alt + Derecha</span>
+                ><span class="shortcut-key" data-shortcut-id="forward"
+                  >Alt + Right</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="navReload"
                   >Recargar Página</span
-                ><span class="shortcut-key">Ctrl/Cmd + R</span>
+                ><span class="shortcut-key" data-shortcut-id="reload"
+                  >Ctrl/Cmd + R</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="navForceReload"
                   >Forzar Recarga de Página</span
-                ><span class="shortcut-key">Ctrl/Cmd + Shift + R</span>
+                ><span class="shortcut-key" data-shortcut-id="forceReload"
+                  >Ctrl/Cmd + Shift + R</span
+                >
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="openShortcuts"
+                  >Ver Atajos de Teclado</span
+                ><span class="shortcut-key" data-shortcut-id="shortcuts"
+                  >Ctrl/Cmd + K</span
+                >
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="winExternal"
+                  >Abrir URL en Navegador Externo</span
+                ><span class="shortcut-key" data-shortcut-id="openExternal"
+                  >Ctrl/Cmd + O</span
+                >
               </li>
             </ul>
           </div>
@@ -684,27 +753,51 @@
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="winMinimize"
                   >Minimizar Ventana</span
-                ><span class="shortcut-key">Ctrl/Cmd + M</span>
+                ><span class="shortcut-key" data-shortcut-id="minimize"
+                  >Ctrl/Cmd + M</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="winClose"
                   >Cerrar Ventana</span
-                ><span class="shortcut-key">Ctrl/Cmd + W</span>
+                ><span class="shortcut-key" data-shortcut-id="close"
+                  >Ctrl/Cmd + W</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="winFullscreen"
                   >Activar/Desactivar Pantalla Completa</span
-                ><span class="shortcut-key">F11</span>
+                ><span class="shortcut-key" data-shortcut-id="fullscreen"
+                  >F11</span
+                >
               </li>
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="winDevTools"
                   >Abrir Herramientas de Desarrollo</span
-                ><span class="shortcut-key">F12</span>
+                ><span class="shortcut-key" data-shortcut-id="devTools"
+                  >F12</span
+                >
               </li>
               <li class="shortcut-item">
-                <span class="shortcut-action" data-i18n-key="winExternal"
-                  >Abrir URL en Navegador Externo</span
-                ><span class="shortcut-key">Ctrl/Cmd + O</span>
+                <span class="shortcut-action" data-i18n-key="zoomIn"
+                  >Acercar</span
+                ><span class="shortcut-key" data-shortcut-id="zoomIn"
+                  >Ctrl/Cmd + =</span
+                >
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="zoomOut"
+                  >Alejar</span
+                ><span class="shortcut-key" data-shortcut-id="zoomOut"
+                  >Ctrl/Cmd + -</span
+                >
+              </li>
+              <li class="shortcut-item">
+                <span class="shortcut-action" data-i18n-key="resetZoom"
+                  >Restablecer Zoom</span
+                ><span class="shortcut-key" data-shortcut-id="resetZoom"
+                  >Ctrl/Cmd + Shift + 0</span
+                >
               </li>
             </ul>
           </div>
@@ -762,6 +855,7 @@
           openClaude: "Abrir Claude",
           openGemini: "Abrir Gemini",
           openGrok: "Abrir Grok",
+          openKimi: "Abrir Kimi",
           openMistral: "Abrir Mistral AI",
           openNotebookLM: "Abrir NotebookLM",
           catArgs:
@@ -782,6 +876,11 @@
           winFullscreen: "Activar/Desactivar Pantalla Completa",
           winDevTools: "Abrir Herramientas de Desarrollo",
           winExternal: "Abrir URL en Navegador Externo",
+          openShortcuts: "Ver Atajos de Teclado",
+          zoomIn: "Acercar",
+          zoomOut: "Alejar",
+          resetZoom: "Restablecer Zoom",
+          settingsTooltip: "Configuración",
           backButton: "Atrás",
         },
         en: {
@@ -800,6 +899,7 @@
           openClaude: "Open Claude",
           openGemini: "Open Gemini",
           openGrok: "Open Grok",
+          openKimi: "Open Kimi",
           openMistral: "Open Mistral AI",
           openNotebookLM: "Open NotebookLM",
           catArgs:
@@ -820,6 +920,11 @@
           winFullscreen: "Toggle Fullscreen",
           winDevTools: "Open Developer Tools",
           winExternal: "Open URL in External Browser",
+          openShortcuts: "View Keyboard Shortcuts",
+          zoomIn: "Zoom in",
+          zoomOut: "Zoom out",
+          resetZoom: "Reset zoom",
+          settingsTooltip: "Settings",
           backButton: "Back",
         },
       };
@@ -843,6 +948,10 @@
 
       function goToUpdates() {
         window.location.href = "updates.html";
+      }
+
+      function goToSettings() {
+        window.location.href = "settings.html";
       }
 
       async function closeApp() {
@@ -887,10 +996,20 @@
         }
       }
 
+      let currentLanguage = "es";
+
       function setLanguage(lang) {
         if (!translations[lang]) return;
 
+        currentLanguage = lang;
         localStorage.setItem("multiAILang", lang);
+        if (window.electronAPI) {
+          window.electronAPI
+            .saveAppLanguage(lang)
+            .catch((error) =>
+              console.error("Error al guardar el idioma:", error),
+            );
+        }
         document.documentElement.lang = lang;
 
         document.title = translations[lang].pageTitle;
@@ -914,6 +1033,73 @@
           "#lang-switcher button[onclick=\"setLanguage('en')\"]",
         ).style.backgroundColor =
           lang === "en" ? "rgba(255, 213, 79, 0.1)" : "transparent";
+        updateConfiguredShortcuts();
+      }
+
+      const DEFAULT_SHORTCUTS = {
+        assistant_cardinal: "CmdOrCtrl+1",
+        assistant_chatgpt: "CmdOrCtrl+2",
+        assistant_claude: "CmdOrCtrl+3",
+        assistant_copilot: "CmdOrCtrl+4",
+        assistant_deepseek: "CmdOrCtrl+5",
+        assistant_gemini: "CmdOrCtrl+6",
+        assistant_grok: "CmdOrCtrl+7",
+        assistant_kimi: "",
+        assistant_mistral: "CmdOrCtrl+8",
+        assistant_notebooklm: "CmdOrCtrl+9",
+        assistant_perplexity: "CmdOrCtrl+0",
+        home: "CmdOrCtrl+H",
+        homeEscape: "Esc",
+        back: "Alt+Left",
+        forward: "Alt+Right",
+        zoomIn: "CmdOrCtrl+=",
+        zoomOut: "CmdOrCtrl+-",
+        resetZoom: "CmdOrCtrl+Shift+0",
+        reload: "CmdOrCtrl+R",
+        forceReload: "CmdOrCtrl+Shift+R",
+        minimize: "CmdOrCtrl+M",
+        close: "CmdOrCtrl+W",
+        fullscreen: "F11",
+        devTools: "F12",
+        openExternal: "CmdOrCtrl+O",
+        shortcuts: "CmdOrCtrl+K",
+      };
+      let configuredShortcutSettings = { ...DEFAULT_SHORTCUTS };
+
+      function formatShortcut(value) {
+        if (!value) return currentLanguage === "en" ? "Unassigned" : "Sin asignar";
+        return value
+          .replace(/^CmdOrCtrl/, "Ctrl/Cmd")
+          .replace(/\+/g, " + ");
+      }
+
+      async function loadConfiguredShortcuts() {
+        try {
+          if (window.electronAPI) {
+            configuredShortcutSettings =
+              await window.electronAPI.getShortcutSettings();
+          } else {
+            const stored = localStorage.getItem("multiAIShortcuts");
+            if (stored) {
+              configuredShortcutSettings = {
+                ...DEFAULT_SHORTCUTS,
+                ...JSON.parse(stored),
+              };
+            }
+          }
+        } catch (error) {
+          console.error("Error al cargar atajos configurados:", error);
+        }
+
+        updateConfiguredShortcuts();
+      }
+
+      function updateConfiguredShortcuts() {
+        document.querySelectorAll("[data-shortcut-id]").forEach((element) => {
+          const shortcut =
+            configuredShortcutSettings[element.dataset.shortcutId];
+          element.textContent = formatShortcut(shortcut);
+        });
       }
 
       async function loadVersion() {
@@ -944,21 +1130,30 @@
         }
       }
 
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", async function () {
         createParticles();
         loadVersion();
-        const savedLang =
+        let savedLang =
           localStorage.getItem("multiAILang") ||
           (translations[navigator.language.split("-")[0]]
             ? navigator.language.split("-")[0]
             : "es");
+        if (window.electronAPI) {
+          try {
+            const configuredLang = await window.electronAPI.getAppLanguage();
+            if (configuredLang) savedLang = configuredLang;
+          } catch (error) {
+            console.error("Error al cargar el idioma:", error);
+          }
+        }
         setLanguage(savedLang);
+        loadConfiguredShortcuts();
       });
 
       // Manejar la tecla Escape para volver al inicio
       document.addEventListener("keydown", async (event) => {
-        if (event.key === "Escape" && window.electronAPI) {
-          await window.electronAPI.goHome();
+        if (event.key === "Escape" && !window.electronAPI) {
+          window.location.href = "index.html";
         }
       });
     </script>

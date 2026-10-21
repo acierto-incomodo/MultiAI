@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MultiAI - Configuración</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #ffd54f;
+        --background: #121212;
+        --surface: #1c1c1e;
+        --surface-variant: #2c2c2e;
+        --text: #e6e1e5;
+        --muted: #cac4d0;
+        --error: #ffb4ab;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--background);
+        color: var(--text);
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+      }
+
+      button,
+      select {
+        font: inherit;
+      }
+
+      .app-container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        padding: 20px 32px;
+        background: #1c1c1e;
+        border-bottom: 1px solid rgba(255, 213, 79, 0.18);
+      }
+
+      .header-content {
+        max-width: 1100px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .logo-button,
+      .icon-button,
+      .action-button,
+      .shortcut-input {
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .logo-button {
+        border: 0;
+        background: transparent;
+        color: var(--primary);
+        font-size: 1.7rem;
+        font-weight: 700;
+      }
+
+      .logo-button .material-icons {
+        vertical-align: middle;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .icon-button {
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        padding: 8px 10px;
+        color: var(--muted);
+      }
+
+      .icon-button:hover,
+      .icon-button.active {
+        color: var(--primary);
+        background: rgba(255, 213, 79, 0.1);
+      }
+
+      main {
+        width: min(100% - 40px, 900px);
+        margin: 40px auto;
+        flex: 1;
+      }
+
+      h1,
+      h2 {
+        color: var(--primary);
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 2rem;
+        font-weight: 500;
+      }
+
+      .intro,
+      .hint {
+        color: var(--muted);
+      }
+
+      .panel,
+      .shortcut-group {
+        margin-top: 24px;
+        padding: 24px;
+        border: 1px solid rgba(255, 213, 79, 0.14);
+        border-radius: 16px;
+        background: linear-gradient(145deg, #2c2c2e 0%, #1e1e1e 100%);
+      }
+
+      .language-row,
+      .shortcut-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .language-row label,
+      .shortcut-label {
+        font-weight: 500;
+      }
+
+      select {
+        min-width: 180px;
+        padding: 10px 12px;
+        border: 1px solid #514b3b;
+        border-radius: 8px;
+        background: var(--background);
+        color: var(--text);
+      }
+
+      .shortcut-group h2 {
+        margin: 0 0 12px;
+        font-size: 1.2rem;
+      }
+
+      .shortcut-row {
+        min-height: 58px;
+        border-bottom: 1px solid rgba(202, 196, 208, 0.1);
+      }
+
+      .shortcut-row:last-child {
+        border-bottom: 0;
+      }
+
+      .shortcut-input {
+        min-width: 175px;
+        padding: 9px 12px;
+        border: 1px solid #514b3b;
+        border-radius: 8px;
+        background: var(--background);
+        color: var(--primary);
+        font-family: "Roboto Mono", monospace;
+        text-align: center;
+      }
+
+      .shortcut-input.recording {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(255, 213, 79, 0.18);
+      }
+
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .action-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 18px;
+        border: 1px solid var(--primary);
+        border-radius: 24px;
+        background: transparent;
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      .action-button.primary {
+        background: var(--primary);
+        color: #000;
+      }
+
+      .action-button:hover {
+        filter: brightness(1.1);
+      }
+
+      #status {
+        min-height: 24px;
+        margin-top: 14px;
+        color: var(--primary);
+        text-align: right;
+      }
+
+      #status.error {
+        color: var(--error);
+      }
+
+      footer {
+        padding: 24px;
+        color: var(--muted);
+        text-align: center;
+        background: #1c1c1e;
+      }
+
+      @media (max-width: 700px) {
+        .header {
+          padding: 16px;
+        }
+
+        .header-content {
+          flex-wrap: wrap;
+        }
+
+        .header-subtitle {
+          display: none;
+        }
+
+        main {
+          width: min(100% - 24px, 900px);
+          margin: 24px auto;
+        }
+
+        .panel,
+        .shortcut-group {
+          padding: 18px;
+        }
+
+        .shortcut-row {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+          padding: 12px 0;
+        }
+
+        .shortcut-input,
+        select {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="header">
+        <div class="header-content">
+          <button class="logo-button" onclick="goHome()" aria-label="MultiAI">
+            <span class="material-icons">smart_toy</span> MultiAI
+          </button>
+          <div class="subtitle header-subtitle" data-i18n="headerSubtitle">
+            Configuración
+          </div>
+          <div class="header-actions">
+            <div id="lang-switcher" aria-label="Language">
+              <button class="icon-button" onclick="setLanguage('es')">ES</button>
+              <span>/</span>
+              <button class="icon-button" onclick="setLanguage('en')">EN</button>
+            </div>
+            <button
+              class="icon-button"
+              onclick="goToShortcuts()"
+              data-i18n-title="shortcutsTooltip"
+              title="Ver atajos"
+            >
+              <span class="material-icons">keyboard</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <h1 data-i18n="title">Configuración</h1>
+        <p class="intro" data-i18n="intro">
+          Elige el idioma de la aplicación y personaliza sus atajos de teclado.
+        </p>
+
+        <section class="panel">
+          <div class="language-row">
+            <label for="language" data-i18n="languageLabel">Idioma</label>
+            <select id="language" onchange="setLanguage(this.value)">
+              <option value="es">Español</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+        </section>
+
+        <p class="hint" data-i18n="shortcutHint">
+          Selecciona un atajo y pulsa la combinación deseada. Para quitarlo,
+          pulsa Backspace. Los atajos duplicados no se permiten.
+        </p>
+        <div id="shortcut-groups"></div>
+
+        <div class="actions">
+          <button class="action-button" onclick="resetShortcuts()">
+            <span class="material-icons">restart_alt</span>
+            <span data-i18n="resetButton">Restaurar predeterminados</span>
+          </button>
+          <button class="action-button primary" onclick="saveSettings()">
+            <span class="material-icons">save</span>
+            <span data-i18n="saveButton">Guardar configuración</span>
+          </button>
+        </div>
+        <div id="status" role="status" aria-live="polite"></div>
+      </main>
+      <footer>MultiAI</footer>
+    </div>
+
+    <script>
+      const DEFAULTS = {
+        assistant_cardinal: "CmdOrCtrl+1",
+        assistant_chatgpt: "CmdOrCtrl+2",
+        assistant_claude: "CmdOrCtrl+3",
+        assistant_copilot: "CmdOrCtrl+4",
+        assistant_deepseek: "CmdOrCtrl+5",
+        assistant_gemini: "CmdOrCtrl+6",
+        assistant_grok: "CmdOrCtrl+7",
+        assistant_kimi: "",
+        assistant_mistral: "CmdOrCtrl+8",
+        assistant_notebooklm: "CmdOrCtrl+9",
+        assistant_perplexity: "CmdOrCtrl+0",
+        home: "CmdOrCtrl+H",
+        homeEscape: "Esc",
+        back: "Alt+Left",
+        forward: "Alt+Right",
+        zoomIn: "CmdOrCtrl+=",
+        zoomOut: "CmdOrCtrl+-",
+        resetZoom: "CmdOrCtrl+Shift+0",
+        reload: "CmdOrCtrl+R",
+        forceReload: "CmdOrCtrl+Shift+R",
+        minimize: "CmdOrCtrl+M",
+        close: "CmdOrCtrl+W",
+        fullscreen: "F11",
+        devTools: "F12",
+        openExternal: "CmdOrCtrl+O",
+        shortcuts: "CmdOrCtrl+K",
+      };
+
+      const GROUPS = [
+        {
+          title: "assistantsGroup",
+          items: [
+            ["assistant_cardinal", "CardinalAI"],
+            ["assistant_chatgpt", "ChatGPT"],
+            ["assistant_claude", "Claude"],
+            ["assistant_copilot", "Copilot"],
+            ["assistant_deepseek", "Deepseek"],
+            ["assistant_gemini", "Gemini"],
+            ["assistant_grok", "Grok"],
+            ["assistant_kimi", "Kimi"],
+            ["assistant_mistral", "Mistral AI"],
+            ["assistant_notebooklm", "NotebookLM"],
+            ["assistant_perplexity", "Perplexity AI"],
+          ],
+        },
+        {
+          title: "navigationGroup",
+          items: [
+            ["home", "homeLabel"],
+            ["homeEscape", "homeEscapeLabel"],
+            ["back", "backLabel"],
+            ["forward", "forwardLabel"],
+            ["shortcuts", "shortcutsLabel"],
+            ["openExternal", "externalLabel"],
+          ],
+        },
+        {
+          title: "displayGroup",
+          items: [
+            ["zoomIn", "zoomInLabel"],
+            ["zoomOut", "zoomOutLabel"],
+            ["resetZoom", "resetZoomLabel"],
+            ["reload", "reloadLabel"],
+            ["forceReload", "forceReloadLabel"],
+            ["devTools", "devToolsLabel"],
+          ],
+        },
+        {
+          title: "windowGroup",
+          items: [
+            ["minimize", "minimizeLabel"],
+            ["close", "closeLabel"],
+            ["fullscreen", "fullscreenLabel"],
+          ],
+        },
+      ];
+
+      const translations = {
+        es: {
+          pageTitle: "MultiAI - Configuración",
+          headerSubtitle: "Configuración",
+          title: "Configuración",
+          intro:
+            "Elige el idioma de la aplicación y personaliza sus atajos de teclado.",
+          languageLabel: "Idioma",
+          shortcutHint:
+            "Selecciona un atajo y pulsa la combinación deseada. Para quitarlo, pulsa Backspace. Los atajos duplicados no se permiten.",
+          assistantsGroup: "Asistentes IA",
+          navigationGroup: "Navegación",
+          displayGroup: "Página y herramientas",
+          windowGroup: "Ventana",
+          homeLabel: "Ir a la página principal",
+          homeEscapeLabel: "Volver al inicio (Escape)",
+          backLabel: "Atrás",
+          forwardLabel: "Adelante",
+          shortcutsLabel: "Ver atajos de teclado",
+          externalLabel: "Abrir URL en navegador externo",
+          zoomInLabel: "Acercar",
+          zoomOutLabel: "Alejar",
+          resetZoomLabel: "Restablecer zoom",
+          reloadLabel: "Recargar página",
+          forceReloadLabel: "Forzar recarga",
+          devToolsLabel: "Herramientas de desarrollo",
+          minimizeLabel: "Minimizar ventana",
+          closeLabel: "Cerrar ventana",
+          fullscreenLabel: "Pantalla completa",
+          resetButton: "Restaurar predeterminados",
+          saveButton: "Guardar configuración",
+          shortcutsTooltip: "Ver atajos de teclado",
+          saved: "Configuración guardada.",
+          reset: "Atajos predeterminados restaurados. Pulsa Guardar para aplicar.",
+          duplicate: "Cada atajo debe ser único.",
+          invalid: "Combinación no válida. Usa una tecla junto a Ctrl, Alt o Shift.",
+          press: "Pulsa una combinación...",
+          none: "Sin asignar",
+        },
+        en: {
+          pageTitle: "MultiAI - Settings",
+          headerSubtitle: "Settings",
+          title: "Settings",
+          intro: "Choose the app language and customize its keyboard shortcuts.",
+          languageLabel: "Language",
+          shortcutHint:
+            "Select a shortcut and press the desired key combination. Press Backspace to clear it. Duplicate shortcuts are not allowed.",
+          assistantsGroup: "AI Assistants",
+          navigationGroup: "Navigation",
+          displayGroup: "Page and tools",
+          windowGroup: "Window",
+          homeLabel: "Go to home page",
+          homeEscapeLabel: "Return home (Escape)",
+          backLabel: "Back",
+          forwardLabel: "Forward",
+          shortcutsLabel: "View keyboard shortcuts",
+          externalLabel: "Open URL in external browser",
+          zoomInLabel: "Zoom in",
+          zoomOutLabel: "Zoom out",
+          resetZoomLabel: "Reset zoom",
+          reloadLabel: "Reload page",
+          forceReloadLabel: "Force reload",
+          devToolsLabel: "Developer tools",
+          minimizeLabel: "Minimize window",
+          closeLabel: "Close window",
+          fullscreenLabel: "Toggle fullscreen",
+          resetButton: "Restore defaults",
+          saveButton: "Save settings",
+          shortcutsTooltip: "View keyboard shortcuts",
+          saved: "Settings saved.",
+          reset: "Default shortcuts restored. Press Save to apply.",
+          duplicate: "Each shortcut must be unique.",
+          invalid: "Invalid combination. Use a key with Ctrl, Alt, or Shift.",
+          press: "Press a key combination...",
+          none: "Unassigned",
+        },
+      };
+
+      let currentLanguage = "es";
+      let shortcuts = { ...DEFAULTS };
+      let recordingKey = null;
+      let recordingId = null;
+
+      function displayShortcut(value) {
+        if (!value) return translations[currentLanguage].none;
+        return value
+          .replace(/^CmdOrCtrl/, "Ctrl/Cmd")
+          .replace(/\+/g, " + ");
+      }
+
+      function renderShortcutGroups() {
+        recordingKey = null;
+        recordingId = null;
+        const container = document.getElementById("shortcut-groups");
+        container.replaceChildren();
+        GROUPS.forEach((group) => {
+          const section = document.createElement("section");
+          section.className = "shortcut-group";
+          const heading = document.createElement("h2");
+          heading.textContent = translations[currentLanguage][group.title];
+          section.appendChild(heading);
+          group.items.forEach(([id, label]) => {
+            const row = document.createElement("div");
+            row.className = "shortcut-row";
+            const title = document.createElement("span");
+            title.className = "shortcut-label";
+            title.textContent =
+              translations[currentLanguage][label] || label;
+            const button = document.createElement("button");
+            button.className = "shortcut-input";
+            button.type = "button";
+            button.dataset.shortcutId = id;
+            button.textContent = displayShortcut(shortcuts[id]);
+            button.addEventListener("click", () => beginRecording(id, button));
+            row.append(title, button);
+            section.appendChild(row);
+          });
+          container.appendChild(section);
+        });
+      }
+
+      function setLanguage(language) {
+        if (!translations[language]) return;
+        currentLanguage = language;
+        localStorage.setItem("multiAILang", language);
+        if (window.electronAPI) {
+          window.electronAPI.saveAppLanguage(language).catch((error) => {
+            console.error("No se pudo guardar el idioma:", error);
+            const status = document.getElementById("status");
+            status.textContent = error.message;
+            status.classList.add("error");
+          });
+        }
+        document.documentElement.lang = language;
+        document.title = translations[language].pageTitle;
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          element.textContent =
+            translations[language][element.dataset.i18n] ||
+            element.textContent;
+        });
+        document.querySelectorAll("[data-i18n-title]").forEach((element) => {
+          element.title = translations[language][element.dataset.i18nTitle];
+        });
+        document.querySelectorAll("#lang-switcher button").forEach((button) => {
+          button.classList.toggle(
+            "active",
+            button.textContent.toLowerCase() === language,
+          );
+        });
+        document.getElementById("language").value = language;
+        renderShortcutGroups();
+      }
+
+      function beginRecording(id, button) {
+        if (recordingKey) {
+          recordingKey.classList.remove("recording");
+          recordingKey.textContent = displayShortcut(
+            shortcuts[recordingKey.dataset.shortcutId],
+          );
+        }
+        recordingKey = button;
+        recordingKey.classList.add("recording");
+        recordingKey.textContent = translations[currentLanguage].press;
+        recordingKey.focus();
+        recordingId = id;
+      }
+
+      function normalizeKey(event) {
+        const aliases = {
+          Escape: "Esc",
+          ArrowLeft: "Left",
+          ArrowRight: "Right",
+          ArrowUp: "Up",
+          ArrowDown: "Down",
+          " ": "Space",
+          "+": "Plus",
+        };
+        const key = aliases[event.key] || event.key;
+        if (
+          !/^[a-z0-9]$/i.test(key) &&
+          !/^(F([1-9]|1[0-9]|2[0-4])|Esc|Space|Tab|Backspace|Delete|Insert|Home|End|PageUp|PageDown|Up|Down|Left|Right|Plus|Minus|=|,|\.|\/|\\|;|'|\[|\]|`|\-)$/i.test(
+            key,
+          )
+        ) {
+          return null;
+        }
+
+        const parts = [];
+        if (event.ctrlKey || event.metaKey) parts.push("CmdOrCtrl");
+        if (event.altKey) parts.push("Alt");
+        if (event.shiftKey) parts.push("Shift");
+        if (
+          !parts.length &&
+          !/^F(?:[1-9]|1[0-9]|2[0-4])$/i.test(key) &&
+          key !== "Esc"
+        ) {
+          return null;
+        }
+        if (key === "Backspace" && !parts.length) return "";
+        parts.push(key.length === 1 ? key.toUpperCase() : key);
+        return parts.join("+");
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (!recordingKey) return;
+        event.preventDefault();
+        event.stopPropagation();
+        if (["Control", "Shift", "Alt", "Meta"].includes(event.key)) return;
+
+        const combination = normalizeKey(event);
+        const status = document.getElementById("status");
+        if (combination === null) {
+          status.textContent = translations[currentLanguage].invalid;
+          status.classList.add("error");
+          return;
+        }
+        shortcuts[recordingId] = combination;
+        recordingKey.classList.remove("recording");
+        recordingKey.textContent = displayShortcut(combination);
+        recordingKey = null;
+        recordingId = null;
+        status.textContent = "";
+        status.classList.remove("error");
+      });
+
+      function validateNoDuplicates(settings) {
+        const used = new Set();
+        for (const value of Object.values(settings)) {
+          if (!value) continue;
+          const parts = value.toLowerCase().split("+");
+          const key = parts.pop();
+          const modifiers = [
+            ...new Set(
+              parts.map((modifier) =>
+                ["cmdorctrl", "super"].includes(modifier) ? "ctrl" : modifier,
+              ),
+            ),
+          ].sort();
+          const normalized = [...modifiers, key].join("+");
+          if (used.has(normalized)) return false;
+          used.add(normalized);
+        }
+        return true;
+      }
+
+      async function loadSettings() {
+        try {
+          if (window.electronAPI) {
+            shortcuts = await window.electronAPI.getShortcutSettings();
+          } else {
+            const saved = localStorage.getItem("multiAIShortcuts");
+            shortcuts = saved
+              ? { ...DEFAULTS, ...JSON.parse(saved) }
+              : { ...DEFAULTS };
+          }
+        } catch (error) {
+          console.error("No se pudo cargar la configuración de atajos:", error);
+          document.getElementById("status").textContent = error.message;
+          document.getElementById("status").classList.add("error");
+        }
+        renderShortcutGroups();
+      }
+
+      async function saveSettings() {
+        const status = document.getElementById("status");
+        status.classList.remove("error");
+        if (!validateNoDuplicates(shortcuts)) {
+          status.textContent = translations[currentLanguage].duplicate;
+          status.classList.add("error");
+          return;
+        }
+        try {
+          if (window.electronAPI) {
+            shortcuts = await window.electronAPI.saveShortcutSettings(shortcuts);
+          } else {
+            localStorage.setItem("multiAIShortcuts", JSON.stringify(shortcuts));
+          }
+          status.textContent = translations[currentLanguage].saved;
+        } catch (error) {
+          console.error("No se pudo guardar la configuración:", error);
+          status.textContent = error.message;
+          status.classList.add("error");
+        }
+      }
+
+      function resetShortcuts() {
+        shortcuts = { ...DEFAULTS };
+        renderShortcutGroups();
+        const status = document.getElementById("status");
+        status.textContent = translations[currentLanguage].reset;
+        status.classList.remove("error");
+      }
+
+      function goHome() {
+        window.location.href = "index.html";
+      }
+
+      function goToShortcuts() {
+        window.location.href = "shortcuts.html";
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        let language =
+          localStorage.getItem("multiAILang") ||
+          (translations[navigator.language.split("-")[0]] ? navigator.language.split("-")[0] : "es");
+        if (window.electronAPI) {
+          try {
+            const configuredLanguage = await window.electronAPI.getAppLanguage();
+            if (configuredLanguage) language = configuredLanguage;
+          } catch (error) {
+            console.error("No se pudo cargar el idioma:", error);
+          }
+        }
+        setLanguage(language);
+        await loadSettings();
+      });
+    </script>
+  </body>
+</html>
