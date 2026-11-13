@@ -307,9 +307,13 @@
           </div>
           <div class="header-actions">
             <div id="lang-switcher" aria-label="Language">
-              <button class="icon-button" onclick="setLanguage('es')">ES</button>
+              <button class="icon-button" onclick="setLanguage('es')">
+                ES
+              </button>
               <span>/</span>
-              <button class="icon-button" onclick="setLanguage('en')">EN</button>
+              <button class="icon-button" onclick="setLanguage('en')">
+                EN
+              </button>
             </div>
             <button
               class="icon-button"
@@ -476,9 +480,11 @@
           saveButton: "Guardar configuración",
           shortcutsTooltip: "Ver atajos de teclado",
           saved: "Configuración guardada.",
-          reset: "Atajos predeterminados restaurados. Pulsa Guardar para aplicar.",
+          reset:
+            "Atajos predeterminados restaurados. Pulsa Guardar para aplicar.",
           duplicate: "Cada atajo debe ser único.",
-          invalid: "Combinación no válida. Usa una tecla junto a Ctrl, Alt o Shift.",
+          invalid:
+            "Combinación no válida. Usa una tecla junto a Ctrl, Alt o Shift.",
           press: "Pulsa una combinación...",
           none: "Sin asignar",
         },
@@ -486,7 +492,8 @@
           pageTitle: "MultiAI - Settings",
           headerSubtitle: "Settings",
           title: "Settings",
-          intro: "Choose the app language and customize its keyboard shortcuts.",
+          intro:
+            "Choose the app language and customize its keyboard shortcuts.",
           languageLabel: "Language",
           shortcutHint:
             "Select a shortcut and press the desired key combination. Press Backspace to clear it. Duplicate shortcuts are not allowed.",
@@ -528,9 +535,7 @@
 
       function displayShortcut(value) {
         if (!value) return translations[currentLanguage].none;
-        return value
-          .replace(/^CmdOrCtrl/, "Ctrl/Cmd")
-          .replace(/\+/g, " + ");
+        return value.replace(/^CmdOrCtrl/, "Ctrl/Cmd").replace(/\+/g, " + ");
       }
 
       function renderShortcutGroups() {
@@ -549,8 +554,7 @@
             row.className = "shortcut-row";
             const title = document.createElement("span");
             title.className = "shortcut-label";
-            title.textContent =
-              translations[currentLanguage][label] || label;
+            title.textContent = translations[currentLanguage][label] || label;
             const button = document.createElement("button");
             button.className = "shortcut-input";
             button.type = "button";
@@ -580,8 +584,7 @@
         document.title = translations[language].pageTitle;
         document.querySelectorAll("[data-i18n]").forEach((element) => {
           element.textContent =
-            translations[language][element.dataset.i18n] ||
-            element.textContent;
+            translations[language][element.dataset.i18n] || element.textContent;
         });
         document.querySelectorAll("[data-i18n-title]").forEach((element) => {
           element.title = translations[language][element.dataset.i18nTitle];
@@ -716,7 +719,8 @@
         }
         try {
           if (window.electronAPI) {
-            shortcuts = await window.electronAPI.saveShortcutSettings(shortcuts);
+            shortcuts =
+              await window.electronAPI.saveShortcutSettings(shortcuts);
           } else {
             localStorage.setItem("multiAIShortcuts", JSON.stringify(shortcuts));
           }
@@ -752,7 +756,9 @@
           } else {
             const response = await fetch("package.json");
             if (!response.ok) {
-              throw new Error(`No se pudo cargar package.json: ${response.status}`);
+              throw new Error(
+                `No se pudo cargar package.json: ${response.status}`,
+              );
             }
             version = (await response.json()).version;
           }
@@ -768,10 +774,13 @@
         loadVersion();
         let language =
           localStorage.getItem("multiAILang") ||
-          (translations[navigator.language.split("-")[0]] ? navigator.language.split("-")[0] : "es");
+          (translations[navigator.language.split("-")[0]]
+            ? navigator.language.split("-")[0]
+            : "es");
         if (window.electronAPI) {
           try {
-            const configuredLanguage = await window.electronAPI.getAppLanguage();
+            const configuredLanguage =
+              await window.electronAPI.getAppLanguage();
             if (configuredLanguage) language = configuredLanguage;
           } catch (error) {
             console.error("No se pudo cargar el idioma:", error);

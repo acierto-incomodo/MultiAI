@@ -533,7 +533,9 @@
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openCardinal"
                   >Abrir CardinalAI</span
-                ><span class="shortcut-key" data-shortcut-id="assistant_cardinal"
+                ><span
+                  class="shortcut-key"
+                  data-shortcut-id="assistant_cardinal"
                   >Ctrl/Cmd + 1</span
                 >
               </li>
@@ -561,7 +563,9 @@
               <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="openDeepseek"
                   >Abrir Deepseek</span
-                ><span class="shortcut-key" data-shortcut-id="assistant_deepseek"
+                ><span
+                  class="shortcut-key"
+                  data-shortcut-id="assistant_deepseek"
                   >Ctrl/Cmd + 5</span
                 >
               </li>
@@ -1067,10 +1071,9 @@
       let configuredShortcutSettings = { ...DEFAULT_SHORTCUTS };
 
       function formatShortcut(value) {
-        if (!value) return currentLanguage === "en" ? "Unassigned" : "Sin asignar";
-        return value
-          .replace(/^CmdOrCtrl/, "Ctrl/Cmd")
-          .replace(/\+/g, " + ");
+        if (!value)
+          return currentLanguage === "en" ? "Unassigned" : "Sin asignar";
+        return value.replace(/^CmdOrCtrl/, "Ctrl/Cmd").replace(/\+/g, " + ");
       }
 
       async function loadConfiguredShortcuts() {

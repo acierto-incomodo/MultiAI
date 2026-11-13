@@ -781,14 +781,20 @@
         <!-- AI Assistants Grid -->
         <section class="ai-grid">
           <!-- CardinalAI -->
+          <!--
           <div
             class="ai-card blocked"
             onclick="openAssistant('cardinal', this)"
           >
+          -->
+
+          <div class="ai-card" onclick="openAssistant('cardinal', this)">
+            <!--
             <div class="blocked-badge">
               <span class="material-icons" style="font-size: 14px">lock</span>
               <span data-i18n-key="blockedBadge">BLOQUEADO</span>
             </div>
+            -->
             <div class="card-header">
               <div class="card-icon img-icon">
                 <img
@@ -989,10 +995,7 @@
               </div>
               <h3 class="card-title">Kimi</h3>
             </div>
-            <p
-              class="card-description text-highlight"
-              data-i18n-key="kimiDesc"
-            >
+            <p class="card-description text-highlight" data-i18n-key="kimiDesc">
               Asistente de IA de Moonshot AI para conversar y resolver tareas.
             </p>
             <span class="material-icons card-arrow">arrow_forward</span>
@@ -1213,8 +1216,7 @@
           mistralDesc: "Efficient and high-performance open-source AI models.",
           notebooklmDesc:
             "Google's AI-powered research and note-taking assistant.",
-          kimiDesc:
-            "Moonshot AI assistant for conversations and task solving.",
+          kimiDesc: "Moonshot AI assistant for conversations and task solving.",
           loading: "Loading...",
           redirecting: "Redirecting to",
           clickToOpen: "Click to open",
@@ -1228,7 +1230,7 @@
 
       // Mapeo de asistentes a URLs
       const assistants = {
-        cardinal: "https://cardinal-ai-h4rt.vercel.app/",
+        cardinal: "https://cardinal-ai-web.vercel.app/",
         chatgpt: "https://chatgpt.com/",
         copilot: "https://copilot.microsoft.com/",
         deepseek: "https://chat.deepseek.com",
