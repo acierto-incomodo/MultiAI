@@ -1,6 +1,6 @@
 {
   "name": "multiai",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "Centro de asistentes de inteligencia artificial",
   "main": "main.js",
   "desktopName": "com.stormgamesstudios.multiai",
@@ -55,11 +55,8 @@
       "preload.js",
       "assets/**/*",
       "node_modules/**/*",
-      "index.html",
-      "build/**/*",
-      "shortcuts.html",
-      "settings.html",
-      "updates.html"
+      "src/**/*",
+      "build/**/*"
     ],
     "directories": {
       "output": "dist"

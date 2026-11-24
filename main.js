@@ -10,6 +10,7 @@ const path = require("path");
 const fs = require("fs");
 const { autoUpdater } = require("electron-updater");
 const log = require("electron-log");
+const HTML_DIR = path.join(__dirname, "src");
 
 // Configura electron-log
 log.transports.file.level = "info";
@@ -251,7 +252,7 @@ function createWindow() {
       normalizeShortcut(getShortcut("homeEscape"))
     ) {
       event.preventDefault();
-      mainWindow.loadFile("index.html");
+      mainWindow.loadFile(path.join(HTML_DIR, "index.html"));
     }
   });
 
@@ -262,7 +263,7 @@ function createWindow() {
     log.info(`Cargando URL por argumento: ${startUrl}`);
   } else {
     // Cargar la página principal
-    mainWindow.loadFile("index.html");
+    mainWindow.loadFile(path.join(HTML_DIR, "index.html"));
     log.info("Cargando index.html en la ventana principal.");
   }
 
@@ -341,7 +342,7 @@ function createMenu() {
           accelerator: getShortcut("home"),
           click: () => {
             log.info("Menu: Navegando a la página principal.");
-            mainWindow.loadFile("index.html");
+            mainWindow.loadFile(path.join(HTML_DIR, "index.html"));
           },
         },
         { type: "separator" },
@@ -448,7 +449,7 @@ function createMenu() {
           accelerator: getShortcut("shortcuts"),
           click: () => {
             log.info("Menu: Mostrando atajos de teclado.");
-            mainWindow.loadFile("shortcuts.html");
+            mainWindow.loadFile(path.join(HTML_DIR, "shortcuts.html"));
           },
         },
         { type: "separator" },
@@ -529,7 +530,7 @@ ipcMain.handle("go-back", () => {
 ipcMain.handle("go-home", () => {
   if (mainWindow) {
     log.info("IPC: Navegando a la página de inicio (index.html).");
-    mainWindow.loadFile("index.html");
+    mainWindow.loadFile(path.join(HTML_DIR, "index.html"));
     return true;
   }
   return false;

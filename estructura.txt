@@ -1,12 +1,20 @@
-mi-electron-app/
+MultiAI/
 ├── package.json
 ├── main.js
 ├── preload.js
 ├── src/
 │   ├── index.html
-│   ├── page1.html
-│   ├── page2.html
-│   └── page3.html
+│   ├── settings.html
+│   ├── shortcuts.html
+│   └── updates.html
+├── assets/
+│   ├── appx/
+│   ├── extra/
+│   ├── icons/
+│   ├── images/
+│   └── imagesIco/
 ├── build/
-│   └── icon.png
-└── dist/
+│   ├── appx/
+│   └── icons/
+├── fotos/
+└── dist/ (generado al compilar)
