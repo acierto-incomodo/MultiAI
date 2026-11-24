@@ -4,13 +4,14 @@ MultiAI/
 ├── preload.js
 ├── src/
 │   ├── index.html
-│   ├── index.css
 │   ├── settings.html
-│   ├── settings.css
 │   ├── shortcuts.html
-│   ├── shortcuts.css
 │   ├── updates.html
-│   └── updates.css
+│   └── styles/
+│       ├── index.css
+│       ├── settings.css
+│       ├── shortcuts.css
+│       └── updates.css
 ├── assets/
 │   ├── appx/
 │   ├── extra/
