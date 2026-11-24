@@ -93,9 +93,7 @@
     "linux": {
       "target": [
         "deb",
-        "AppImage",
-        "pacman",
-        "flatpak"
+        "AppImage"
       ],
       "icon": "assets/icons/icon.png",
       "category": "Utility",
