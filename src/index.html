@@ -540,6 +540,26 @@
         try {
           const card =
             element || document.querySelector(`[onclick*="${assistantKey}"]`);
+          if (
+            card.classList.contains("is-loading") ||
+            card.classList.contains("is-transitioning")
+          ) {
+            return;
+          }
+
+          const assistantName =
+            card.querySelector(".card-title")?.textContent.trim() ||
+            assistantKey;
+          const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches;
+
+          if (!prefersReducedMotion) {
+            card.classList.add("is-transitioning");
+            await new Promise((resolve) => setTimeout(resolve, 200));
+            card.classList.remove("is-transitioning");
+          }
+
           card.classList.add("is-loading");
           card.innerHTML = `
                     <div class="card-header">
@@ -547,10 +567,14 @@
                         <h3 class="card-title">${translations[currentLanguage].loading}</h3>
                     </div>
                     <p class="card-description">
-                        ${translations[currentLanguage].redirecting} ${assistantKey}...
+                        ${translations[currentLanguage].redirecting} ${assistantName}...
                     </p>
                     <span class="material-icons card-arrow card-arrow-loading">hourglass_empty</span>
                 `;
+
+          if (!prefersReducedMotion) {
+            await new Promise((resolve) => setTimeout(resolve, 220));
+          }
 
           if (window.electronAPI) {
             await window.electronAPI.navigateToUrl(url);
@@ -673,17 +697,19 @@
         }
       }
 
-      // Efectos de interacción adicionales
+      // Accesibilidad y navegación por teclado para las tarjetas
       function setupCardInteractions() {
         const cards = document.querySelectorAll(".ai-card");
 
         cards.forEach((card) => {
-          card.addEventListener("click", function (event) {
-            // Efecto visual al hacer clic
-            this.style.transform = "scale(0.98)";
-            setTimeout(() => {
-              this.style.transform = "translateY(-6px)"; // Keep hover effect
-            }, 150);
+          card.setAttribute("tabindex", "0");
+          card.setAttribute("role", "button");
+
+          card.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              this.click();
+            }
           });
         });
       }
@@ -725,14 +751,12 @@
         });
 
         // Highlight active language button
-        document.querySelector(
-          "#lang-switcher button[onclick=\"setLanguage('es')\"]",
-        ).style.backgroundColor =
-          lang === "es" ? "rgba(255, 213, 79, 0.1)" : "transparent";
-        document.querySelector(
-          "#lang-switcher button[onclick=\"setLanguage('en')\"]",
-        ).style.backgroundColor =
-          lang === "en" ? "rgba(255, 213, 79, 0.1)" : "transparent";
+        document
+          .querySelector("#lang-switcher button[onclick=\"setLanguage('es')\"]")
+          .classList.toggle("active", lang === "es");
+        document
+          .querySelector("#lang-switcher button[onclick=\"setLanguage('en')\"]")
+          .classList.toggle("active", lang === "en");
       }
 
       async function loadVersion() {
@@ -786,13 +810,6 @@
           showCustomAlert();
         });
       }
-
-      // Manejar la tecla Escape para volver al inicio
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && !window.electronAPI) {
-          window.location.href = "index.html";
-        }
-      });
     </script>
   </body>
 </html>
