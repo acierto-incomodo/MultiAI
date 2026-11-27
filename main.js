@@ -75,7 +75,6 @@ const DEFAULT_SHORTCUTS = {
   ),
   assistant_kimi: "",
   home: "CmdOrCtrl+H",
-  homeEscape: "Esc",
   back: "Alt+Left",
   forward: "Alt+Right",
   zoomIn: "CmdOrCtrl+=",
@@ -222,38 +221,6 @@ function createWindow() {
     },
     icon: path.join(__dirname, "assets/icons/icon.png"),
     show: false,
-  });
-
-  mainWindow.webContents.on("before-input-event", (event, input) => {
-    if (
-      input.type !== "keyDown" ||
-      !getShortcut("homeEscape") ||
-      mainWindow.webContents.getURL().endsWith("/settings.html")
-    ) {
-      return;
-    }
-
-    const keyAliases = {
-      Escape: "Esc",
-      ArrowLeft: "Left",
-      ArrowRight: "Right",
-      ArrowUp: "Up",
-      ArrowDown: "Down",
-    };
-    const key = keyAliases[input.key] || input.key;
-    const parts = [];
-    if (input.meta || input.control) parts.push("CmdOrCtrl");
-    if (input.alt) parts.push("Alt");
-    if (input.shift) parts.push("Shift");
-    parts.push(key);
-
-    if (
-      normalizeShortcut(parts.join("+")) ===
-      normalizeShortcut(getShortcut("homeEscape"))
-    ) {
-      event.preventDefault();
-      mainWindow.loadFile(path.join(HTML_DIR, "index.html"));
-    }
   });
 
   // Verificar argumentos de línea de comandos para carga inicial

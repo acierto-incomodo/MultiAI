@@ -265,13 +265,6 @@
                 >
               </li>
               <li class="shortcut-item">
-                <span class="shortcut-action" data-i18n-key="navBackHome"
-                  >Volver a la Página Principal</span
-                ><span class="shortcut-key" data-shortcut-id="homeEscape"
-                  >Esc</span
-                >
-              </li>
-              <li class="shortcut-item">
                 <span class="shortcut-action" data-i18n-key="navPrev"
                   >Página Anterior</span
                 ><span class="shortcut-key" data-shortcut-id="back"
@@ -430,7 +423,6 @@
             "Puedes iniciar MultiAI con estos argumentos para abrir directamente un asistente:",
           catNav: '<span class="material-icons">navigation</span>Navegación',
           navHome: "Ir a la Página Principal",
-          navBackHome: "Volver a la Página Principal",
           navPrev: "Página Anterior",
           navNext: "Página Siguiente",
           navReload: "Recargar Página",
@@ -474,7 +466,6 @@
             "You can launch MultiAI with these arguments to open an assistant directly:",
           catNav: '<span class="material-icons">navigation</span>Navigation',
           navHome: "Go to Main Page",
-          navBackHome: "Return to Main Page",
           navPrev: "Previous Page",
           navNext: "Next Page",
           navReload: "Reload Page",
@@ -615,7 +606,6 @@
         assistant_notebooklm: "CmdOrCtrl+9",
         assistant_perplexity: "CmdOrCtrl+0",
         home: "CmdOrCtrl+H",
-        homeEscape: "Esc",
         back: "Alt+Left",
         forward: "Alt+Right",
         zoomIn: "CmdOrCtrl+=",
@@ -713,13 +703,6 @@
         }
         setLanguage(savedLang);
         loadConfiguredShortcuts();
-      });
-
-      // Manejar la tecla Escape para volver al inicio
-      document.addEventListener("keydown", async (event) => {
-        if (event.key === "Escape" && !window.electronAPI) {
-          window.location.href = "index.html";
-        }
       });
     </script>
   </body>
