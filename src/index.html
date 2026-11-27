@@ -540,6 +540,17 @@
         try {
           const card =
             element || document.querySelector(`[onclick*="${assistantKey}"]`);
+          if (
+            card.classList.contains("is-loading") ||
+            card.classList.contains("is-transitioning")
+          ) {
+            return;
+          }
+
+          card.classList.add("is-transitioning");
+          await new Promise((resolve) => setTimeout(resolve, 200));
+
+          card.classList.remove("is-transitioning");
           card.classList.add("is-loading");
           card.innerHTML = `
                     <div class="card-header">
@@ -551,6 +562,8 @@
                     </p>
                     <span class="material-icons card-arrow card-arrow-loading">hourglass_empty</span>
                 `;
+
+          await new Promise((resolve) => setTimeout(resolve, 220));
 
           if (window.electronAPI) {
             await window.electronAPI.navigateToUrl(url);

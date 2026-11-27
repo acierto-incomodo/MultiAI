@@ -722,10 +722,57 @@ body {
 }
 
 .card-arrow-loading {
-  animation: pulse 1.5s infinite;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes cardLoadingIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.ai-card .card-header,
+.ai-card .card-description {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ai-card.is-transitioning {
+  pointer-events: none;
+}
+
+.ai-card.is-transitioning .card-header,
+.ai-card.is-transitioning .card-description,
+.ai-card.is-transitioning .card-arrow {
+  opacity: 0;
+  transform: translateY(-6px);
 }
 
 .ai-card.is-loading {
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.85;
+}
+
+.ai-card.is-loading .card-header,
+.ai-card.is-loading .card-description,
+.ai-card.is-loading .card-arrow {
+  animation: cardLoadingIn 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
